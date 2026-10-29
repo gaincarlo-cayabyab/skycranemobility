@@ -1,0 +1,53 @@
+# =============================================
+# Netlify Configuration for SkyCrane Mobility
+# Domain: skycranemobility.com
+# =============================================
+
+[build]
+  publish = "."
+
+# =============================================
+# Form Submission Email Notifications
+# After deploying, go to Netlify Dashboard ->
+# Forms -> quote-request -> Notifications
+# Add email: info@skycranemobility.com
+# =============================================
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Redirect www to non-www
+[[redirects]]
+  from = "https://www.skycranemobility.com/*"
+  to = "https://skycranemobility.com/:splat"
+  status = 301
+  force = true
+
+# 404 page
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

@@ -1,0 +1,10 @@
+# SkyCrane Mobility - robots.txt
+# https://skycranemobility.com
+
+User-agent: *
+Allow: /
+
+# Disallow admin/internal files
+Disallow: /developer_portfolio_attribution_integration_guide.md
+
+Sitemap: https://skycranemobility.com/sitemap.xml
