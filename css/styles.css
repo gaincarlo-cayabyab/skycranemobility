@@ -1797,4 +1797,16 @@ html, body { overflow-x: hidden; }
 .showcase-indigo{ background: linear-gradient(135deg, rgba(238, 242, 255, 0.60) 0%, #FFFFFF 35%); }
 .showcase-ruby  { background: linear-gradient(135deg, rgba(254, 242, 242, 0.60) 0%, #FFFFFF 35%); }
 
+/* =============================================
+   Hide Tawk.to branding footer
+   ============================================= */
+#tawk-tooltip-container, 
+.tawk-branding,
+a[href*="tawk.to"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 

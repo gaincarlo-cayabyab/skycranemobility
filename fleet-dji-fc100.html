@@ -52,6 +52,17 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
+  <!-- Hide Tawk.to branding footer -->
+  <style>
+    #tawk-tooltip-container, 
+    .tawk-branding,
+    a[href*="tawk.to"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 overflow-x-hidden">
