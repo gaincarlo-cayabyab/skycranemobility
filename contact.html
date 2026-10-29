@@ -779,23 +779,6 @@
 }
 </style>
 <script>
-function openDevModal() {
-  var m = document.getElementById('devModal');
-  if (m) {
-    m.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-}
-function closeDevModal() {
-  var m = document.getElementById('devModal');
-  if (m) {
-    m.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeDevModal();
-});
 console.log(
   "%c ✦ Designed & Engineered by Gain Carlo Cayabyab | Web Systems Developer ",
   "background:#0f172a;color:#38bdf8;font-size:11px;font-weight:bold;padding:6px 12px;border-radius:4px;"

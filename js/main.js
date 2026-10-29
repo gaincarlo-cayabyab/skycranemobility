@@ -232,31 +232,25 @@
           submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg style="animation:spin 1s linear infinite;width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Transmitting Mission Feasibility Data...</span>';
         }
 
-        // Submit via AJAX (Netlify form support)
-        var formData = new FormData(quoteForm);
-        var searchParams = new URLSearchParams(formData);
+        // Submit via native Netlify form handler
+        // On Netlify: form.submit() triggers Netlify's own form capture and
+        // redirects to thank-you.html as set in action attribute.
+        // On localhost (XAMPP): show success modal as fallback.
+        var isNetlify = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
 
-        fetch(quoteForm.getAttribute("action") || "thank-you.html", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: searchParams.toString()
-        })
-        .then(function () {
+        if (isNetlify) {
+          // Let Netlify handle submission natively (will redirect to thank-you.html)
+          quoteForm.submit();
+        } else {
+          // Local XAMPP fallback: show success modal
           window.showConsultationSuccessModal(name, company, email, phone);
           quoteForm.reset();
-        })
-        .catch(function () {
-          // Graceful fallback for offline / local XAMPP
-          window.showConsultationSuccessModal(name, company, email, phone);
-          quoteForm.reset();
-        })
-        .finally(function () {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.style.opacity = "1";
             submitBtn.innerHTML = origBtnHTML;
           }
-        });
+        }
       });
     }
 
