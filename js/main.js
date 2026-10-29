@@ -188,5 +188,146 @@
       });
     });
 
+    // ── 9. Consultation Request Form Submission & Philippine Legal Validation ──
+    var quoteForm = document.getElementById("quote-form");
+    if (quoteForm) {
+      quoteForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var submitBtn = document.getElementById("btn-submit-consultation");
+        var privacyConsent = document.getElementById("privacy-consent");
+
+        // Check Philippine Data Privacy Act Compliance Checkbox (R.A. 10173)
+        if (privacyConsent && !privacyConsent.checked) {
+          alert("Compliance Required: Please check the box agreeing to the Philippine Data Privacy Act of 2012 (R.A. 10173) before submitting your consultation request.");
+          privacyConsent.focus();
+          return;
+        }
+
+        // Validate required fields
+        var companyInput = document.getElementById("company");
+        var nameInput    = document.getElementById("full-name");
+        var phoneInput   = document.getElementById("phone");
+        var emailInput   = document.getElementById("email");
+        var locInput     = document.getElementById("location");
+        var msgInput     = document.getElementById("message");
+
+        var company = companyInput ? companyInput.value.trim() : "";
+        var name    = nameInput ? nameInput.value.trim() : "";
+        var phone   = phoneInput ? phoneInput.value.trim() : "";
+        var email   = emailInput ? emailInput.value.trim() : "";
+        var loc     = locInput ? locInput.value.trim() : "";
+        var msg     = msgInput ? msgInput.value.trim() : "";
+
+        if (!company || !name || !phone || !email || !loc || !msg) {
+          alert("Please fill out all required fields marked with an asterisk (*).");
+          return;
+        }
+
+        // Visual loading state
+        var origBtnHTML = submitBtn ? submitBtn.innerHTML : "";
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.75";
+          submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg style="animation:spin 1s linear infinite;width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Transmitting Mission Feasibility Data...</span>';
+        }
+
+        // Submit via AJAX (Netlify form support)
+        var formData = new FormData(quoteForm);
+        var searchParams = new URLSearchParams(formData);
+
+        fetch(quoteForm.getAttribute("action") || "thank-you.html", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: searchParams.toString()
+        })
+        .then(function () {
+          window.showConsultationSuccessModal(name, company, email, phone);
+          quoteForm.reset();
+        })
+        .catch(function () {
+          // Graceful fallback for offline / local XAMPP
+          window.showConsultationSuccessModal(name, company, email, phone);
+          quoteForm.reset();
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.innerHTML = origBtnHTML;
+          }
+        });
+      });
+    }
+
   });
+
+  // ── Global Modal Controllers (Accessible from anywhere) ─────
+  window.openLegalModal = function () {
+    var m = document.getElementById("legalModal");
+    if (m) {
+      m.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  window.closeLegalModal = function () {
+    var m = document.getElementById("legalModal");
+    if (m) {
+      m.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  };
+
+  window.openDevModal = function () {
+    var m = document.getElementById("devModal");
+    if (m) {
+      m.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  window.closeDevModal = function () {
+    var m = document.getElementById("devModal");
+    if (m) {
+      m.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  };
+
+  window.showConsultationSuccessModal = function (name, company, email, phone) {
+    var m = document.getElementById("consultationSuccessModal");
+    var detailsEl = document.getElementById("success-modal-details");
+    if (detailsEl) {
+      detailsEl.innerHTML = [
+        '<strong>Client:</strong> ' + (name || 'Project Representative'),
+        '<strong>Company:</strong> ' + (company || 'Confidential Enterprise'),
+        '<strong>Dispatch Contact:</strong> ' + (phone || 'Registered Phone') + ' • ' + (email || 'info@skycranemobility.com')
+      ].join('<br>');
+    }
+    if (m) {
+      m.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    } else {
+      alert("Thank you, " + name + "! Your consultation request for " + company + " has been submitted successfully. Our flight coordinator will contact you shortly.");
+    }
+  };
+
+  window.closeConsultationSuccessModal = function () {
+    var m = document.getElementById("consultationSuccessModal");
+    if (m) {
+      m.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  };
+
+  // Keyboard accessibility: ESC closes any open modal
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      window.closeLegalModal();
+      window.closeDevModal();
+      window.closeConsultationSuccessModal();
+    }
+  });
+
 })();

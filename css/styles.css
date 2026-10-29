@@ -1130,7 +1130,8 @@ img, video { display: block; max-width: 100%; }
 #site-footer {
   background: var(--navy);
   color: #94A3B8;
-  padding: 4rem 2rem 2rem;
+  padding: 4.5rem 2rem 7rem; /* Generous bottom clearance to prevent collision with floating widgets */
+  position: relative;
 }
 .footer-logo img { height: 48px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
 .footer-nav-title {
@@ -1155,16 +1156,61 @@ img, video { display: block; max-width: 100%; }
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: flex-start;
 }
-@media (min-width: 640px) {
-  .footer-bottom { flex-direction: row; align-items: center; justify-content: space-between; }
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 17rem; /* Guaranteed clearance for floating chat launcher */
+  }
 }
 .footer-legal { font-size: 0.75rem; }
-.footer-legal-links { display: flex; gap: 1.25rem; }
-.footer-legal-link { font-size: 0.75rem; color: #64748B; transition: color var(--t1); }
+.footer-legal-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.footer-legal-link { font-size: 0.75rem; color: #64748B; transition: color var(--t1); text-decoration: none; }
 .footer-legal-link:hover { color: #94A3B8; }
+
+/* Philippine Legal & Regulatory Compliance Badges */
+.footer-compliance-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.compliance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.compliance-badge-caap {
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+}
+.compliance-badge-privacy {
+  color: #34D399;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+.compliance-badge-dti {
+  color: #F97316;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.22);
+}
+.compliance-badge-dole {
+  color: #A78BFA;
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+}
 
 /* ════════════════════════════════════════════════════════════
    SCROLL PROGRESS BAR & BACK TO TOP BUTTON
