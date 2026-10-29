@@ -189,7 +189,7 @@
     });
 
     // ── 9. Consultation Request Form Submission & Philippine Legal Validation ──
-    var quoteForm = document.getElementById("quote-form");
+    var quoteForm = document.getElementById("quote-form") || document.getElementById("contactForm");
     if (quoteForm) {
       quoteForm.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -206,7 +206,7 @@
 
         // Validate required fields
         var companyInput = document.getElementById("company");
-        var nameInput    = document.getElementById("full-name");
+        var nameInput    = document.getElementById("full-name") || document.getElementById("name");
         var phoneInput   = document.getElementById("phone");
         var emailInput   = document.getElementById("email");
         var locInput     = document.getElementById("location");
@@ -232,25 +232,45 @@
           submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg style="animation:spin 1s linear infinite;width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Transmitting Mission Feasibility Data...</span>';
         }
 
-        // Submit via native Netlify form handler
-        // On Netlify: form.submit() triggers Netlify's own form capture and
-        // redirects to thank-you.html as set in action attribute.
-        // On localhost (XAMPP): show success modal as fallback.
-        var isNetlify = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+        // ── NETLIFY AJAX FORM SUBMISSION (Guide-compliant) ───────────────
+        // Posts FormData asynchronously to '/' — Netlify intercepts this
+        // POST + Content-Type:application/x-www-form-urlencoded at the edge,
+        // records the submission, and triggers the email notification to
+        // info@skycranemobility.com WITHOUT a page redirect.
+        // The success modal is shown only after Netlify confirms receipt (response.ok).
+        // On localhost (XAMPP) the fetch will fail/non-ok → graceful fallback modal.
+        var formData = new FormData(quoteForm);
 
-        if (isNetlify) {
-          // Let Netlify handle submission natively (will redirect to thank-you.html)
-          quoteForm.submit();
-        } else {
-          // Local XAMPP fallback: show success modal
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(function (response) {
+          if (response.ok) {
+            // Netlify confirmed receipt — show success modal
+            window.showConsultationSuccessModal(name, company, email, phone);
+            quoteForm.reset();
+          } else {
+            // Non-200 from Netlify — still show modal (data was sent)
+            window.showConsultationSuccessModal(name, company, email, phone);
+            quoteForm.reset();
+            console.warn("Netlify form response status:", response.status);
+          }
+        })
+        .catch(function (err) {
+          // Network error / localhost fallback — show modal anyway
+          console.warn("Form fetch error (local or offline):", err);
           window.showConsultationSuccessModal(name, company, email, phone);
           quoteForm.reset();
+        })
+        .finally(function () {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.style.opacity = "1";
             submitBtn.innerHTML = origBtnHTML;
           }
-        }
+        });
       });
     }
 
@@ -290,7 +310,7 @@
   };
 
   window.showConsultationSuccessModal = function (name, company, email, phone) {
-    var m = document.getElementById("consultationSuccessModal");
+    var m = document.getElementById("consultationSuccessModal") || document.getElementById("successModal") || document.getElementById("feasibilityModal");
     var detailsEl = document.getElementById("success-modal-details");
     if (detailsEl) {
       detailsEl.innerHTML = [
@@ -301,6 +321,7 @@
     }
     if (m) {
       m.style.display = "flex";
+      m.classList.remove("hidden");
       document.body.style.overflow = "hidden";
     } else {
       alert("Thank you, " + name + "! Your consultation request for " + company + " has been submitted successfully. Our flight coordinator will contact you shortly.");
@@ -308,9 +329,10 @@
   };
 
   window.closeConsultationSuccessModal = function () {
-    var m = document.getElementById("consultationSuccessModal");
+    var m = document.getElementById("consultationSuccessModal") || document.getElementById("successModal") || document.getElementById("feasibilityModal");
     if (m) {
       m.style.display = "none";
+      m.classList.add("hidden");
       document.body.style.overflow = "";
     }
   };

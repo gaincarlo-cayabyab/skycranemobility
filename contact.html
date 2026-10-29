@@ -252,13 +252,13 @@
 
             <!-- Netlify Form Integration -->
             <form
-              name="quote-request"
+              name="contact"
               method="POST"
               data-netlify="true"
-              action="thank-you.html"
+              netlify
               id="quote-form"
             >
-              <input type="hidden" name="form-name" value="quote-request" />
+              <input type="hidden" name="form-name" value="contact" />
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                 <div>
@@ -282,7 +282,7 @@
                   <input
                     type="text"
                     id="full-name"
-                    name="contact-name"
+                    name="name"
                     required
                     class="form-control"
                     placeholder="e.g. Engr. Mark Santos (Project Lead)"
@@ -425,6 +425,21 @@
               >
                 Submit Consultation Request →
               </button>
+            </form>
+
+            <!-- Secondary Netlify Form Detection (quote-request alias for Netlify UI) -->
+            <form name="quote-request" netlify data-netlify="true" hidden style="display:none;">
+              <input type="hidden" name="form-name" value="quote-request" />
+              <input type="text" name="company" />
+              <input type="text" name="name" />
+              <input type="tel" name="phone" />
+              <input type="email" name="email" />
+              <input type="text" name="location" />
+              <input type="text" name="payload" />
+              <input type="text" name="payload-system" />
+              <input type="text" name="target-date" />
+              <textarea name="message"></textarea>
+              <input type="checkbox" name="privacy-consent" />
             </form>
           </div>
         </div>
