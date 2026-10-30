@@ -52,14 +52,17 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    window.addEventListener("scroll", function () {
+    // High-performance rAF-throttled scroll handler (zero lag on desktop & mobile)
+    var _scrollTicking = false;
+    function updateScrollEffects() {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
       var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var scrollPercent = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      var scrollPercent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
       if (progressBar) {
         progressBar.style.width = scrollPercent + "%";
       }
       if (backToTop) {
-        if (window.scrollY > 400) {
+        if (scrollY > 350) {
           backToTop.classList.add("visible");
           backToTop.classList.add("is-visible");
         } else {
@@ -67,7 +70,16 @@
           backToTop.classList.remove("is-visible");
         }
       }
+      _scrollTicking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!_scrollTicking) {
+        _scrollTicking = true;
+        requestAnimationFrame(updateScrollEffects);
+      }
     }, { passive: true });
+    requestAnimationFrame(updateScrollEffects);
 
     // ── 3. Mobile Navigation Sidebar Drawer & Backdrop ───────
     var hamBtn = document.getElementById("hamburger-btn");
@@ -179,42 +191,53 @@
       }
     });
 
-    // ── 5. Animated Number Counter ───────────────────────────
-    function animateCounters() {
-      var counters = document.querySelectorAll("[data-counter]:not(.counted)");
-      counters.forEach(function (counter) {
-        var rect = counter.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.92) {
-          counter.classList.add("counted");
-          var target = parseFloat(counter.getAttribute("data-counter"));
-          var suffix = counter.getAttribute("data-suffix") || "";
-          var prefix = counter.getAttribute("data-prefix") || "";
-          var hasComma = counter.getAttribute("data-comma") === "true";
-          var duration = 1600;
-          var startTime = performance.now();
+    // ── 5. Animated Number Counter (IntersectionObserver — zero scroll thrash) ──
+    function runCounter(counter) {
+      if (counter.classList.contains("counted")) return;
+      counter.classList.add("counted");
+      var target = parseFloat(counter.getAttribute("data-counter"));
+      var suffix = counter.getAttribute("data-suffix") || "";
+      var prefix = counter.getAttribute("data-prefix") || "";
+      var hasComma = counter.getAttribute("data-comma") === "true";
+      var duration = 1400;
+      var startTime = performance.now();
 
-          function step(now) {
-            var progress = Math.min((now - startTime) / duration, 1);
-            // Ease-out cubic
-            var ease = 1 - Math.pow(1 - progress, 3);
-            var currentVal = Math.round(target * ease);
-            var displayVal = hasComma ? currentVal.toLocaleString() : currentVal.toString();
-            counter.textContent = prefix + displayVal + suffix;
-            if (progress < 1) {
-              requestAnimationFrame(step);
-            } else {
-              counter.textContent = prefix + (hasComma ? target.toLocaleString() : target) + suffix;
-            }
-          }
+      function step(now) {
+        var progress = Math.min((now - startTime) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var currentVal = Math.round(target * ease);
+        var displayVal = hasComma ? currentVal.toLocaleString() : currentVal.toString();
+        counter.textContent = prefix + displayVal + suffix;
+        if (progress < 1) {
           requestAnimationFrame(step);
+        } else {
+          counter.textContent = prefix + (hasComma ? target.toLocaleString() : target) + suffix;
         }
-      });
+      }
+      requestAnimationFrame(step);
     }
 
-    window.addEventListener("scroll", animateCounters, { passive: true });
-    animateCounters(); // Run initial check
+    var counterEls = document.querySelectorAll("[data-counter]");
+    if (counterEls.length > 0) {
+      if ("IntersectionObserver" in window) {
+        var counterObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              runCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px 50px 0px" });
 
-    // ── 6. Multi-Directional Scroll Reveal Observer ──────────
+        counterEls.forEach(function (c) {
+          counterObserver.observe(c);
+        });
+      } else {
+        counterEls.forEach(runCounter);
+      }
+    }
+
+    // ── 6. Multi-Directional Scroll Reveal Observer (Pre-emptive Lookahead) ──
     var revealSelector = ".reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale";
     var revealEls = document.querySelectorAll(revealSelector);
 
@@ -228,7 +251,7 @@
             }
           });
         },
-        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.05, rootMargin: "0px 0px 60px 0px" }
       );
 
       revealEls.forEach(function (el) {
