@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261030_v4" />
+  <link rel="stylesheet" href="css/styles.css?v=20261030_v5" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -748,28 +748,46 @@
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <span class="footer-legal">&copy; 2026 SkyCrane Mobility Corporation. All rights reserved. 08 Perez Blvd. Herrero, Dagupan City, Pangasinan.</span>
-        <div class="footer-legal-links">
-          <a href="about.html" class="footer-legal-link">About Us</a>
-          <a href="solutions.html" class="footer-legal-link">Solutions</a>
-          <a href="fleet-dji-fc100.html" class="footer-legal-link">Fleet</a>
-          <a href="contact.html" class="footer-legal-link">Contact</a>
-          <span style="opacity:0.35;margin:0 0.25rem;color:#94a3b8;">|</span>
-          <button type="button" onclick="openLegalModal()" class="footer-legal-link" style="background:none;border:none;cursor:pointer;color:inherit;font-size:inherit;font-family:inherit;text-decoration:underline;">Privacy Policy &amp; PH Legal Compliance (R.A. 10173)</button>
-          <span style="opacity:0.35;margin:0 0.25rem;color:#94a3b8;">|</span>
-          <span style="opacity:0.55;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.55'">
-            Engineered by <button onclick="openDevModal()" style="background:none;border:none;cursor:pointer;color:inherit;font-size:inherit;font-family:inherit;text-decoration:underline;text-underline-offset:2px;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#38BDF8'" onmouseout="this.style.color='inherit'">Gain Carlo</button>
-          </span>
+          <div class="footer-bottom">
+      <div class="footer-legal-copy">
+        <p class="footer-legal">&copy; 2026 SkyCrane Mobility Corporation. All rights reserved. 08 Perez Blvd. Herrero, Dagupan City, Pangasinan.</p>
+        <div class="footer-nav-mini">
+          <a href="about.html" class="footer-mini-link">About Us</a>
+          <span class="footer-mini-sep">&bull;</span>
+          <a href="solutions.html" class="footer-mini-link">Solutions</a>
+          <span class="footer-mini-sep">&bull;</span>
+          <a href="fleet-dji-fc100.html" class="footer-mini-link">Fleet</a>
+          <span class="footer-mini-sep">&bull;</span>
+          <a href="contact.html" class="footer-mini-link">Contact</a>
         </div>
       </div>
+
+      <div class="footer-actions-wrap">
+        <button type="button" onclick="openLegalModal()" class="footer-compliance-action-btn" aria-label="Privacy Policy and Philippine Legal Compliance (R.A. 10173)">
+          <svg class="w-4 h-4 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <span>Privacy Policy &amp; PH Legal Compliance (R.A. 10173)</span>
+        </button>
+
+        <button type="button" onclick="openDevModal()" class="footer-dev-pill-btn" aria-label="Developer Attribution — Engineered by Gain Carlo">
+          <span class="text-slate-400 text-xs font-medium">Engineered by</span>
+          <span class="footer-dev-name">
+            <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            Gain Carlo
+          </span>
+        </button>
+      </div>
+    </div>
     </div>
   </footer>
 
   <!-- ========================================= -->
   <!-- MAIN JS (modals, navbar, form handlers)  -->
   <!-- ========================================= -->
-  <script src="js/main.js?v=20261030_v4"></script>
+  <script src="js/main.js?v=20261030_v5"></script>
 
   <!-- ========================================= -->
   <!-- UPGRADED DEVELOPER PORTFOLIO MODAL        -->

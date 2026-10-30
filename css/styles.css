@@ -1309,27 +1309,122 @@ img, video { display: block; max-width: 100%; }
   transition: color var(--t1);
 }
 .footer-link:hover { color: #fff; }
+/* ════════════════════════════════════════════════════════════
+   FOOTER BOTTOM BAR & ACTION BUTTONS
+   ════════════════════════════════════════════════════════════ */
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.75rem;
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
+  gap: 1.5rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .footer-bottom {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-right: 4rem; /* Safe clearance — chat widget sits bottom-right */
+    padding-right: 5rem; /* Safe clearance for floating chat launcher */
   }
 }
-.footer-legal { font-size: 0.75rem; }
-.footer-legal-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
-.footer-legal-link { font-size: 0.75rem; color: #64748B; transition: color var(--t1); text-decoration: none; }
-.footer-legal-link:hover { color: #94A3B8; }
+
+.footer-legal-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.footer-legal {
+  font-size: 0.75rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0;
+}
+.footer-nav-mini {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+}
+.footer-mini-link {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-mini-link:hover {
+  color: #FFFFFF;
+}
+.footer-mini-sep {
+  color: #475569;
+  font-size: 0.625rem;
+}
+
+.footer-actions-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Privacy Policy & Compliance Action Button */
+.footer-compliance-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 9999px;
+  padding: 0.55rem 1.15rem;
+  color: #E2E8F0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  line-height: 1.2;
+}
+.footer-compliance-action-btn:hover,
+.footer-compliance-action-btn:active {
+  background: rgba(2, 132, 199, 0.2);
+  border-color: rgba(56, 189, 248, 0.7);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+/* Engineered by Gain Carlo Developer Pill Button */
+.footer-dev-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  border-radius: 9999px;
+  padding: 0.55rem 1.15rem;
+  color: #E2E8F0;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  line-height: 1.2;
+}
+.footer-dev-pill-btn:hover,
+.footer-dev-pill-btn:active {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: rgba(249, 115, 22, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
+}
+.footer-dev-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: #F8FAFC;
+}
 
 /* Philippine Legal & Regulatory Compliance Badges */
 .footer-compliance-badges {
@@ -1550,9 +1645,45 @@ img, video { display: block; max-width: 100%; }
 /* ── Tablet / Mobile ≤ 768px ───────────────────────────── */
 @media (max-width: 768px) {
 
-  /* ── Footer bottom ── */
+  /* ── Footer bottom & buttons on mobile ── */
   .footer-bottom {
     padding-right: 0 !important;
+    gap: 1.25rem;
+  }
+  .footer-actions-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.625rem;
+  }
+  .footer-compliance-action-btn,
+  .footer-dev-pill-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.78rem;
+  }
+  
+  /* Prevent iOS zoom on input focus */
+  input, select, textarea, .form-control, .calc-input {
+    font-size: 16px !important;
+  }
+  
+  /* Swipeable filter pills on mobile */
+  .filter-pills-bar {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+  .filter-pill {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 0.5rem 0.9rem;
+    flex-shrink: 0;
   }
 
   /* ── Modals: full-height scroll on mobile ── */
@@ -1618,26 +1749,27 @@ img, video { display: block; max-width: 100%; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 68% center;
+    object-position: 72% 16%; /* Aligns DJI FlyCart 100 drone directly in mobile view */
+    pointer-events: none;
+    z-index: 0;
   }
 
   #hero-overlay {
     background:
+      /* Vertical gradient: clear at top so the drone is vibrant and high-contrast, gently tinted behind text for readability */
       linear-gradient(
-        to right,
-        rgba(248, 250, 252, 0.94) 0%,
-        rgba(248, 250, 252, 0.85) 60%,
-        rgba(248, 250, 252, 0.40) 100%
+        180deg,
+        rgba(248, 250, 252, 0.15) 0%,
+        rgba(248, 250, 252, 0.38) 22%,
+        rgba(248, 250, 252, 0.70) 52%,
+        rgba(248, 250, 252, 0.92) 85%,
+        #0F172A 100%
       ),
-      linear-gradient(
-        to bottom,
-        rgba(248, 250, 252, 0.75) 0%,
-        rgba(248, 250, 252, 0.00) 15%
-      ),
-      linear-gradient(
-        to top,
-        rgba(248, 250, 252, 0.90) 0%,
-        rgba(248, 250, 252, 0.00) 20%
+      /* Soft radial wash behind headline */
+      radial-gradient(
+        ellipse 95% 50% at 50% 52%,
+        rgba(248, 250, 252, 0.60) 0%,
+        rgba(248, 250, 252, 0.00) 100%
       );
   }
 
@@ -1653,12 +1785,14 @@ img, video { display: block; max-width: 100%; }
     font-size: clamp(2rem, 7.5vw, 3.25rem);
     line-height: 1.1;
     letter-spacing: -0.03em;
+    text-shadow: 0 1px 12px rgba(255, 255, 255, 0.95), 0 2px 4px rgba(255, 255, 255, 0.8);
   }
 
   .hero-sub {
     font-size: 0.9375rem;
     line-height: 1.6;
     max-width: 100%;
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
   }
 
   .hero-ctas {
