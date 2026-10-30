@@ -56,40 +56,104 @@
       }
     }, { passive: true });
 
-    // ── 3. Mobile Hamburger Menu Toggle ──────────────────────
+    // ── 3. Mobile Navigation Sidebar Drawer & Backdrop ───────
     var hamBtn = document.getElementById("hamburger-btn");
     var mobileMenu = document.getElementById("mobile-menu");
+    var mobileCloseBtn = document.getElementById("mobile-menu-close");
+    var mobileBackdrop = document.getElementById("mobile-menu-backdrop");
 
-    if (hamBtn && mobileMenu) {
+    // Auto-create backdrop overlay if not present in markup
+    if (!mobileBackdrop) {
+      mobileBackdrop = document.createElement("div");
+      mobileBackdrop.id = "mobile-menu-backdrop";
+      mobileBackdrop.className = "mobile-menu-backdrop";
+      mobileBackdrop.setAttribute("aria-hidden", "true");
+      document.body.appendChild(mobileBackdrop);
+    } else if (mobileBackdrop.parentElement !== document.body) {
+      document.body.appendChild(mobileBackdrop);
+    }
+
+    // Guarantee mobileMenu is a direct child of <body> to avoid CSS backdrop-filter / overflow traps
+    if (mobileMenu && mobileMenu.parentElement !== document.body) {
+      document.body.appendChild(mobileMenu);
+    }
+
+    function openMobileDrawer() {
+      if (mobileMenu) {
+        mobileMenu.classList.add("open");
+        mobileMenu.setAttribute("aria-hidden", "false");
+      }
+      if (mobileBackdrop) {
+        mobileBackdrop.classList.add("open");
+      }
+      if (hamBtn) {
+        hamBtn.classList.add("open");
+        hamBtn.setAttribute("aria-expanded", "true");
+      }
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMobileDrawer() {
+      if (mobileMenu) {
+        mobileMenu.classList.remove("open");
+        mobileMenu.setAttribute("aria-hidden", "true");
+      }
+      if (mobileBackdrop) {
+        mobileBackdrop.classList.remove("open");
+      }
+      if (hamBtn) {
+        hamBtn.classList.remove("open");
+        hamBtn.setAttribute("aria-expanded", "false");
+      }
+      document.body.style.overflow = "";
+    }
+
+    if (hamBtn) {
       hamBtn.addEventListener("click", function (e) {
         e.stopPropagation();
-        var isOpen = mobileMenu.classList.toggle("open");
-        hamBtn.classList.toggle("open", isOpen);
-        hamBtn.setAttribute("aria-expanded", isOpen.toString());
-      });
-
-      document.addEventListener("click", function (e) {
-        if (!mobileMenu.contains(e.target) && !hamBtn.contains(e.target) && mobileMenu.classList.contains("open")) {
-          mobileMenu.classList.remove("open");
-          hamBtn.classList.remove("open");
-          hamBtn.setAttribute("aria-expanded", "false");
+        var isOpen = mobileMenu && mobileMenu.classList.contains("open");
+        if (isOpen) {
+          closeMobileDrawer();
+        } else {
+          openMobileDrawer();
         }
       });
+    }
 
+    if (mobileCloseBtn) {
+      mobileCloseBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        closeMobileDrawer();
+      });
+    }
+
+    if (mobileBackdrop) {
+      mobileBackdrop.addEventListener("click", function () {
+        closeMobileDrawer();
+      });
+    }
+
+    // Close when clicking any nav link inside drawer
+    if (mobileMenu) {
       mobileMenu.querySelectorAll("a").forEach(function (link) {
         link.addEventListener("click", function () {
-          mobileMenu.classList.remove("open");
-          hamBtn.classList.remove("open");
-          hamBtn.setAttribute("aria-expanded", "false");
+          closeMobileDrawer();
         });
       });
     }
+
+    // Auto close drawer if resized to desktop viewport
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 768 && mobileMenu && mobileMenu.classList.contains("open")) {
+        closeMobileDrawer();
+      }
+    });
 
     // ── 4. Active Nav Link Auto-Highlight ────────────────────
     var currentPath = window.location.pathname.split("/").pop() || "index.html";
     if (currentPath === "") currentPath = "index.html";
 
-    var navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+    var navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link, .mobile-nav-item");
     navLinks.forEach(function (link) {
       var href = link.getAttribute("href");
       if (href) {

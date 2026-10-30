@@ -255,31 +255,190 @@ img, video { display: block; max-width: 100%; }
 #hamburger-btn.open span:nth-child(2) { opacity: 0; }
 #hamburger-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(3px, -5px); width: 20px; }
 
-/* Mobile menu */
-#mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: var(--glass-bg-hi);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 1rem;
-  margin: 0 0 1rem;
-  box-shadow: var(--glass-shadow);
-  gap: 0.25rem;
+/* ════════════════════════════════════════════════════════════
+   MOBILE SIDEBAR DRAWER & BACKDROP OVERLAY
+   ════════════════════════════════════════════════════════════ */
+
+/* Backdrop Overlay */
+.mobile-menu-backdrop,
+#mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(11, 17, 32, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99998;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-#mobile-menu.open { display: flex; }
+.mobile-menu-backdrop.open,
+#mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Sidebar Drawer (Off-Canvas) */
+.mobile-sidebar-drawer,
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 86vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #0B1120;
+  border-left: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: -12px 0 45px rgba(0, 0, 0, 0.75);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(105%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.mobile-sidebar-drawer.open,
+#mobile-menu.open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-backdrop,
+  #mobile-menu-backdrop,
+  .mobile-sidebar-drawer,
+  #mobile-menu {
+    display: none !important;
+  }
+}
+
+/* Drawer Header */
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.6);
+  flex-shrink: 0;
+}
+.mobile-drawer-logo img {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.mobile-drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94A3B8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.mobile-drawer-close:hover,
+.mobile-drawer-close:active {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #F87171;
+}
+
+/* Drawer Body */
+.mobile-drawer-body {
+  flex: 1;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto;
+}
+
+/* Navigation Items */
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.mobile-nav-item,
 .mobile-nav-link {
-  display: block;
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--navy-500);
-  border-radius: 10px;
-  transition: background var(--t1), color var(--t1);
+  color: #CBD5E1;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
-.mobile-nav-link:hover { background: rgba(249,115,22,0.07); color: var(--navy); }
+.mobile-nav-item:hover,
+.mobile-nav-item:active,
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.mobile-nav-item.active,
+.mobile-nav-link.active {
+  background: rgba(2, 132, 199, 0.18);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38BDF8;
+  font-weight: 700;
+}
+
+/* Dispatch Hotline Card inside Drawer */
+.mobile-drawer-dispatch {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 14px;
+  padding: 0.875rem 1rem;
+}
+.mobile-dispatch-call {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mobile-dispatch-call:hover {
+  color: var(--orange);
+}
+
+/* Drawer Footer */
+.mobile-drawer-footer {
+  padding: 1rem 1.25rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 17, 32, 0.95);
+  flex-shrink: 0;
+}
 
 /* ════════════════════════════════════════════════════════════
    HERO CONTENT — Left column
@@ -1164,7 +1323,7 @@ img, video { display: block; max-width: 100%; }
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-right: 17rem; /* Guaranteed clearance for floating chat launcher */
+    padding-right: 4rem; /* Safe clearance — chat widget sits bottom-right */
   }
 }
 .footer-legal { font-size: 0.75rem; }
@@ -1391,110 +1550,240 @@ img, video { display: block; max-width: 100%; }
 /* ── Tablet / Mobile ≤ 768px ───────────────────────────── */
 @media (max-width: 768px) {
 
-  /* ── Nav ── */
-  .nav-links       { display: none; }
-  #hamburger-btn   { display: flex; }
-  /* Logo: show landscape version at a sensible mobile height */
-  .logo-wrap img   { height: 34px; }
-
-  /* ── Hero: lock to viewport so video always covers it ──
-     100dvh = dynamic viewport height (accounts for mobile
-     browser chrome appearing/disappearing).
-     overflow:hidden clips the video to exactly this box.    */
-  #hero {
-    height: 100dvh;
-    min-height: 600px;
+  /* ── Footer bottom ── */
+  .footer-bottom {
+    padding-right: 0 !important;
   }
 
-  /* ── Video: on a fixed-height container, object-fit:cover
-     is the correct and lossless approach — the browser fits
-     the video to the exact box at full decode resolution.
-     No zoom artefacts because the container IS the viewport. */
+  /* ── Modals: full-height scroll on mobile ── */
+  [id$="Modal"] > div,
+  #devModal > div,
+  #legalModal > div {
+    max-height: 92dvh !important;
+    overflow-y: auto !important;
+    border-radius: 1rem !important;
+    width: 100% !important;
+  }
+
+  /* ── Nav ── */
+  .nav-links { display: none !important; }
+  #hamburger-btn {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+  }
+  #navbar {
+    padding: 0.625rem 1rem;
+    margin: 0.75rem 0;
+    border-radius: 16px;
+    gap: 0.75rem;
+  }
+  .logo-wrap img {
+    height: 32px;
+    max-width: 140px;
+  }
+
+  /* ── Hero: Ensure zero clipping on any phone ── */
+  #hero {
+    height: auto;
+    min-height: 100dvh;
+    min-height: 100svh;
+    overflow: hidden;
+    padding-bottom: 2rem;
+  }
+
+  #hero-ui {
+    padding: 0 1rem;
+    min-height: unset;
+  }
+
+  #hero-main {
+    grid-template-columns: 1fr;
+    padding: 1.25rem 0 1rem;
+    gap: 1.25rem;
+  }
+
+  #hero-right {
+    display: none;
+  }
+
   #hero-bg-gif {
     position: absolute;
     top: 0;
     left: 0;
-    transform: none;
     width: 100%;
     height: 100%;
-    min-width: unset;
-    min-height: unset;
     object-fit: cover;
-    /* Keep drone visible on the right even on portrait phones */
-    object-position: 65% center;
+    object-position: 68% center;
   }
 
-  /* ── Overlay: full-width wash on mobile for legibility ── */
   #hero-overlay {
     background:
-      /* Left+centre wash — strong enough for dark text */
       linear-gradient(
         to right,
-        rgba(248, 250, 252, 0.88) 0%,
-        rgba(248, 250, 252, 0.70) 50%,
-        rgba(248, 250, 252, 0.25) 80%,
-        rgba(248, 250, 252, 0.00) 100%
+        rgba(248, 250, 252, 0.94) 0%,
+        rgba(248, 250, 252, 0.85) 60%,
+        rgba(248, 250, 252, 0.40) 100%
       ),
-      /* Top bar (navbar area) */
       linear-gradient(
         to bottom,
-        rgba(248, 250, 252, 0.70) 0%,
-        rgba(248, 250, 252, 0.00) 18%
+        rgba(248, 250, 252, 0.75) 0%,
+        rgba(248, 250, 252, 0.00) 15%
       ),
-      /* Bottom bar (metric cards area) */
       linear-gradient(
         to top,
-        rgba(248, 250, 252, 0.85) 0%,
-        rgba(248, 250, 252, 0.00) 25%
+        rgba(248, 250, 252, 0.90) 0%,
+        rgba(248, 250, 252, 0.00) 20%
       );
   }
 
-  /* ── Hero content padding ── */
-  #hero-ui { padding: 0 1.25rem; }
-
-  /* ── Eyebrow: prevent text wrapping on narrow screens ── */
   .hero-eyebrow {
     font-size: 0.62rem;
     letter-spacing: 0.08em;
     padding: 0.35rem 0.8rem;
-    white-space: normal;        /* allow wrap if truly needed */
+    white-space: normal;
     line-height: 1.5;
   }
 
-  /* ── Metric cards: 2-col on mid-size mobile ── */
-  #hero-metrics { grid-template-columns: 1fr 1fr; gap: 0.625rem; }
-  .metric-num   { font-size: 1.75rem; }
-  .metric-card  { padding: 1rem 1.1rem; border-radius: 14px; }
+  .hero-h1 {
+    font-size: clamp(2rem, 7.5vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
 
-  /* ── General sections ── */
-  .sc-section  { padding: 3.5rem 1.25rem; }
-  .calc-panel  { padding: 2rem 1.5rem; }
-  .fleet-drone-wrap img { max-width: 420px; margin: 0 auto; }
+  .hero-sub {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .spec-chips {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chip {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  /* Metric cards */
+  #hero-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .metric-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+  }
+  .metric-num {
+    font-size: 2.25rem;
+  }
+
+  /* Subpages */
+  .page-hero {
+    padding: 2.75rem 1rem 2.25rem;
+  }
+  .page-hero-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.75rem);
+    line-height: 1.15;
+  }
+  .page-hero-sub {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .sc-section {
+    padding: 3rem 1rem;
+  }
+  .sc-container {
+    padding: 0 1rem;
+  }
+
+  .sector-showcase-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .form-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .calc-panel {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+
+  .sectors-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Table responsive styling */
+  table td {
+    padding: 0.65rem 0.75rem !important;
+    font-size: 0.8125rem;
+  }
+
+  /* Footer on mobile */
+  #site-footer {
+    padding: 3rem 1rem 6rem;
+  }
 }
+
+  /* ── Spec Tables: horizontal scroll on mobile ── */
+  .overflow-x-auto,
+  table {
+    overflow-x: auto;
+  }
 
 /* ── Small phones ≤ 480px ──────────────────────────────── */
 @media (max-width: 480px) {
-  /* Single-col metric cards on very small screens */
-  #hero-metrics { grid-template-columns: 1fr; gap: 0.5rem; }
+  #navbar {
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+  }
+  .logo-wrap img {
+    height: 28px;
+    max-width: 120px;
+  }
+  .btn-nav-cta {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.75rem;
+  }
 
-  /* Logo smaller still */
-  .logo-wrap img { height: 28px; }
+  .hero-eyebrow {
+    font-size: 0.62rem;
+    padding: 0.35rem 0.75rem;
+  }
 
-  .sectors-grid  { grid-template-columns: 1fr; }
-  .hero-h1       { font-size: 2rem; letter-spacing: -0.03em; }
-
-  /* CTAs full-width stack */
-  .hero-ctas          { flex-direction: column; }
-  .hero-ctas .btn     { width: 100%; justify-content: center; }
-
-  /* Navbar CTA smaller */
-  .btn-nav-cta { font-size: 0.78rem; padding: 0.5rem 0.9rem; }
-
-  /* Spec chips smaller */
-  .chip { font-size: 0.68rem; padding: 0.25rem 0.7rem; }
-
-  /* Fleet drone on small phone */
-  .fleet-drone-wrap img { max-width: 320px; }
+  .filter-pill {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.78rem;
+  }
+  
+  .back-to-top,
+  #back-to-top {
+    left: 16px !important;
+    bottom: 20px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
 }
 
 /* ── Overflow-x guard ─────────────────────────────────────── */
