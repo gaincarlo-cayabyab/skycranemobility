@@ -17,13 +17,16 @@
     }
 
     // ── 2. Back to Top Button ────────────────────────────────
-    var backToTop = document.getElementById("back-to-top");
+    var backToTop = document.getElementById("back-to-top") || document.querySelector(".back-to-top");
     if (!backToTop) {
       backToTop = document.createElement("button");
       backToTop.id = "back-to-top";
+      backToTop.className = "back-to-top";
       backToTop.setAttribute("aria-label", "Scroll back to top");
       backToTop.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>';
       document.body.appendChild(backToTop);
+    } else {
+      backToTop.classList.add("back-to-top");
     }
 
     backToTop.addEventListener("click", function () {
@@ -39,8 +42,10 @@
       if (backToTop) {
         if (window.scrollY > 400) {
           backToTop.classList.add("visible");
+          backToTop.classList.add("is-visible");
         } else {
           backToTop.classList.remove("visible");
+          backToTop.classList.remove("is-visible");
         }
       }
     }, { passive: true });
