@@ -7,6 +7,19 @@
   "use strict";
 
   document.addEventListener("DOMContentLoaded", function () {
+    // ── Video Autoplay Guarantee (iOS / Android power saving fallback) ──
+    var videos = document.querySelectorAll("video");
+    videos.forEach(function (v) {
+      v.muted = true;
+      v.defaultMuted = true;
+      var p = v.play();
+      if (p !== undefined) {
+        p.catch(function () {
+          // Autoplay blocked by mobile battery/data saver; poster image remains visible
+        });
+      }
+    });
+
 
     // ── 1. Scroll Progress Bar ───────────────────────────────
     var progressBar = document.getElementById("scroll-progress-bar");

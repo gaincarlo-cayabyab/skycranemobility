@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261030_v5" />
+  <link rel="stylesheet" href="css/styles.css?v=20261030_v6" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -258,13 +258,33 @@
           Heavy-Lift UAV Logistics &nbsp;·&nbsp; Philippines
         </div>
 
-        <!-- Headline -->
+                <!-- Headline -->
         <h1 class="hero-h1 hero-anim-2">
           <span class="accent">Heavy-Lift</span> Aerial<br />
           Logistics for<br />
           Hard-to-Reach<br />
           Environments
         </h1>
+
+        <!-- MOBILE DRONE VIDEO SHOWCASE (Visible on Mobile <= 768px, Hidden on Desktop) -->
+        <div class="mobile-drone-showcase hero-anim-3" aria-label="DJI FlyCart 100 Flight Demonstration">
+          <div class="drone-video-badge">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>DJI FlyCart 100 &bull; Heavy-Lift In Flight</span>
+          </div>
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            webkit-playsinline
+            poster="assets/images/hero_poster.jpg"
+            class="mobile-drone-video"
+            preload="auto"
+          >
+            <source src="assets/video/dji_flycart100_landing_page.mp4" type="video/mp4" />
+          </video>
+        </div>
 
         <!-- Sub -->
         <p class="hero-sub hero-anim-3">
@@ -973,7 +993,7 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=20261030_v5"></script>
+<script src="js/main.js?v=20261030_v6"></script>
 
 <!-- Payload Calculator -->
 <script src="js/payload-calculator.js"></script>
