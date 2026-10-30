@@ -50,7 +50,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=20261030_v3" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -62,6 +62,57 @@
       pointer-events: none !important;
     }
   </style>
+<style id="btt-guaranteed-position">
+  /* Guaranteed Bottom-Left Floating Back-to-Top Button */
+  #back-to-top,
+  .back-to-top {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 24px !important;
+    right: auto !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    background-color: #0F172A !important;
+    color: #FFFFFF !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: 9999 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    cursor: pointer !important;
+    transform: translateY(10px) scale(0.92) !important;
+  }
+  #back-to-top.visible,
+  #back-to-top.is-visible,
+  .back-to-top.visible,
+  .back-to-top.is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) scale(1) !important;
+  }
+  #back-to-top:hover,
+  .back-to-top:hover {
+    background-color: #0284C7 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45) !important;
+  }
+  @media (max-width: 640px) {
+    #back-to-top,
+    .back-to-top {
+      bottom: 18px !important;
+      left: 18px !important;
+      right: auto !important;
+      width: 42px !important;
+      height: 42px !important;
+    }
+  }
+</style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 overflow-x-hidden">
@@ -575,81 +626,75 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261030_v3"></script>
 
 <!-- ========================================= -->
 <!-- UPGRADED DEVELOPER PORTFOLIO MODAL        -->
 <!-- ========================================= -->
-<div id="devModal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1.25rem;z-index:9999;" onclick="if(event.target===this)closeDevModal()">
-  <div style="background:#FFFFFF;border-radius:1.5rem;max-width:480px;width:100%;padding:2rem;color:#1E293B;box-shadow:0 25px 70px rgba(15,23,42,0.45), 0 0 0 1px rgba(226,232,240,0.8);position:relative;animation:devModalIn 0.28s cubic-bezier(0.16,1,0.3,1);">
+<div id="devModal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1.25rem;z-index:99999;" onclick="if(event.target===this)closeDevModal()">
+  <div style="background:#FFFFFF;border-radius:1.5rem;max-width:500px;width:100%;padding:2rem;color:#1E293B;box-shadow:0 25px 70px rgba(15,23,42,0.5), 0 0 0 1px rgba(226,232,240,0.8);position:relative;animation:devModalIn 0.28s cubic-bezier(0.16,1,0.3,1);">
     
     <!-- Close Button -->
-    <button onclick="closeDevModal()" aria-label="Close modal" style="position:absolute;top:1.15rem;right:1.15rem;background:#F1F5F9;border:none;cursor:pointer;color:#64748B;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='#E2E8F0';this.style.color='#0F172A'" onmouseout="this.style.background='#F1F5F9';this.style.color='#64748B'">
-      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <button onclick="closeDevModal()" aria-label="Close modal" style="position:absolute;top:1.2rem;right:1.2rem;background:#F1F5F9;border:none;cursor:pointer;color:#64748B;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='#E2E8F0';this.style.color='#0F172A'" onmouseout="this.style.background='#F1F5F9';this.style.color='#64748B'">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     
-    <!-- Header with Developer Monogram Logo -->
-    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.15rem;">
-      <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:2px solid #38BDF8;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(2,132,199,0.25);flex-shrink:0;">
-        <span style="font-family:'Outfit',sans-serif;font-weight:900;font-size:1.35rem;letter-spacing:-0.04em;background:linear-gradient(135deg,#38BDF8,#F97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GC</span>
+    <!-- Header with Professional Vector SVG Logo -->
+    <div style="display:flex;align-items:center;gap:1.15rem;margin-bottom:1.25rem;">
+      <!-- Custom Precision Vector Code/Architect Logo -->
+      <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:2px solid #38BDF8;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(2,132,199,0.28);flex-shrink:0;">
+        <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+          <path d="M9 11L4 16L9 21" stroke="#38BDF8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M23 11L28 16L23 21" stroke="#F97316" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 8L13 24" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
       </div>
       <div>
-        <div style="display:inline-flex;align-items:center;gap:0.35rem;background:#FEF3C7;color:#B45309;padding:0.2rem 0.6rem;border-radius:999px;font-size:0.68rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
-          <span>?</span> Web &amp; Systems Developer
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;padding:0.25rem 0.65rem;border-radius:999px;font-size:0.68rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          Web &amp; Systems Developer
         </div>
-        <h3 style="font-size:1.35rem;font-weight:900;color:#0F172A;margin:0.25rem 0 0;letter-spacing:-0.02em;display:flex;align-items:center;gap:0.4rem;">
+        <h3 style="font-size:1.35rem;font-weight:900;color:#0F172A;margin:0.25rem 0 0;letter-spacing:-0.02em;display:flex;align-items:center;gap:0.4rem;font-family:'Outfit',sans-serif;">
           Gain Carlo Cayabyab
-          <svg style="width:18px;height:18px;color:#0284C7;flex-shrink:0;" fill="currentColor" viewBox="0 0 24 24" title="Verified Engineering"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          <svg style="width:18px;height:18px;color:#0284C7;flex-shrink:0;" fill="currentColor" viewBox="0 0 24 24" title="Verified Systems Engineer"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         </h3>
-        <p style="font-size:0.78rem;color:#0284C7;font-weight:700;margin:0;">Web Systems &amp; Modern UI Engineering</p>
+        <p style="font-size:0.8rem;color:#0284C7;font-weight:700;margin:0;">Web Systems &amp; Modern UI Engineering</p>
       </div>
     </div>
     
-    <p style="font-size:0.85rem;color:#475569;margin:0 0 1rem;line-height:1.6;">
+    <p style="font-size:0.875rem;color:#475569;margin:0 0 1.15rem;line-height:1.65;">
       Specializing in high-performance web applications, custom corporate portals, and automated digital workflows built for speed, security, and responsive excellence.
     </p>
 
     <!-- Technical Stack Badges -->
-    <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.25rem;">
-      <span style="font-size:0.7rem;font-weight:700;background:#F8FAFC;border:1px solid #E2E8F0;color:#334155;padding:0.25rem 0.6rem;border-radius:0.5rem;">HTML5 / Tailwind CSS</span>
-      <span style="font-size:0.7rem;font-weight:700;background:#EFF6FF;border:1px solid #BFDBFE;color:#1E40AF;padding:0.25rem 0.6rem;border-radius:0.5rem;">Vanilla JS (ES6+)</span>
-      <span style="font-size:0.7rem;font-weight:700;background:#ECFEFF;border:1px solid #A5F3FC;color:#155E75;padding:0.25rem 0.6rem;border-radius:0.5rem;">Netlify &amp; Cloud Deployment</span>
-      <span style="font-size:0.7rem;font-weight:700;background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;padding:0.25rem 0.6rem;border-radius:0.5rem;">Business DMS &amp; Portals</span>
-      <span style="font-size:0.7rem;font-weight:700;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;padding:0.25rem 0.6rem;border-radius:0.5rem;">Zoho &amp; Workspace Integration</span>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.35rem;">
+      <span style="font-size:0.72rem;font-weight:700;background:#F8FAFC;border:1px solid #E2E8F0;color:#334155;padding:0.25rem 0.65rem;border-radius:0.5rem;">HTML5 / Semantic UI</span>
+      <span style="font-size:0.72rem;font-weight:700;background:#EFF6FF;border:1px solid #BFDBFE;color:#1E40AF;padding:0.25rem 0.65rem;border-radius:0.5rem;">Vanilla JS (ES6+)</span>
+      <span style="font-size:0.72rem;font-weight:700;background:#ECFEFF;border:1px solid #A5F3FC;color:#155E75;padding:0.25rem 0.65rem;border-radius:0.5rem;">Netlify &amp; Cloud CDN</span>
+      <span style="font-size:0.72rem;font-weight:700;background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;padding:0.25rem 0.65rem;border-radius:0.5rem;">Corporate DMS &amp; Portals</span>
+      <span style="font-size:0.72rem;font-weight:700;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;padding:0.25rem 0.65rem;border-radius:0.5rem;">Zoho &amp; Cloud Automation</span>
     </div>
 
-    <!-- Contact & Social Channels with 100% Accurate Official Logos -->
+    <!-- Verified Channels: WhatsApp & Viber REMOVED per user instructions -->
     <div style="border-top:1px solid #F1F5F9;padding-top:1.15rem;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
-        <span style="font-size:0.75rem;font-weight:700;color:#10B981;display:flex;align-items:center;gap:0.35rem;">
-          <span style="width:7px;height:7px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;">
+        <span style="font-size:0.75rem;font-weight:700;color:#10B981;display:flex;align-items:center;gap:0.4rem;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;box-shadow:0 0 0 3px rgba(16,185,129,0.2);"></span>
           Available for freelance web projects &amp; consultations
         </span>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.55rem;">
-        <!-- Email (Official Mail SVG) -->
-        <a href="mailto:gaincarlocskycrane@gmail.com?subject=Website%20Inquiry%20via%20SkyCrane%20Portfolio" style="background:#0F172A;color:#FFFFFF;text-decoration:none;font-size:0.78rem;font-weight:700;padding:0.65rem 0.75rem;border-radius:0.65rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;" onmouseover="this.style.background='#1E293B'" onmouseout="this.style.background='#0F172A'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <!-- Email (Official Mail Vector SVG) -->
+        <a href="mailto:gaincarlocskycrane@gmail.com?subject=Website%20Inquiry%20via%20SkyCrane%20Portfolio" style="background:#0F172A;color:#FFFFFF;text-decoration:none;font-size:0.825rem;font-weight:700;padding:0.75rem 1rem;border-radius:0.75rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;box-shadow:0 4px 12px rgba(15,23,42,0.15);" onmouseover="this.style.background='#1E293B';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#0F172A';this.style.transform='translateY(0)'">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           Email Me
         </a>
 
-        <!-- WhatsApp (Official Meta WhatsApp SVG) -->
-        <a href="https://api.whatsapp.com/send?phone=639937052927&text=Hi%20Gain%20Carlo%2C%20I%20saw%20your%20work%20on%20SkyCrane%20Mobility%20and%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer" style="background:#25D366;color:#FFFFFF;text-decoration:none;font-size:0.78rem;font-weight:700;padding:0.65rem 0.75rem;border-radius:0.65rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;" onmouseover="this.style.background='#1EBE5D'" onmouseout="this.style.background='#25D366'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c.991.54 1.838.835 2.809.835 3.18 0 5.767-2.587 5.768-5.766.001-3.18-2.585-5.766-5.771-5.766zm3.374 8.211c-.14.394-.712.753-1.026.792-.303.038-.686.075-2.227-.563-1.97-1.143-2.91-3.094-3.008-3.226-.098-.131-.796-1.059-.796-2.02 0-.962.504-1.436.684-1.632.179-.197.391-.246.521-.246.13 0 .261.002.375.008.12.006.28-.046.438.334.163.391.554 1.353.603 1.451.049.098.082.213.016.344-.065.131-.098.213-.196.328-.098.114-.206.255-.295.343-.098.098-.201.205-.087.401.114.196.508.837 1.09 1.356.75.669 1.381.876 1.577.974.196.098.31.082.424-.049.115-.131.489-.571.62-.767.13-.196.261-.163.44-.098.179.065 1.137.536 1.333.634.196.098.326.147.375.229.049.082.049.474-.091.868zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.957-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-          WhatsApp
-        </a>
-
-        <!-- Facebook (Official Meta Facebook SVG) -->
-        <a href="https://www.facebook.com/share/1DrAJee1Bs/" target="_blank" rel="noopener noreferrer" style="background:#1877F2;color:#FFFFFF;text-decoration:none;font-size:0.78rem;font-weight:700;padding:0.65rem 0.75rem;border-radius:0.65rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;" onmouseover="this.style.background='#1565D8'" onmouseout="this.style.background='#1877F2'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5c0-.988.243-1.49 1.45-1.49H17.2V2h-3.41c-3.69 0-5.592 1.737-5.592 5.01v2.5H5.8v3.98h2.398v8.01z"/></svg>
+        <!-- Facebook (Official Meta Facebook "f" Vector SVG) -->
+        <a href="https://www.facebook.com/share/1DrAJee1Bs/" target="_blank" rel="noopener noreferrer" style="background:#1877F2;color:#FFFFFF;text-decoration:none;font-size:0.825rem;font-weight:700;padding:0.75rem 1rem;border-radius:0.75rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;box-shadow:0 4px 12px rgba(24,119,242,0.25);" onmouseover="this.style.background='#1565D8';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1877F2';this.style.transform='translateY(0)'">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5c0-.988.243-1.49 1.45-1.49H17.2V2h-3.41c-3.69 0-5.592 1.737-5.592 5.01v2.5H5.8v3.98h2.398v8.01z"/></svg>
           Facebook
-        </a>
-
-        <!-- Viber (Official Rakuten Viber SVG) -->
-        <a href="viber://chat?number=%2B639937052927" style="background:#7360F2;color:#FFFFFF;text-decoration:none;font-size:0.78rem;font-weight:700;padding:0.65rem 0.75rem;border-radius:0.65rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s;" onmouseover="this.style.background='#614FE0'" onmouseout="this.style.background='#7360F2'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.13 2 11.22c0 2.87 1.42 5.43 3.64 7.08l-.58 3.14c-.1.54.43.96.92.7l3.65-1.95c.75.18 1.54.28 2.37.28 5.523 0 10-4.13 10-9.22S17.523 2 12 2zm4.8 12.8c-.2.5-.7.8-1.2.9-.4.1-1.2.1-2.7-.6-1.9-.9-3.3-2.7-4-3.7-.3-.5-.6-1.1-.6-1.6 0-.6.3-1.1.6-1.4.2-.2.4-.2.6-.2.1 0 .3 0 .4.1.3.1.6.8.7 1 .1.2.1.4 0 .6-.1.1-.2.3-.3.4-.1.1-.2.2-.1.4.2.4.6 1 1.3 1.5.8.6 1.4.8 1.7.9.2.1.4 0 .5-.1.1-.1.4-.4.5-.6.1-.2.3-.2.5-.1.2.1 1.1.5 1.3.6.2.1.3.1.3.2 0 .1 0 .5-.2 1z"/></svg>
-          Viber
         </a>
       </div>
     </div>
@@ -659,18 +704,22 @@
 <!-- ========================================= -->
 <!-- PHILIPPINE LEGAL COMPLIANCE & PRIVACY MODAL -->
 <!-- ========================================= -->
-<div id="legalModal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1.25rem;z-index:99999;" onclick="if(event.target===this)closeLegalModal()">
-  <div style="background:#FFFFFF;border-radius:1.5rem;max-width:680px;width:100%;max-height:85vh;display:flex;flex-direction:column;color:#1E293B;box-shadow:0 25px 70px rgba(15,23,42,0.45);position:relative;animation:devModalIn 0.28s cubic-bezier(0.16,1,0.3,1);overflow:hidden;">
+<div id="legalModal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1.25rem;z-index:99999;" onclick="if(event.target===this)closeLegalModal()">
+  <div style="background:#FFFFFF;border-radius:1.5rem;max-width:720px;width:100%;max-height:88vh;display:flex;flex-direction:column;color:#1E293B;box-shadow:0 25px 70px rgba(15,23,42,0.5);position:relative;animation:devModalIn 0.28s cubic-bezier(0.16,1,0.3,1);overflow:hidden;">
     
-    <!-- Modal Header -->
-    <div style="background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);color:#FFFFFF;padding:1.35rem 1.75rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.1);flex-shrink:0;">
+    <!-- Modal Header with Government/Regulatory Crest styling -->
+    <div style="background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);color:#FFFFFF;padding:1.4rem 1.85rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.1);flex-shrink:0;">
       <div>
-        <div style="display:inline-flex;align-items:center;gap:0.35rem;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.3);color:#38BDF8;padding:0.2rem 0.6rem;border-radius:999px;font-size:0.68rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
-          Republic of the Philippines
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.3);color:#38BDF8;padding:0.2rem 0.65rem;border-radius:999px;font-size:0.68rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Republic of the Philippines &bull; Regulatory Governance
         </div>
-        <h3 style="font-size:1.25rem;font-weight:900;color:#FFFFFF;margin:0.35rem 0 0;font-family:'Outfit',sans-serif;letter-spacing:-0.02em;">
+        <h3 style="font-size:1.3rem;font-weight:900;color:#FFFFFF;margin:0.4rem 0 0;font-family:'Outfit',sans-serif;letter-spacing:-0.02em;">
           Privacy Policy &amp; Philippine Legal Compliance
         </h3>
+        <p style="font-size:0.75rem;color:#94A3B8;margin:0.2rem 0 0;">
+          SkyCrane Mobility Corporation &bull; R.A. 10173 (DPA) &bull; CAAP PCAR Part 11 &bull; DTI &bull; DOLE OSHS Standards
+        </p>
       </div>
       <button onclick="closeLegalModal()" aria-label="Close modal" style="background:rgba(255,255,255,0.1);border:none;cursor:pointer;color:#94A3B8;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)';this.style.color='#FFFFFF'" onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.color='#94A3B8'">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -678,60 +727,73 @@
     </div>
 
     <!-- Modal Content (Scrollable) -->
-    <div style="padding:1.5rem 1.75rem;overflow-y:auto;font-size:0.85rem;line-height:1.7;color:#334155;display:flex;flex-direction:column;gap:1.25rem;">
+    <div style="padding:1.6rem 1.85rem;overflow-y:auto;font-size:0.85rem;line-height:1.7;color:#334155;display:flex;flex-direction:column;gap:1.25rem;">
       
       <!-- Section 1: R.A. 10173 Data Privacy Act -->
-      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:1rem;padding:1.15rem;">
-        <div style="display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.925rem;color:#0F172A;margin-bottom:0.4rem;">
-          <span style="color:#0284C7;">⚖</span> 1. Philippine Data Privacy Act of 2012 (Republic Act No. 10173)
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:1rem;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.95rem;color:#0F172A;margin-bottom:0.5rem;">
+          <div style="width:28px;height:28px;border-radius:8px;background:#E0F2FE;color:#0284C7;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M6 8l-4 6h8L6 8zm12 0l-4 6h8l-4-6z"/></svg>
+          </div>
+          1. Philippine Data Privacy Act of 2012 (Republic Act No. 10173)
         </div>
         <p style="margin:0 0 0.65rem;">
-          SkyCrane Mobility Corporation strictly upholds the rights of individuals and corporate entities under the <strong>Data Privacy Act of 2012 (R.A. 10173)</strong> and the regulations issued by the <strong>National Privacy Commission (NPC)</strong>:
+          SkyCrane Mobility Corporation strictly upholds the rights of individuals and corporate entities under the <strong>Data Privacy Act of 2012 (R.A. 10173)</strong>, its Implementing Rules and Regulations (IRR), and all circulars issued by the <strong>National Privacy Commission (NPC)</strong>:
         </p>
-        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.35rem;">
-          <li><strong>Purpose of Data Collection:</strong> We collect contact names, business affiliations, mobile numbers, emails, and target flight GPS coordinates exclusively to conduct aeronautical feasibility checks, terrain obstacle assessments, and quote calculations.</li>
-          <li><strong>Strict Confidentiality:</strong> All mission logistics data, terrain profiles, and corporate information are encrypted and never sold, leased, or disclosed to unauthorized third parties.</li>
-          <li><strong>Rights of Data Subjects:</strong> Under R.A. 10173, you retain the right to access, rectify, or request deletion of your information by contacting our privacy compliance desk at <a href="mailto:info@skycranemobility.com" style="color:#0284C7;font-weight:700;text-decoration:underline;">info@skycranemobility.com</a>.</li>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <li><strong>Lawful Basis &amp; Purpose of Collection:</strong> Client names, corporate titles, official emails, contact numbers, and flight target coordinates (GPS coordinates, elevation, and terrain maps) are processed exclusively for conducting aeronautical feasibility reviews, terrain hazard assessments, and official commercial quote calculations.</li>
+          <li><strong>Information Security &amp; Confidentiality:</strong> All flight profiles, logistics payloads, and commercial communications are encrypted in transit and at rest. SkyCrane Mobility never sells, leases, trades, or discloses sensitive client parameters to third parties without prior express written authorization.</li>
+          <li><strong>Data Subject Rights (R.A. 10173, Chapter III):</strong> You retain the legal right to be informed, access your personal records, rectify errors, and request permanent erasure of your profile. Direct all privacy inquiries to our compliance desk: <a href="mailto:info@skycranemobility.com" style="color:#0284C7;font-weight:700;text-decoration:underline;">info@skycranemobility.com</a>.</li>
         </ul>
       </div>
 
       <!-- Section 2: CAAP RPAS Aviation Compliance -->
-      <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:1rem;padding:1.15rem;">
-        <div style="display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.925rem;color:#065F46;margin-bottom:0.4rem;">
-          <span>✈</span> 2. Civil Aviation Authority of the Philippines (CAAP) Compliance
+      <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:1rem;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.95rem;color:#065F46;margin-bottom:0.5rem;">
+          <div style="width:28px;height:28px;border-radius:8px;background:#DCFCE7;color:#166534;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          2. Civil Aviation Authority of the Philippines (CAAP) Compliance
         </div>
         <p style="margin:0 0 0.65rem;">
-          All commercial heavy-lift flights conform to <strong>Philippine Civil Aviation Regulations (PCAR) Part 11</strong> governing Remotely Piloted Aircraft Systems (RPAS):
+          All heavy-lift UAV flights conform to <strong>Philippine Civil Aviation Regulations (PCAR) Part 11</strong> governing Remotely Piloted Aircraft Systems (RPAS):
         </p>
-        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.35rem;">
-          <li>Flights are operated exclusively by <strong>CAAP-certified commercial drone flight controllers</strong>.</li>
-          <li>Operations strictly respect authorized flight corridors, NOTAM advisories, altitude buffers, and ground exclusion safety zones.</li>
-          <li>All DJI FlyCart 100 aircraft undergo pre-flight telemetry verification and manufacturer airworthiness certifications.</li>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <li><strong>Certified Flight Controllers:</strong> Flights are commanded exclusively by CAAP-licensed commercial drone operators with Category 3 Heavy-Lift RPAS ratings.</li>
+          <li><strong>Flight Corridors &amp; NOTAMs:</strong> Operations strictly observe authorized flight corridors, NOTAM advisories, altitude buffers, and ground exclusion safety perimeters.</li>
+          <li><strong>Airworthiness &amp; Telemetry:</strong> All DJI FlyCart 100 aircraft undergo pre-flight telemetry verification, radar obstacle avoidance checks, and manufacturer airworthiness certifications.</li>
         </ul>
       </div>
 
       <!-- Section 3: DTI & DOLE OSHS Standards -->
-      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:1rem;padding:1.15rem;">
-        <div style="display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.925rem;color:#92400E;margin-bottom:0.4rem;">
-          <span>🏢</span> 3. DTI Business Registration &amp; DOLE Labor Safety Standards
+      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:1rem;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.95rem;color:#92400E;margin-bottom:0.5rem;">
+          <div style="width:28px;height:28px;border-radius:8px;background:#FEF3C7;color:#B45309;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 3l9 7H3l9-7z"/></svg>
+          </div>
+          3. DTI Registration &amp; DOLE Labor Safety Standards
         </div>
-        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.35rem;">
-          <li><strong>Department of Trade and Industry (DTI):</strong> SkyCrane Mobility Corporation operates as a duly registered business under Philippine commercial laws.</li>
-          <li><strong>Department of Labor and Employment (DOLE):</strong> Tactical ground rigging teams and winch handlers strictly observe the <strong>Occupational Safety and Health Standards (OSHS)</strong> for zero-hazard site logistics.</li>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <li><strong>Department of Trade and Industry (DTI):</strong> SkyCrane Mobility Corporation operates as a duly registered business under Philippine commercial laws with full tax and corporate registry compliance.</li>
+          <li><strong>Department of Labor and Employment (DOLE):</strong> Tactical ground rigging teams and winch operators strictly observe the <strong>Occupational Safety and Health Standards (OSHS)</strong> for zero-hazard site logistics.</li>
         </ul>
       </div>
 
-      <!-- Section 4: Operations Address -->
-      <div style="font-size:0.78rem;color:#64748B;border-top:1px solid #E2E8F0;padding-top:0.75rem;">
-        <strong>Principal Operations Center:</strong> 08 Perez Blvd. Herrero, Dagupan City, Pangasinan, Philippines.<br>
-        Direct Hotline: <a href="tel:09177467093" style="color:#0284C7;font-weight:700;">0917 746 7093</a> | Corporate Email: <a href="mailto:info@skycranemobility.com" style="color:#0284C7;font-weight:700;">info@skycranemobility.com</a>
+      <!-- Section 4: Operations Center & Hotline -->
+      <div style="font-size:0.8rem;color:#64748B;border-top:1px solid #E2E8F0;padding-top:0.85rem;line-height:1.6;">
+        <strong>Principal Operations Headquarters:</strong> 08 Perez Blvd. Herrero, Dagupan City, Pangasinan, Philippines.<br>
+        Direct Operations Hotline: <a href="tel:09177467093" style="color:#0284C7;font-weight:700;">0917 746 7093</a> | Corporate Inquiries: <a href="mailto:info@skycranemobility.com" style="color:#0284C7;font-weight:700;">info@skycranemobility.com</a>
       </div>
 
     </div>
 
-    <!-- Modal Footer -->
-    <div style="padding:0.85rem 1.75rem;background:#F8FAFC;border-top:1px solid #E2E8F0;display:flex;justify-content:flex-end;flex-shrink:0;">
-      <button onclick="closeLegalModal()" style="background:#0F172A;color:#FFFFFF;border:none;border-radius:0.65rem;padding:0.6rem 1.4rem;font-size:0.825rem;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#1E293B'" onmouseout="this.style.background='#0F172A'">
+    <!-- Modal Footer Actions -->
+    <div style="padding:1rem 1.85rem;background:#F8FAFC;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <button onclick="window.print()" style="background:transparent;border:1px solid #CBD5E1;color:#475569;border-radius:0.65rem;padding:0.55rem 1.15rem;font-size:0.8rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.2s;" onmouseover="this.style.background='#F1F5F9'" onmouseout="this.style.background='transparent'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        Print / Save Document
+      </button>
+      <button onclick="closeLegalModal()" style="background:#0F172A;color:#FFFFFF;border:none;border-radius:0.65rem;padding:0.6rem 1.5rem;font-size:0.825rem;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#1E293B'" onmouseout="this.style.background='#0F172A'">
         Acknowledge &amp; Close
       </button>
     </div>
@@ -739,9 +801,7 @@
   </div>
 </div>
 
-
-
-<!-- Back to Top Floating Button (Bottom-Left � Roadmap Section 2) -->
+<!-- Back to Top Floating Button (Bottom-Left - Roadmap Section 2) -->
 <button id="back-to-top" class="back-to-top" aria-label="Back to Top">
   <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
 </button>

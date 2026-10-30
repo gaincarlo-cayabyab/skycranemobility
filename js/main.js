@@ -28,6 +28,12 @@
     } else {
       backToTop.classList.add("back-to-top");
     }
+    // Enforce bottom-left floating placement to prevent collision with right-side chat widget
+    backToTop.style.setProperty("position", "fixed", "important");
+    backToTop.style.setProperty("bottom", "24px", "important");
+    backToTop.style.setProperty("left", "24px", "important");
+    backToTop.style.setProperty("right", "auto", "important");
+    backToTop.style.setProperty("z-index", "9999", "important");
 
     backToTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
