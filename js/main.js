@@ -4,6 +4,47 @@
  * multi-directional scroll reveals, and interactive mode switchers.
  */
 (function () {
+
+  // ═══ Premium Toast Notification (replaces browser alert) ═══
+  function showToast(message, type) {
+    var existing = document.getElementById('skycrane-toast');
+    if (existing) existing.remove();
+    var colors = {
+      error:   { bg: 'rgba(239,68,68,0.97)',  border: '#EF4444', icon: '⚠️' },
+      warning: { bg: 'rgba(245,158,11,0.97)', border: '#F59E0B', icon: '⚡' },
+      info:    { bg: 'rgba(14,165,233,0.97)',  border: '#0EA5E9', icon: 'ℹ️' }
+    };
+    var c = colors[type] || colors.error;
+    var toast = document.createElement('div');
+    toast.id = 'skycrane-toast';
+    toast.setAttribute('role', 'alert');
+    toast.style.cssText = [
+      'position:fixed', 'top:1.25rem', 'left:50%', 'transform:translateX(-50%)',
+      'background:' + c.bg, 'border:1px solid ' + c.border,
+      'color:#fff', 'font-family:inherit', 'font-size:0.9rem', 'font-weight:600',
+      'padding:0.85rem 1.5rem 0.85rem 1.15rem', 'border-radius:0.75rem',
+      'box-shadow:0 8px 32px rgba(0,0,0,0.45)', 'z-index:999999',
+      'display:flex', 'align-items:flex-start', 'gap:0.6rem',
+      'max-width:min(92vw,480px)', 'line-height:1.45',
+      'animation:scToastIn 0.28s cubic-bezier(0.34,1.56,0.64,1)'
+    ].join(';');
+    if (!document.getElementById('skycrane-toast-style')) {
+      var style = document.createElement('style');
+      style.id = 'skycrane-toast-style';
+      style.textContent = '@keyframes scToastIn{from{opacity:0;transform:translateX(-50%) translateY(-14px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}';
+      document.head.appendChild(style);
+    }
+    toast.innerHTML = '<span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">' + c.icon + '</span><span>' + message + '</span>';
+    var closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '✕';
+    closeBtn.style.cssText = 'background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1rem;margin-left:0.75rem;flex-shrink:0;line-height:1;';
+    closeBtn.onclick = function() { toast.remove(); };
+    toast.appendChild(closeBtn);
+    document.body.appendChild(toast);
+    setTimeout(function() { if (toast.parentNode) toast.style.animation = 'scToastIn 0.22s ease reverse forwards'; setTimeout(function() { toast.remove(); }, 220); }, 5000);
+  }
+
+
   "use strict";
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -331,7 +372,7 @@
         var msg     = msgInput ? msgInput.value.trim() : "";
 
         if (!company || !name || !phone || !email) {
-          alert("Please fill out all required fields marked with an asterisk (*).");
+          showToast('Please fill out all required fields marked with an asterisk (*).', 'error');
           return;
         }
 
@@ -413,7 +454,7 @@
         const submittedEmail = emailInput ? emailInput.value.trim() : "";
 
         if (!submittedEmail || !submittedEmail.includes("@") || !submittedEmail.includes(".")) {
-          alert("Please enter a valid corporate email address (e.g., name@company.com).");
+          showToast('Please enter a valid email address (e.g., name@company.com).', 'error');
           if (emailInput) emailInput.focus();
           return;
         }
