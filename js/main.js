@@ -44,6 +44,63 @@
     setTimeout(function() { if (toast.parentNode) toast.style.animation = 'scToastIn 0.22s ease reverse forwards'; setTimeout(function() { toast.remove(); }, 220); }, 5000);
   }
 
+  // ═══ SkyCrane Form Notification Email Template Generator ═══
+  window.generateSkyCraneEmailHtml = function(data) {
+    var logoUrl = data.logoUrl || "https://skycranemobility.com/assets/images/logo.png";
+    var badge = data.badge || (data.isConsultation ? "New Mission Consultation" : "New Website Subscriber");
+    var requestType = data.requestType || (data.isConsultation ? "Mission Consultation Request" : "Operations Briefing Subscription");
+    var email = data.email || "";
+    var date = data.date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    var notes = data.notes || "";
+    var company = data.company || "";
+    var phone = data.phone || "";
+    var location = data.location || "";
+
+    // Conditional rendering: include notes block only if notes, company, or details exist
+    var notesBlock = "";
+    if (data.isConsultation && (notes || company || phone || location)) {
+      var details = [];
+      if (company) details.push("<strong>Company / Organization:</strong> " + company);
+      if (phone) details.push("<strong>Phone:</strong> " + phone);
+      if (location) details.push("<strong>Mission Location:</strong> " + location);
+      if (notes) details.push("<strong>Scope / Notes:</strong> " + notes);
+
+      notesBlock = '<div style="margin-top: 24px;">' +
+        '<span style="display: block; margin-bottom: 8px; font-weight: 600; color: #64748b; font-size: 14px;">Consultation Notes / Scope:</span>' +
+        '<div style="margin-top: 8px; padding: 16px; background-color: #f8fafc; border-left: 4px solid #2563eb; border-radius: 4px; font-size: 14px; color: #334155; line-height: 1.6;">' +
+          details.join("<br>") +
+        '</div>' +
+      '</div>';
+    }
+
+    return '<!DOCTYPE html>' +
+    '<html lang="en">' +
+    '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SkyCrane Mobility Form Submission</title></head>' +
+    '<body style="margin:0;padding:0;background-color:#f4f6f9;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Helvetica,Arial,sans-serif;color:#1e293b;">' +
+      '<div style="max-width:600px;margin:30px auto;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);border:1px solid #e2e8f0;">' +
+        '<div style="background-color:#0f172a;padding:24px 32px;text-align:center;">' +
+          '<img src="' + logoUrl + '" alt="SkyCrane Mobility Logo" style="max-height:48px;width:auto;vertical-align:middle;">' +
+          '<div style="color:#ffffff;font-size:20px;font-weight:700;letter-spacing:0.5px;margin-top:8px;text-transform:uppercase;">SkyCrane Mobility</div>' +
+          '<div style="display:inline-block;padding:4px 12px;background-color:#2563eb;color:#ffffff;font-size:12px;font-weight:600;border-radius:9999px;text-transform:uppercase;letter-spacing:0.5px;margin-top:12px;">' + badge + '</div>' +
+        '</div>' +
+        '<div style="padding:32px;">' +
+          '<h2 style="font-size:18px;font-weight:600;color:#0f172a;margin-top:0;margin-bottom:20px;border-bottom:2px solid #f1f5f9;padding-bottom:8px;">Submission Details</h2>' +
+          '<table style="width:100%;border-collapse:collapse;">' +
+            '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Request Type</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;"><strong>' + requestType + '</strong></td></tr>' +
+            '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Corporate Email</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;"><a href="mailto:' + email + '" style="color:#2563eb;text-decoration:none;">' + email + '</a></td></tr>' +
+            '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Submission Date</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;">' + date + '</td></tr>' +
+          '</table>' +
+          notesBlock +
+        '</div>' +
+        '<div style="background-color:#f8fafc;padding:20px 32px;text-align:center;font-size:12px;color:#94a3b8;border-top:1px solid #e2e8f0;">' +
+          'This is an automated operational notification from <strong>SkyCrane Mobility Website Form Engine</strong>.<br>© 2026 SkyCrane Mobility Corporation. All rights reserved.' +
+        '</div>' +
+      '</div>' +
+    '</body>' +
+    '</html>';
+  };
+
+
 
   "use strict";
 
@@ -351,7 +408,7 @@
 
         // Check Philippine Data Privacy Act Compliance Checkbox (R.A. 10173)
         if (privacyConsent && !privacyConsent.checked) {
-          alert("Compliance Required: Please check the box agreeing to the Philippine Data Privacy Act of 2012 (R.A. 10173) before submitting your consultation request.");
+          showToast("Compliance Required: Please check the Data Privacy Act (R.A. 10173) checkbox before submitting.", "warning");
           privacyConsent.focus();
           return;
         }
@@ -410,8 +467,11 @@
               "Accept": "application/json"
             },
             body: JSON.stringify({
-              _subject: "New Mission Consultation Request — " + company,
+              _subject: "New Mission Consultation Request - " + company,
               _cc: "gaincarlocayabyab12@gmail.com",
+              _template: "table",
+              _autoresponse: "Thank you for contacting SkyCrane Mobility. Your flight consultation request has been received by our flight operations desk. A CAAP-certified coordinator will reach out to you shortly.",
+              Request_Type: "Mission Consultation Request",
               Company_Organization: company,
               Contact_Person: name,
               Phone: phone,
@@ -470,6 +530,9 @@
             body: JSON.stringify({
               _subject: "New SkyCrane Air Mobility Briefing Subscriber!",
               _cc: "gaincarlocayabyab12@gmail.com",
+              _template: "table",
+              _autoresponse: "Thank you for subscribing to the SkyCrane Air Mobility Briefing. You are registered to receive our monthly flight logs, regional corridor routes, and UAV technical briefings.",
+              Request_Type: "Operations Briefing Subscription",
               Subscriber_Email: submittedEmail,
               Source_Page: window.location.href,
               Timestamp: new Date().toLocaleString()
