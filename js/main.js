@@ -299,10 +299,10 @@
       });
     });
 
-    // ── 9. Consultation Request Form Submission & Philippine Legal Validation ──
-    var quoteForm = document.getElementById("quote-form") || document.getElementById("contactForm");
-    if (quoteForm) {
-      quoteForm.addEventListener("submit", function (e) {
+    // ── 9. Consultation Request Form Submission & Philippine Legal Validation (Task 2.B & 3) ──
+    var consultationForm = document.getElementById("consultation-form") || document.getElementById("quote-form") || document.getElementById("contactForm");
+    if (consultationForm) {
+      consultationForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         var submitBtn = document.getElementById("btn-submit-consultation");
@@ -317,11 +317,11 @@
 
         // Validate required fields
         var companyInput = document.getElementById("company");
-        var nameInput    = document.getElementById("full-name") || document.getElementById("name");
+        var nameInput    = document.getElementById("full-name") || document.getElementById("name") || document.getElementById("full_name");
         var phoneInput   = document.getElementById("phone");
         var emailInput   = document.getElementById("email");
         var locInput     = document.getElementById("location");
-        var msgInput     = document.getElementById("message");
+        var msgInput     = document.getElementById("message") || document.getElementById("mission_details");
 
         var company = companyInput ? companyInput.value.trim() : "";
         var name    = nameInput ? nameInput.value.trim() : "";
@@ -330,75 +330,166 @@
         var loc     = locInput ? locInput.value.trim() : "";
         var msg     = msgInput ? msgInput.value.trim() : "";
 
-        if (!company || !name || !phone || !email || !loc || !msg) {
+        if (!company || !name || !phone || !email) {
           alert("Please fill out all required fields marked with an asterisk (*).");
           return;
         }
 
         // Visual loading state
-        var origBtnHTML = submitBtn ? submitBtn.innerHTML : "";
+        var origBtnHTML = submitBtn ? submitBtn.innerHTML : "Submit Consultation Request →";
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.style.opacity = "0.75";
           submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg style="animation:spin 1s linear infinite;width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Transmitting Mission Feasibility Data...</span>';
         }
 
-        // ── NETLIFY AJAX FORM SUBMISSION (Guide-compliant) ───────────────
-        // Posts FormData asynchronously to '/' — Netlify intercepts this
-        // POST + Content-Type:application/x-www-form-urlencoded at the edge,
-        // records the submission, and triggers the email notification to
-        // info@skycranemobility.com WITHOUT a page redirect.
-        // The success modal is shown only after Netlify confirms receipt (response.ok).
-        // On localhost (XAMPP) the fetch will fail/non-ok → graceful fallback modal.
-        var formData = new FormData(quoteForm);
+        // Persist consultation lead locally
+        try {
+          var leads = JSON.parse(localStorage.getItem("skycrane_consultation_leads") || "[]");
+          leads.push({
+            company: company,
+            name: name,
+            phone: phone,
+            email: email,
+            location: loc,
+            message: msg,
+            submittedAt: new Date().toISOString()
+          });
+          localStorage.setItem("skycrane_consultation_leads", JSON.stringify(leads));
+        } catch (storageErr) {
+          console.warn("Storage warning:", storageErr);
+        }
 
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(function (response) {
-          if (response.ok) {
-            // Netlify confirmed receipt — show success modal
-            window.showConsultationSuccessModal(name, company, email, phone);
-            quoteForm.reset();
-          } else {
-            // Non-200 from Netlify — still show modal (data was sent)
-            window.showConsultationSuccessModal(name, company, email, phone);
-            quoteForm.reset();
-            console.warn("Netlify form response status:", response.status);
-          }
-        })
-        .catch(function (err) {
-          // Network error / localhost fallback — show modal anyway
-          console.warn("Form fetch error (local or offline):", err);
-          window.showConsultationSuccessModal(name, company, email, phone);
-          quoteForm.reset();
-        })
-        .finally(function () {
+        // Send submission directly to Zoho Mail via FormSubmit API
+        try {
+          fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+              _subject: "New Mission Consultation Request — " + company,
+              _cc: "gaincarlocayabyab12@gmail.com",
+              Company_Organization: company,
+              Contact_Person: name,
+              Phone: phone,
+              Email: email,
+              Mission_Location: loc || "Not specified",
+              Mission_Details: msg || "General consultation requested",
+              Submission_Source: window.location.href,
+              Timestamp: new Date().toLocaleString()
+            })
+          }).catch(function (netErr) {
+            console.log("Form forwarding note:", netErr);
+          });
+        } catch (e) {}
+
+        // Complete UI transition: show custom modal, reset button & form
+        setTimeout(function () {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.style.opacity = "1";
             submitBtn.innerHTML = origBtnHTML;
           }
-        });
+          consultationForm.reset();
+          window.showConsultationSuccessModal(name, company, email, phone, loc);
+        }, 400);
       });
     }
 
-    // ── 10. Operations Command & Briefings Newsletter Subscription ──
-    var newsletterForms = document.querySelectorAll('form[name="newsletter-subscription"]');
-    newsletterForms.forEach(function (nForm) {
-      nForm.addEventListener("submit", function (e) {
+    // ── 10. Newsletter Briefing Form AJAX Handler (Task 2.A & Task 3.1) ──
+    const briefingForm = document.getElementById("briefing-form") || document.querySelector('form[name="newsletter-briefing"]') || document.querySelector('form[name="newsletter-subscription"]');
+    const briefingContainer = document.getElementById("briefing-container") || briefingForm?.parentElement;
+
+    if (briefingForm) {
+      // Store original form HTML so it can be restored on reset
+      var origFormHTML = briefingForm.outerHTML;
+
+      briefingForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        if (window.handleNewsletterSubscription) {
-          window.handleNewsletterSubscription(nForm);
+
+        const emailInput = document.getElementById("briefing-email") || briefingForm.querySelector('input[type="email"]');
+        const submittedEmail = emailInput ? emailInput.value.trim() : "";
+
+        if (!submittedEmail || !submittedEmail.includes("@") || !submittedEmail.includes(".")) {
+          alert("Please enter a valid corporate email address (e.g., name@company.com).");
+          if (emailInput) emailInput.focus();
+          return;
         }
-        return false;
+
+        // Forward subscriber to Zoho Mail
+        try {
+          fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+              _subject: "New SkyCrane Air Mobility Briefing Subscriber!",
+              _cc: "gaincarlocayabyab12@gmail.com",
+              Subscriber_Email: submittedEmail,
+              Source_Page: window.location.href,
+              Timestamp: new Date().toLocaleString()
+            })
+          }).catch(function (err) {
+            console.log("Subscriber dispatch note:", err);
+          });
+        } catch (e) {}
+
+        // Persist subscriber locally
+        try {
+          var subs = JSON.parse(localStorage.getItem("skycrane_newsletter_subscribers") || "[]");
+          subs.push({ email: submittedEmail, date: new Date().toISOString() });
+          localStorage.setItem("skycrane_newsletter_subscribers", JSON.stringify(subs));
+        } catch (e) {}
+
+        // Render Task 3.1 Briefing Success UI
+        renderBriefingSuccess(submittedEmail);
       });
-    });
+
+      function renderBriefingSuccess(email) {
+        if (!briefingContainer) return;
+        briefingContainer.innerHTML = `
+          <div class="briefing-confirmed-card" style="padding: 1.5rem; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(52, 211, 153, 0.35); border-radius: 12px; margin-bottom: 1rem; animation: scFadeIn 0.3s ease;">
+            <h4 style="color: #34D399; font-weight: 800; font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+              <span>✓</span> Briefing Access Confirmed
+            </h4>
+            <p style="font-weight: bold; color: #ffffff; font-size: 0.875rem; word-break: break-all; margin-bottom: 0.5rem;">${email}</p>
+            <p style="font-size: 0.8125rem; color: #94A3B8; line-height: 1.5; margin-bottom: 1.15rem;">
+              You are registered to receive our monthly flight logs, regional corridor routes, and UAV technical briefings.
+            </p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button id="reset-briefing-btn" class="btn btn-glass text-xs py-2 px-3 rounded-lg text-white font-bold" style="cursor: pointer; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);">
+                Subscribe another email
+              </button>
+              <a href="contact.html" class="btn btn-orange text-xs py-2 px-3 rounded-lg font-bold" style="text-decoration: none;">
+                Request Mission Consultation →
+              </a>
+            </div>
+          </div>
+        `;
+
+        document.getElementById("reset-briefing-btn")?.addEventListener("click", function () {
+          briefingContainer.innerHTML = origFormHTML;
+          // Re-bind submit on restored form
+          const newForm = briefingContainer.querySelector("form");
+          if (newForm) {
+            newForm.addEventListener("submit", function (ev) {
+              ev.preventDefault();
+              const inp = newForm.querySelector('input[type="email"]');
+              if (inp && inp.value) renderBriefingSuccess(inp.value.trim());
+            });
+          }
+        });
+      }
+    }
+
   });
 
-  // ── Global Modal Controllers (Accessible from anywhere) ─────
+
+    // ── Global Modal Controllers (Accessible from anywhere) ─────
   window.openLegalModal = function () {
     var m = document.getElementById("legalModal");
     if (m) {
@@ -431,22 +522,21 @@
     }
   };
 
-  window.showConsultationSuccessModal = function (name, company, email, phone) {
+  window.showConsultationSuccessModal = function (name, company, email, phone, location) {
     var m = document.getElementById("consultationSuccessModal") || document.getElementById("successModal") || document.getElementById("feasibilityModal");
     var detailsEl = document.getElementById("success-modal-details");
     if (detailsEl) {
       detailsEl.innerHTML = [
-        '<strong>Client:</strong> ' + (name || 'Project Representative'),
-        '<strong>Company:</strong> ' + (company || 'Confidential Enterprise'),
-        '<strong>Dispatch Contact:</strong> ' + (phone || 'Registered Phone') + ' • ' + (email || 'info@skycranemobility.com')
-      ].join('<br>');
+        '<div><strong>Client:</strong> ' + (name || 'Project Representative') + '</div>',
+        '<div><strong>Company:</strong> ' + (company || 'Confidential Enterprise') + '</div>',
+        '<div><strong>Dispatch Contact:</strong> ' + (phone || 'Registered Phone') + ' &bull; ' + (email || 'info@skycranemobility.com') + '</div>',
+        location ? '<div><strong>Site Location:</strong> ' + location + '</div>' : ''
+      ].filter(Boolean).join('');
     }
     if (m) {
       m.style.display = "flex";
       m.classList.remove("hidden");
       document.body.style.overflow = "hidden";
-    } else {
-      alert("Thank you, " + name + "! Your consultation request for " + company + " has been submitted successfully. Our flight coordinator will contact you shortly.");
     }
   };
 

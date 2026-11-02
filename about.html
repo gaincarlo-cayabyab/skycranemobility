@@ -50,7 +50,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261102_v13" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102_v14" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -714,15 +714,39 @@
           </p>
 
           <!-- Newsletter Form -->
-          <form name="newsletter-subscription" action="javascript:void(0);" method="POST" onsubmit="event.preventDefault(); window.handleNewsletterSubscription && window.handleNewsletterSubscription(this); return false;" class="mb-4 footer-newsletter-form">
-            <input type="hidden" name="form-name" value="newsletter-subscription" />
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input type="email" name="email" required placeholder="Enter corporate email..." class="bg-slate-800 border border-slate-700 text-white text-xs px-3.5 py-2.5 sm:py-2 rounded-lg flex-1 focus:outline-none focus:border-sky-400 min-h-[44px] sm:min-h-0" />
-              <button type="submit" class="btn btn-orange text-xs py-2.5 sm:py-2 px-4 rounded-lg flex-shrink-0 font-bold justify-center min-h-[44px] sm:min-h-0">
+          <div id="briefing-container">
+          <form 
+            id="briefing-form" 
+            name="newsletter-briefing" 
+            method="POST" 
+            data-netlify="true" 
+            netlify-honeypot="bot-field"
+            action="javascript:void(0);"
+            class="mb-4 footer-newsletter-form"
+          >
+            <!-- Netlify Hidden Form Name Tag -->
+            <input type="hidden" name="form-name" value="newsletter-briefing" />
+            
+            <!-- Anti-Spam Honeypot Field -->
+            <p class="hidden" style="display:none;">
+              <label>Don’t fill this out if you are human: <input name="bot-field" /></label>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-2 input-group">
+              <input 
+                type="email" 
+                name="email" 
+                id="briefing-email" 
+                placeholder="Enter corporate email..." 
+                required 
+                class="bg-slate-800 border border-slate-700 text-white text-xs px-3.5 py-2.5 sm:py-2 rounded-lg flex-1 focus:outline-none focus:border-sky-400 min-h-[44px] sm:min-h-0"
+              />
+              <button type="submit" class="btn btn-orange btn-subscribe text-xs py-2.5 sm:py-2 px-4 rounded-lg flex-shrink-0 font-bold justify-center min-h-[44px] sm:min-h-0">
                 Subscribe
               </button>
             </div>
           </form>
+        </div>
 
           <!-- 24/7 Operations Desk Box -->
           <div class="space-y-1.5 pt-3 border-t border-slate-800 text-[11px] text-slate-300">
@@ -785,7 +809,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20261102_v13"></script>
+  <script src="js/main.js?v=20261102_v14"></script>
 
 <!-- ========================================= -->
 <!-- UPGRADED DEVELOPER PORTFOLIO MODAL        -->
