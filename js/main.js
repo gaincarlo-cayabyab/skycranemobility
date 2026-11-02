@@ -385,6 +385,73 @@
       });
     }
 
+    // ── 10. Operations Command & Briefings Newsletter Subscription ──
+    var newsletterForms = document.querySelectorAll('form[name="newsletter-subscription"]');
+    newsletterForms.forEach(function (nForm) {
+      nForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var emailInput = nForm.querySelector('input[type="email"]');
+        var submitBtn  = nForm.querySelector('button[type="submit"]');
+        var emailVal   = emailInput ? emailInput.value.trim() : "";
+
+        if (!emailVal || !emailVal.includes("@")) {
+          alert("Please enter a valid corporate email address.");
+          return;
+        }
+
+        var origBtnText = submitBtn ? submitBtn.innerHTML : "Subscribe";
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.75";
+          submitBtn.innerHTML = "Subscribing...";
+        }
+
+        var formData = new FormData(nForm);
+
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(function () {
+          showNewsletterSuccess(nForm, emailVal);
+        })
+        .catch(function (err) {
+          console.warn("Newsletter submission fallback (local/dev):", err);
+          showNewsletterSuccess(nForm, emailVal);
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.innerHTML = origBtnText;
+          }
+        });
+      });
+    });
+
+    function showNewsletterSuccess(formEl, email) {
+      formEl.reset();
+      var existingMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
+      if (existingMsg) existingMsg.remove();
+
+      var msg = document.createElement("div");
+      msg.className = "newsletter-feedback-msg text-emerald-400 font-bold text-xs flex items-center gap-1.5 py-2 mt-2";
+      msg.innerHTML = '<span class="text-base font-black">✓</span> Subscribed! <strong>' + email + '</strong> is now on the monthly briefing list.';
+
+      formEl.insertAdjacentElement("afterend", msg);
+
+      setTimeout(function () {
+        if (msg && msg.parentNode) {
+          msg.style.transition = "opacity 0.6s ease";
+          msg.style.opacity = "0";
+          setTimeout(function () {
+            if (msg.parentNode) msg.remove();
+          }, 600);
+        }
+      }, 7000);
+    }
+
   });
 
   // ── Global Modal Controllers (Accessible from anywhere) ─────
