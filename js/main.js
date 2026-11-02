@@ -495,49 +495,77 @@
     try {
       var key = "skycrane_newsletter_subscribers";
       var current = JSON.parse(localStorage.getItem(key) || "[]");
-      if (!current.includes(emailVal)) {
-        current.push({
-          email: emailVal,
-          date: new Date().toISOString(),
-          page: window.location.pathname
-        });
-        localStorage.setItem(key, JSON.stringify(current));
-      }
+      current.push({
+        email: emailVal,
+        date: new Date().toISOString(),
+        page: window.location.pathname
+      });
+      localStorage.setItem(key, JSON.stringify(current));
     } catch (e) {
       console.warn("Subscriber storage note:", e);
     }
 
+    // Attempt FormSubmit forwarding in background (sends email alert to admin)
+    try {
+      fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: "New SkyCrane Air Mobility Briefing Subscriber!",
+          subscriber_email: emailVal,
+          source_page: window.location.href,
+          timestamp: new Date().toLocaleString()
+        })
+      }).catch(function(err) {
+        console.log("FormSubmit network note:", err);
+      });
+    } catch (e) {}
+
+    // Show premium confirmation card & hide the form inputs
     setTimeout(function () {
-      formEl.reset();
+      formEl.style.display = "none";
 
-      var existingMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
-      if (existingMsg) existingMsg.remove();
+      var existingBox = formEl.parentNode.querySelector(".newsletter-success-box");
+      if (existingBox) existingBox.remove();
+      var oldMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
+      if (oldMsg) oldMsg.remove();
 
-      var msg = document.createElement("div");
-      msg.className = "newsletter-feedback-msg text-emerald-400 font-bold text-xs flex items-center gap-1.5 py-2 mt-2";
-      msg.innerHTML = '<span class="text-base font-black">✓</span> Subscribed! <strong>' + emailVal + '</strong> is now registered for the monthly briefing.';
+      var successCard = document.createElement("div");
+      successCard.className = "newsletter-success-box";
+      successCard.innerHTML = [
+        '<div class="success-icon">',
+        '  <svg style="width:18px;height:18px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>',
+        '</div>',
+        '<div class="success-title">Briefing Access Confirmed</div>',
+        '<div class="success-email">' + emailVal + '</div>',
+        '<div class="success-desc">You are registered to receive our monthly flight logs, regional corridor routes, and UAV technical briefings.</div>',
+        '<button type="button" class="success-reset-btn">Subscribe another email</button>'
+      ].join('');
 
-      formEl.insertAdjacentElement("afterend", msg);
+      formEl.insertAdjacentElement("afterend", successCard);
 
+      // Reset button state on form
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.style.opacity = "1";
-        submitBtn.innerHTML = "Subscribed ✓";
-        setTimeout(function () {
-          if (submitBtn) submitBtn.innerHTML = origBtnText;
-        }, 3000);
+        submitBtn.innerHTML = origBtnText;
       }
+      formEl.reset();
 
-      setTimeout(function () {
-        if (msg && msg.parentNode) {
-          msg.style.transition = "opacity 0.6s ease";
-          msg.style.opacity = "0";
-          setTimeout(function () {
-            if (msg.parentNode) msg.remove();
-          }, 600);
-        }
-      }, 7000);
-    }, 350);
+      // Bind reset button
+      var resetBtn = successCard.querySelector(".success-reset-btn");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", function () {
+          successCard.remove();
+          formEl.style.display = "";
+          var newInp = formEl.querySelector('input[type="email"]');
+          if (newInp) newInp.focus();
+        });
+      }
+    }, 280);
 
     return false;
   };
