@@ -1205,7 +1205,7 @@
               <a href="about.html#leadership" class="btn btn-orange text-xs py-2.5 px-5 rounded-xl">
                 Read Founder Profile &amp; Story →
               </a>
-              <a href="contact.html" class="btn btn-glass text-xs py-2.5 px-5 rounded-xl text-white border-slate-600">
+              <a href="contact.html" class="btn text-xs py-2.5 px-5 rounded-xl font-bold" style="background:rgba(255,255,255,0.13);color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background 0.22s,border-color 0.22s;" onmouseover="this.style.background='rgba(255,255,255,0.24)';this.style.borderColor='rgba(255,255,255,0.75)';" onmouseout="this.style.background='rgba(255,255,255,0.13)';this.style.borderColor='rgba(255,255,255,0.5)';">
                 Contact Executive Office
               </a>
             </div>
@@ -1501,6 +1501,32 @@
 
 <!-- Payload Calculator -->
 <script src="js/payload-calculator.js?v=20261102_v11"></script>
+<!-- Calculator Tab Switcher -->
+<script>
+  window.switchCalcTab = function(tab) {
+    var tipcPanel     = document.getElementById('panel-tipc-savings');
+    var profilePanel  = document.getElementById('panel-flight-profile');
+    var btnTipc       = document.getElementById('tab-btn-tipc');
+    var btnFeasibility = document.getElementById('tab-btn-feasibility');
+    if (!tipcPanel || !profilePanel) return;
+    if (tab === 'tipc') {
+      tipcPanel.classList.remove('hidden');
+      profilePanel.classList.add('hidden');
+      btnTipc.classList.add('active', 'tab-orange');
+      btnFeasibility.classList.remove('active', 'tab-orange');
+      btnTipc.setAttribute('aria-selected', 'true');
+      btnFeasibility.setAttribute('aria-selected', 'false');
+    } else {
+      profilePanel.classList.remove('hidden');
+      tipcPanel.classList.add('hidden');
+      btnFeasibility.classList.add('active');
+      btnFeasibility.classList.remove('tab-orange');
+      btnTipc.classList.remove('active', 'tab-orange');
+      btnTipc.setAttribute('aria-selected', 'false');
+      btnFeasibility.setAttribute('aria-selected', 'true');
+    }
+  };
+</script>
 
 <script>
 (function () {
