@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261030_v8" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102_v9" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -648,162 +648,546 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     PAYLOAD FEASIBILITY CALCULATOR
+     MISSION PLANNING & ECONOMIC ROI CALCULATORS (DUAL-MODE)
+     Roadmap Compliance: Section 3 & Section 4.3 (TIPC Model)
 ═══════════════════════════════════════════════════════════ -->
 <section class="sc-section" id="calculator" aria-labelledby="calc-heading">
   <div class="sc-container">
 
-    <div class="flex flex-col lg:flex-row gap-14 items-start">
-
-      <!-- Left header -->
-      <div class="lg:w-72 shrink-0">
-        <p class="section-eyebrow reveal">Mission Planning Tool</p>
-        <h2 class="section-heading reveal" id="calc-heading">Payload Feasibility Calculator</h2>
+    <!-- Section Header with Mode Selector Pills -->
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-10">
+      <div>
+        <p class="section-eyebrow reveal">Mission Engineering &amp; Economics</p>
+        <h2 class="section-heading reveal" id="calc-heading">Flight Feasibility &amp; Project Cost Engine</h2>
         <div class="section-divider reveal"></div>
-        <p class="reveal" style="font-size:0.875rem; color:#64748B; line-height:1.75; margin-bottom:1.5rem;">
-          Test your cargo weight and target site elevation against the DJI FlyCart 100's operational limits before submitting your consultation request.
+        <p class="reveal max-w-2xl text-slate-500 text-sm leading-relaxed mt-2">
+          Test technical flight envelopes or model your <strong>Total Installed Project Cost (TIPC)</strong> savings for remote industrial sites across the Philippines.
         </p>
-        <div class="reveal" style="font-size:0.75rem; color:#94A3B8; line-height:2.2; font-weight:600;">
-          <div>Max Payload: <span style="color:var(--blue); font-weight:700;">85 KG</span></div>
-          <div>Alt Ceiling:  <span style="color:var(--blue); font-weight:700;">6,000 M ASL</span></div>
-          <div>Advisory: <span style="color:var(--orange); font-weight:700;">&gt;70 KG / &gt;4,500 M</span></div>
-        </div>
       </div>
 
-      <!-- Calculator panel -->
-      <div class="flex-1 reveal">
-        <div class="calc-panel">
-          <!-- Panel header -->
-          <div class="flex items-center gap-3 mb-7">
-            <div style="width:38px;height:38px;border-radius:10px;background:rgba(249,115,22,0.18);display:flex;align-items:center;justify-content:center;">
-              <svg style="width:18px;height:18px;color:#F97316" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <!-- Mode Switcher Tabs -->
+      <div class="calc-tab-nav reveal" role="tablist" aria-label="Calculator Modes">
+        <button type="button" id="tab-btn-tipc" class="calc-tab-btn active tab-orange" role="tab" aria-selected="true" aria-controls="panel-tipc-savings" onclick="switchCalcTab('tipc')">
+          <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>TIPC Savings Calculator</span>
+        </button>
+        <button type="button" id="tab-btn-feasibility" class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-flight-profile" onclick="switchCalcTab('feasibility')">
+          <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <span>Flight Profile Limits</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── TAB 1: TIPC Project Cost Savings Calculator (Roadmap Section 3 & 4.3) ── -->
+    <div id="panel-tipc-savings" class="calc-panel reveal" role="tabpanel" aria-labelledby="tab-btn-tipc">
+      <div id="tipc-calculator-container">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-6 pb-5 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 20h16a2 2 0 002-2V8a2 2 0 00-2-2h-5l-2-3H9L7 6H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </div>
             <div>
-              <div style="font-weight:800;color:#fff;font-size:1.05rem;">Flight Profile Analyzer</div>
-              <div style="font-size:0.68rem;color:#94A3B8;letter-spacing:0.08em;text-transform:uppercase;">DJI FlyCart 100 · Dual-Battery Mode</div>
+              <h3 class="text-white font-extrabold text-base sm:text-lg">TIPC Economic Savings Model</h3>
+              <p class="text-xs text-slate-400">Total Installed Project Cost vs. Conventional Ground Freight</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="tipc-pill-tag tipc-pill-green">✓ 50% Schedule Compression</span>
+            <span class="tipc-pill-tag tipc-pill-blue">✓ Zero Road Building (₱0)</span>
+          </div>
+        </div>
+
+        <!-- Net Savings Banner -->
+        <div class="tipc-savings-card">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <div class="text-xs uppercase tracking-wider text-emerald-400 font-bold mb-1">Projected Net Bottom-Line TIPC Savings</div>
+              <div id="tipc-val-net-savings" class="tipc-savings-value">Save ₱131,000</div>
+              <p id="tipc-val-savings-pct" class="text-xs text-emerald-300 font-semibold mt-1">20.2% Net TIPC Cost Reduction</p>
+            </div>
+            <div class="bg-slate-900/80 p-3.5 rounded-xl border border-emerald-500/30 flex flex-col gap-1 text-xs text-slate-200">
+              <div><strong class="text-white">Schedule Impact:</strong> <span id="tipc-val-days-saved" class="text-emerald-400 font-bold">5 Days Saved (50% Faster)</span></div>
+              <div><strong class="text-white">UAV Lift Scope:</strong> <span id="tipc-val-flights" class="text-sky-400 font-bold">120 Aerial Lifts (7.2 Tons)</span></div>
+              <div><strong class="text-white">Road Construction:</strong> <span class="text-emerald-400 font-bold">₱0 Avoided Road Expense</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Sliders Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-7">
+          <!-- Input 1: Scope -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="calc-label mb-0" for="tipc-input-panels">Cargo Scope (Modules / Lifts)</label>
+              <span class="text-xs font-bold text-orange-400"><input type="number" id="tipc-input-panels" class="w-16 bg-slate-800 text-center text-white text-xs py-0.5 rounded border border-slate-700" value="240" min="20" max="1000" /></span>
+            </div>
+            <input type="range" id="tipc-slider-panels" class="calc-slider" min="20" max="1000" step="10" value="240" aria-label="Scope of solar modules" />
+            <div class="flex justify-between text-[11px] text-slate-500 mt-1 font-semibold">
+              <span>20 units</span>
+              <span>240 (132 kWp Baseline)</span>
+              <span>1,000 units</span>
             </div>
           </div>
 
-          <!-- Inputs -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- Input 2: Terrain Difficulty -->
+          <div>
+            <label class="calc-label" for="tipc-select-terrain">Terrain &amp; Elevation Corridor</label>
+            <select id="tipc-select-terrain" class="calc-input text-sm">
+              <option value="moderate">Moderate Foothills / Broken Trail (&lt;200m)</option>
+              <option value="steep" selected>Steep Mountain Ridge (500m Elevation Corridor)</option>
+              <option value="extreme">Roadless Alpine Peak / Remote Island Ravine</option>
+            </select>
+            <div class="text-[11px] text-slate-500 mt-1">Multipliers: Slope, rigging hazard, &amp; flight ceiling</div>
+          </div>
+
+          <!-- Input 3: Avoided Road Civil Works -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="calc-label mb-0" for="tipc-input-roads">Estimated Access Road Cost</label>
+              <span class="text-xs font-bold text-sky-400"><input type="number" id="tipc-input-roads" class="w-24 bg-slate-800 text-center text-white text-xs py-0.5 rounded border border-slate-700" value="300000" step="25000" /></span>
+            </div>
+            <input type="range" id="tipc-slider-roads" class="calc-slider" min="0" max="1200000" step="25000" value="300000" aria-label="Estimated access road cost" />
+            <div class="flex justify-between text-[11px] text-slate-500 mt-1 font-semibold">
+              <span>₱0</span>
+              <span>₱300,000 Baseline</span>
+              <span>₱1.2M</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparative Cost Breakdown Table -->
+        <div class="tipc-table-wrap">
+          <table class="tipc-table" aria-label="TIPC Financial Comparison Table">
+            <thead>
+              <tr>
+                <th>Cost Component</th>
+                <th>Conventional Ground Logistics</th>
+                <th>SkyCrane Aerial Logistics</th>
+                <th>Operational &amp; Financial Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Direct Logistics Freight Rate</strong></td>
+                <td id="tipc-conv-direct" class="text-slate-300">₱150,000</td>
+                <td id="tipc-sky-direct" class="text-orange-400 font-bold">₱419,000</td>
+                <td><span class="tipc-pill-tag tipc-pill-orange">+₱269,000 Direct Premium</span></td>
+              </tr>
+              <tr>
+                <td><strong>Site Preliminaries &amp; Overhead</strong></td>
+                <td id="tipc-conv-prelims" class="text-slate-300">₱200,000 (10d)</td>
+                <td id="tipc-sky-prelims" class="text-emerald-400 font-bold">₱100,000 (5d)</td>
+                <td><span class="tipc-pill-tag tipc-pill-green">-₱100,000 (50% Schedule Compression)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Temporary Civil Works (Access Roads)</strong></td>
+                <td id="tipc-conv-roads" class="text-red-300">₱300,000</td>
+                <td id="tipc-sky-roads" class="text-emerald-400 font-bold">₱0 (Eliminated)</td>
+                <td><span class="tipc-pill-tag tipc-pill-green">-₱300,000 Avoided Civil Expenses</span></td>
+              </tr>
+              <tr>
+                <td><strong class="text-white text-sm">TOTAL INSTALLED PROJECT COST (TIPC)</strong></td>
+                <td id="tipc-conv-total" class="text-white text-sm font-bold">₱650,000</td>
+                <td id="tipc-sky-total" class="text-emerald-400 text-sm font-black">₱519,000</td>
+                <td><span class="tipc-pill-tag tipc-pill-green font-extrabold text-xs">-₱131,000 NET BOTTOM-LINE SAVINGS</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Visual Comparison Bars -->
+        <div class="mb-7 bg-slate-900/60 p-4 rounded-xl border border-white/5">
+          <div class="text-xs font-bold text-slate-300 mb-3 uppercase tracking-wider">Visual TIPC Expenditure Comparison</div>
+          <div class="space-y-3">
             <div>
-              <label class="calc-label" for="input-payload-weight">Cargo Weight (kg)</label>
-              <input type="number" id="input-payload-weight" class="calc-input"
-                     placeholder="e.g. 60" min="0" max="200" step="0.5" value="65" />
-              <input type="range" id="slider-payload" class="calc-slider"
-                     min="0" max="150" step="0.5" value="65" aria-label="Cargo weight slider" />
-              <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:#64748B;margin-top:0.4rem;font-weight:600;">
-                <span>0 kg</span>
-                <span style="color:var(--orange);">Max: 85 kg</span>
-                <span>150 kg</span>
+              <div class="flex justify-between text-xs text-slate-400 mb-1">
+                <span>Conventional Ground Transport (Direct + Prelims + Roads)</span>
+                <span class="font-bold text-slate-200">100% Relative Base</span>
+              </div>
+              <div class="w-full h-3 rounded-full bg-slate-800 overflow-hidden">
+                <div id="tipc-bar-conv" class="h-full bg-slate-500 rounded-full transition-all duration-500" style="width: 100%;"></div>
               </div>
             </div>
             <div>
-              <label class="calc-label" for="input-altitude">Site Elevation (meters ASL)</label>
-              <input type="number" id="input-altitude" class="calc-input"
-                     placeholder="e.g. 1500" min="0" max="9000" step="50" value="1500" />
-              <input type="range" id="slider-altitude" class="calc-slider"
-                     min="0" max="8000" step="50" value="1500" aria-label="Altitude slider" />
-              <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:#64748B;margin-top:0.4rem;font-weight:600;">
-                <span>Sea level</span>
-                <span style="color:#0EA5E9;">Ceiling: 6,000 m</span>
-                <span>8,000 m</span>
+              <div class="flex justify-between text-xs text-slate-400 mb-1">
+                <span>SkyCrane Aerial Logistics (Zero Roads + 50% Schedule Compression)</span>
+                <span class="font-bold text-emerald-400">79.8% (-20.2% Net Savings)</span>
+              </div>
+              <div class="w-full h-3 rounded-full bg-slate-800 overflow-hidden">
+                <div id="tipc-bar-sky" class="h-full bg-gradient-to-r from-emerald-500 to-sky-400 rounded-full transition-all duration-500" style="width: 79.8%;"></div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Evaluate -->
-          <button id="calc-evaluate-btn" class="btn btn-orange w-full justify-center mb-6" style="border-radius:10px;">
-            Evaluate Flight Profile
+        <!-- Unquantified Risk Advantages -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-7 text-xs text-slate-300">
+          <div class="flex items-start gap-2.5 bg-slate-800/40 p-3 rounded-lg border border-slate-700/60">
+            <span class="text-emerald-400 text-base">🛡️</span>
+            <div>
+              <strong class="text-white">Zero Micro-Cracking Risk:</strong> Bypasses manual handling damage to solar PV cells during steep manual carriage, protecting 25-year manufacturer warranties.
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5 bg-slate-800/40 p-3 rounded-lg border border-slate-700/60">
+            <span class="text-emerald-400 text-base">⚡</span>
+            <div>
+              <strong class="text-white">Zero DOLE OSHS Height Exposure:</strong> Eliminates dangerous manual carrying on steep ladders and loose rock faces, satisfying DOLE OSHS zero-harm mandates.
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
+          <button type="button" onclick="openWhitepaperModal()" class="text-xs font-bold text-sky-400 hover:text-sky-300 underline underline-offset-4 flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Read &amp; Print Solar Logistics White Paper (PDF Briefing)
           </button>
+          <a href="contact.html?subject=TIPC+Solar+Quote" id="btn-tipc-consult-cta" class="btn btn-orange w-full sm:w-auto justify-center text-sm py-3 px-6 rounded-xl">
+            Request Formal TIPC Feasibility Audit &amp; Quote →
+          </a>
+        </div>
 
-          <!-- Result (hidden until evaluated) -->
-          <div id="calc-result-panel" class="hidden" role="alert" aria-live="polite">
-            <div style="height:1px;background:rgba(255,255,255,0.08);margin-bottom:1.5rem;"></div>
-            <div style="margin-bottom:0.875rem;">
-              <span id="calc-status-badge" class="result-badge"></span>
-            </div>
-            <p id="calc-message" style="font-size:0.875rem;color:#CBD5E1;line-height:1.7;margin-bottom:1.5rem;"></p>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:#94A3B8;font-weight:600;margin-bottom:0.4rem;">
-                  <span>Payload Load</span><span id="calc-payload-pct">0%</span>
-                </div>
-                <div class="bar-track"><div class="bar-fill" id="calc-payload-bar"></div></div>
-              </div>
-              <div>
-                <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:#94A3B8;font-weight:600;margin-bottom:0.4rem;">
-                  <span>Altitude Usage</span><span id="calc-alt-pct">0%</span>
-                </div>
-                <div class="bar-track"><div class="bar-fill" id="calc-alt-bar"></div></div>
-              </div>
-            </div>
-            <div style="margin-top:1.75rem;text-align:center;">
-              <a href="contact.html" class="btn btn-orange" id="cta-post-calc" style="font-size:0.875rem;padding:0.75rem 2rem;border-radius:10px;">
-                Proceed to Consultation Request →
-              </a>
-            </div>
-          </div>
+      </div>
+    </div>
 
+    <!-- ── TAB 2: Flight Profile Feasibility Analyzer (Legacy / Technical Mode) ── -->
+    <div id="panel-flight-profile" class="calc-panel reveal hidden" role="tabpanel" aria-labelledby="tab-btn-feasibility">
+      <!-- Panel header -->
+      <div class="flex items-center gap-3 mb-7">
+        <div style="width:38px;height:38px;border-radius:10px;background:rgba(2,132,199,0.18);display:flex;align-items:center;justify-content:center;">
+          <svg style="width:18px;height:18px;color:#38BDF8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-weight:800;color:#fff;font-size:1.05rem;">DJI FlyCart 100 Flight Profile Analyzer</div>
+          <div style="font-size:0.68rem;color:#94A3B8;letter-spacing:0.08em;text-transform:uppercase;">Dual-Battery High-Altitude Mission Limits</div>
         </div>
       </div>
 
+      <!-- Inputs -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label class="calc-label" for="input-payload-weight">Cargo Weight (kg)</label>
+          <input type="number" id="input-payload-weight" class="calc-input" placeholder="e.g. 65" min="0" max="200" step="0.5" value="65" />
+          <input type="range" id="slider-payload" class="calc-slider" min="0" max="150" step="0.5" value="65" aria-label="Cargo weight slider" />
+          <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-semibold">
+            <span>0 kg</span>
+            <span style="color:var(--orange);">Max: 85 kg</span>
+            <span>150 kg</span>
+          </div>
+        </div>
+        <div>
+          <label class="calc-label" for="input-altitude">Site Elevation (meters ASL)</label>
+          <input type="number" id="input-altitude" class="calc-input" placeholder="e.g. 1500" min="0" max="9000" step="50" value="1500" />
+          <input type="range" id="slider-altitude" class="calc-slider" min="0" max="8000" step="50" value="1500" aria-label="Altitude slider" />
+          <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-semibold">
+            <span>Sea level</span>
+            <span style="color:#0EA5E9;">Ceiling: 6,000 m</span>
+            <span>8,000 m</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evaluate -->
+      <button id="calc-evaluate-btn" class="btn btn-orange w-full justify-center mb-6" style="border-radius:10px;">
+        Evaluate Flight Profile Feasibility
+      </button>
+
+      <!-- Result (hidden until evaluated) -->
+      <div id="calc-result-panel" class="hidden" role="alert" aria-live="polite">
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin-bottom:1.5rem;"></div>
+        <div class="mb-3">
+          <span id="calc-status-badge" class="result-badge"></span>
+        </div>
+        <p id="calc-message" style="font-size:0.875rem;color:#CBD5E1;line-height:1.7;margin-bottom:1.5rem;"></p>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <div class="flex justify-between text-xs text-slate-400 font-semibold mb-1">
+              <span>Payload Load</span><span id="calc-payload-pct">0%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" id="calc-payload-bar"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-slate-400 font-semibold mb-1">
+              <span>Altitude Usage</span><span id="calc-alt-pct">0%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" id="calc-alt-bar"></div></div>
+          </div>
+        </div>
+        <div class="mt-6 text-center">
+          <a href="contact.html" class="btn btn-orange" id="cta-post-calc" style="font-size:0.875rem;padding:0.75rem 2rem;border-radius:10px;">
+            Proceed to Flight Consultation Request →
+          </a>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
-
 <!-- ═══════════════════════════════════════════════════════════
-     WHY SKYCRANE — 3 PILLARS
+     WHY SKYCRANE — 3 STRATEGIC PILLARS
+     Roadmap Compliance: Section 0 (Brand Positioning & Core Value)
 ═══════════════════════════════════════════════════════════ -->
 <section class="sc-section sc-section-alt" id="why-skycrane" aria-labelledby="why-heading">
   <div class="sc-container">
 
     <div class="text-center mb-12">
-      <p class="section-eyebrow reveal" style="justify-content:center;">Why SkyCrane</p>
-      <h2 class="section-heading reveal" id="why-heading" style="margin:0 auto;">Built for Philippine Industrial Realities</h2>
+      <p class="section-eyebrow reveal" style="justify-content:center;">Strategic Operational Value</p>
+      <h2 class="section-heading reveal" id="why-heading" style="margin:0 auto;">The Three Pillars of SkyCrane Logistics</h2>
       <div class="section-divider reveal" style="margin:0.75rem auto 0;"></div>
+      <p class="reveal text-slate-600 text-sm max-w-xl mx-auto mt-2">
+        Engineered specifically for difficult-to-reach Philippine geography where conventional road logistics fail.
+      </p>
     </div>
 
     <div class="pillars-grid">
 
+      <!-- Pillar 1: Flight Capability -->
       <div class="pillar-card reveal reveal-d1">
         <div class="pillar-icon" style="background:rgba(2,132,199,0.08);border:1px solid rgba(2,132,199,0.15);">
-          <svg class="w-6 h-6" style="color:#0284C7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <svg class="w-6 h-6" style="color:#0284C7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
           </svg>
         </div>
-        <h3 class="pillar-title">Terrain-Agnostic Delivery</h3>
-        <p class="pillar-body">No roads? No bridges? No problem. We deliver to ridgelines, offshore platforms, mountain construction sites, and post-disaster zones inaccessible by any ground vehicle.</p>
+        <div class="text-[11px] font-extrabold uppercase tracking-wider text-sky-600 mb-1">Pillar 01</div>
+        <h3 class="pillar-title">Flight Capability</h3>
+        <p class="pillar-body">
+          Powered by the DJI FlyCart 100 with an <strong>85 kg dual-battery payload</strong>, 20 m precision retractable winch, 6,000 m ASL operational ceiling, and IP55 weather sealing for high-mountain ridges and island transport.
+        </p>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-500">
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">85 kg Max Payload</span>
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">20 m Winch</span>
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">6,000 m Ceiling</span>
+        </div>
       </div>
 
+      <!-- Pillar 2: Regulatory & Safety -->
       <div class="pillar-card reveal reveal-d2">
-        <div class="pillar-icon" style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.15);">
-          <svg class="w-6 h-6" style="color:#F97316" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-        </div>
-        <h3 class="pillar-title">Rapid Response Operations</h3>
-        <p class="pillar-body">Where traditional supply chains take days, SkyCrane Mobility delivers in hours. Critical spare parts and emergency supplies exactly when and where every minute counts.</p>
-      </div>
-
-      <div class="pillar-card reveal reveal-d3">
         <div class="pillar-icon" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15);">
-          <svg class="w-6 h-6" style="color:#059669" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <svg class="w-6 h-6" style="color:#059669" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
         </div>
-        <h3 class="pillar-title">Aviation-Grade Safety</h3>
-        <p class="pillar-body">Emergency parachute system, Penta-Vision obstacle avoidance, IP55 all-weather sealing, millimeter-wave radar, and redundant power — mission-critical reliability at every altitude.</p>
+        <div class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-600 mb-1">Pillar 02</div>
+        <h3 class="pillar-title">Regulatory &amp; Safety Trust</h3>
+        <p class="pillar-body">
+          Operated under <strong>CAAP Category 3 RPAS</strong> permits with active NOTAM corridors, DOLE OSHS-certified tactical rigging officers, R.A. 10173 NPC data compliance, and full Pioneer &amp; Malayan aviation underwriting.
+        </p>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-500">
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">CAAP Category 3</span>
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">DOLE OSHS Rigging</span>
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">Comprehensive Hull</span>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Financial Impact (TIPC) -->
+      <div class="pillar-card reveal reveal-d3">
+        <div class="pillar-icon" style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.15);">
+          <svg class="w-6 h-6" style="color:#F97316" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <div class="text-[11px] font-extrabold uppercase tracking-wider text-orange-600 mb-1">Pillar 03</div>
+        <h3 class="pillar-title">Financial Impact (TIPC)</h3>
+        <p class="pillar-body">
+          Evaluated via <strong>Total Installed Project Cost</strong>. Direct aerial freight premiums are substantially offset by completely eliminating temporary road building and compressing project schedules by up to 50%.
+        </p>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-500">
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">-₱131k Baseline Savings</span>
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">₱0 Road Civil Works</span>
+          <span class="bg-slate-50 px-2 py-0.5 rounded border border-slate-200">50% Faster</span>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════
+     BASELINE CASE STUDY: 132 kWp COMMERCIAL SOLAR INSTALLATION
+     Roadmap Compliance: Section 3 & Phase 1 Action 1.1
+═══════════════════════════════════════════════════════════ -->
+<section class="sc-section" id="case-study" aria-labelledby="case-study-heading">
+  <div class="sc-container">
+
+    <div class="flex flex-col lg:flex-row gap-12 items-center">
+      
+      <!-- Left: Case Study Summary -->
+      <div class="lg:w-1/2">
+        <div class="inline-flex items-center gap-2 bg-sky-50 text-sky-700 px-3 py-1 rounded-full text-xs font-bold border border-sky-200 mb-3">
+          <span>Case Study Snapshot</span> &bull; <span>132 kWp Solar Project</span>
+        </div>
+        <h2 class="section-heading" id="case-study-heading">
+          Overcoming 500m Mountain Elevation: <span class="text-orange-500">₱131,000 Net Savings</span>
+        </h2>
+        <div class="section-divider"></div>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+          In a baseline mountain solar installation requiring the transport of <strong>240 monocrystalline solar modules (30 kg each)</strong> across a steep 500m elevation corridor, conventional ground transport projected ₱650,000 in Total Installed Project Cost over 10 days with road construction.
+        </p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-semibold">Total Scope</div>
+            <div class="text-lg font-black text-slate-900">240 Solar PV Panels</div>
+            <div class="text-xs text-slate-400">7,200 kg Total Cargo</div>
+          </div>
+          <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-semibold">UAV Execution</div>
+            <div class="text-lg font-black text-sky-600">120 Aerial Lifts</div>
+            <div class="text-xs text-slate-400">2 Panels / 70 kg per Lift</div>
+          </div>
+          <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-semibold">Schedule Compression</div>
+            <div class="text-lg font-black text-emerald-600">5 Days (50% Faster)</div>
+            <div class="text-xs text-slate-400">vs 10 Conventional Days</div>
+          </div>
+          <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-semibold">Net Bottom-Line TIPC</div>
+            <div class="text-lg font-black text-emerald-600">-₱131,000 Saved</div>
+            <div class="text-xs text-slate-400">20.2% Net Budget Reduction</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <button type="button" onclick="openWhitepaperModal()" class="btn btn-orange text-sm py-2.5 px-5 rounded-xl">
+            Read Complete White Paper Briefing
+          </button>
+          <a href="#calculator" class="btn btn-glass text-sm py-2.5 px-5 rounded-xl text-slate-700">
+            Customize in TIPC Calculator ↓
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Real Flight Image Showcase -->
+      <div class="lg:w-1/2 w-full">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 group">
+          <img 
+            src="assets/images/dji_flycart100_ops_1.jpg" 
+            alt="DJI FlyCart 100 heavy-lift drone carrying industrial cargo across mountainous Philippine terrain" 
+            class="w-full h-[380px] sm:h-[440px] object-cover group-hover:scale-105 transition-transform duration-700" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5 text-white">
+            <div class="inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2.5 py-0.5 rounded-full text-[11px] font-bold mb-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Mission Verified: 500m ASL Ridgeline
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-white mb-1">DJI FlyCart 100 High-Elevation Winch Drop</h4>
+            <p class="text-xs text-slate-300">Eliminates manual ladder carriage and protects 25-year solar PV manufacturer warranties against micro-cracking.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     B2B ENTERPRISE PROGRAMS: EPC PARTNER & EMERGENCY CHARTER
+     Roadmap Compliance: Section 5 (Phase 3 Actions 3.1 & 3.2)
+═══════════════════════════════════════════════════════════ -->
+<section class="sc-section sc-section-alt" id="enterprise-programs" aria-labelledby="enterprise-heading">
+  <div class="sc-container">
+
+    <div class="text-center mb-12">
+      <p class="section-eyebrow reveal" style="justify-content:center;">Commercial Partnerships</p>
+      <h2 class="section-heading reveal" id="enterprise-heading" style="margin:0 auto;">Enterprise B2B Programs</h2>
+      <div class="section-divider reveal" style="margin:0.75rem auto 0;"></div>
+      <p class="reveal text-slate-600 text-sm max-w-xl mx-auto mt-2">
+        Structured commercial frameworks for renewable EPC contractors, industrial developers, and government emergency response units.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Program 1: EPC Partner Program -->
+      <div class="b2b-program-card reveal reveal-d1">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 bg-sky-100 px-3 py-1 rounded-full border border-sky-300">
+              Action 3.1 &bull; Commercial EPCs
+            </span>
+            <span class="text-xs font-bold text-slate-400">Multi-Megawatt Scale</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 mb-2 font-display">EPC &amp; Developer Partner Program</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            Designed for recurring commercial contractors managing large-scale upland solar farms, telecom antenna ridges, and mountain infrastructure.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>Guaranteed Flight Windows:</strong> Priority reservation for seasonal weather windows.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>Tiered Volume Rates:</strong> Scaled pricing discounts for multi-hundred payload contracts.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>Pre-Cleared NOTAM Corridors:</strong> Accelerated CAAP airspace permits and corridor clearances.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>Dedicated Ground Rigging Crew:</strong> DOLE OSHS tactical rigging master planning.</span>
+            </li>
+          </ul>
+        </div>
+        <a href="contact.html?program=EPC-Partner" class="btn btn-orange w-full justify-center text-xs py-2.5 rounded-xl font-bold">
+          Enroll in EPC Partner Program →
+        </a>
+      </div>
+
+      <!-- Program 2: Emergency Response Charter Framework -->
+      <div class="b2b-program-card reveal reveal-d2">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-red-700 bg-red-100 px-3 py-1 rounded-full border border-red-300">
+              Action 3.2 &bull; Typhoon &amp; Disaster Rapid Response
+            </span>
+            <span class="text-xs font-bold text-emerald-600">24-Hour Mobilization</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 mb-2 font-display">Emergency Response Flight Charter</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            Rapid-activation heavy-lift logistics framework for LGUs, disaster response agencies (NDRRMC), and telecom/utility operators after severe typhoons.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>24-Hour Emergency Deployment:</strong> Fast-track mobilization to typhoon-isolated regions.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>Critical Lifeline Cargo:</strong> Rapid delivery of water filtration units and medical kits.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>Satellite Comms Restoration:</strong> Starlink &amp; emergency generator delivery to isolated summits.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span>
+              <span><strong>All-Weather IP55 Operations:</strong> Reliable flight in 12 m/s winds and heavy rain conditions.</span>
+            </li>
+          </ul>
+        </div>
+        <a href="contact.html?program=Emergency-Charter" class="btn btn-glass w-full justify-center text-xs py-2.5 rounded-xl font-bold text-slate-800 border-slate-300 hover:border-orange-500">
+          Request Emergency Standby Protocol →
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════════════
      CTA BANNER
@@ -973,10 +1357,10 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=20261030_v8"></script>
+<script src="js/main.js?v=20261102_v9"></script>
 
 <!-- Payload Calculator -->
-<script src="js/payload-calculator.js"></script>
+<script src="js/payload-calculator.js?v=20261102_v9"></script>
 
 <script>
 (function () {
@@ -1399,5 +1783,116 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
       </div>
     </aside>
+
+<!-- ============================================================
+     SOLAR LOGISTICS TECHNICAL WHITE PAPER MODAL (Roadmap Action 1.1)
+     Baseline Case Study: 132 kWp Commercial Solar Installation & TIPC Model
+     ============================================================ -->
+<div id="whitepaperModal" class="modal-overlay" onclick="if(event.target===this)closeWhitepaperModal()">
+  <div class="whitepaper-card" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
+    
+    <!-- Modal Header -->
+    <div class="whitepaper-header">
+      <button onclick="closeWhitepaperModal()" aria-label="Close white paper" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 border border-sky-400/30 px-3 py-1 rounded-full text-xs font-bold mb-3">
+        <span>Technical White Paper</span> &bull; <span>Doc ID: SKC-WP-2026-01</span>
+      </div>
+      <h2 id="wp-modal-title" class="text-2xl sm:text-3xl font-black font-display text-white mb-2 leading-tight">
+        Total Installed Project Cost (TIPC) Model for Remote Solar Logistics in the Philippines
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300">
+        Empirical evaluation of heavy-lift UAV logistics deploying the DJI FlyCart 100 on 132 kWp commercial mountain installations.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-4 text-xs text-slate-300 pt-3 border-t border-white/15">
+        <div><strong>Author:</strong> Gain Carlo Cayabyab (Lead Systems Architect)</div>
+        <div><strong>Entity:</strong> SkyCrane Mobility Corporation (OPC)</div>
+        <div><strong>Date:</strong> 2026 Baseline Operational Review</div>
+      </div>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="whitepaper-body text-slate-700 text-sm space-y-6">
+      
+      <div>
+        <h3 class="text-base font-extrabold text-slate-900 uppercase tracking-wider mb-2 text-sky-700">1. Executive Summary &amp; The Economic Dilemma</h3>
+        <p class="leading-relaxed text-xs sm:text-sm">
+          Evaluating heavy-lift drone logistics purely through direct freight rate creates a distorted economic view. While aerial transport commands a freight premium over manual porters or pack mules, conventional ground freight incurs heavy hidden costs: building temporary access roads, lengthy project preliminary overhead, and irreversible solar module micro-cracking damage during steep manual carriage.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-base font-extrabold text-slate-900 uppercase tracking-wider mb-2 text-sky-700">2. Baseline Empirical Case Study: 132 kWp Commercial Array</h3>
+        <p class="leading-relaxed text-xs sm:text-sm mb-3">
+          <strong>Project Location:</strong> Cordillera mountain ridge, 500m elevation climb above nearest vehicular drop point.<br>
+          <strong>Cargo Payload:</strong> 240 monocrystalline solar modules (30 kg each, total 7,200 kg).<br>
+          <strong>Aircraft Configuration:</strong> DJI FlyCart 100 dual-battery mode, 2 modules (60 kg) + 10 kg tactical rigging fixture = 70 kg payload per flight (82% of max 85 kg rating).
+        </p>
+        
+        <div class="overflow-x-auto rounded-lg border border-slate-200">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-100 text-slate-800 font-bold">
+              <tr>
+                <th class="p-2.5">Financial Component</th>
+                <th class="p-2.5">Conventional Ground Transport</th>
+                <th class="p-2.5">SkyCrane Aerial Logistics</th>
+                <th class="p-2.5">Net Variance</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-2.5 font-medium">Direct Logistics Rate</td>
+                <td class="p-2.5">₱150,000</td>
+                <td class="p-2.5 text-orange-600 font-bold">₱419,000</td>
+                <td class="p-2.5 text-orange-600 font-bold">+₱269,000 (Freight Premium)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-medium">Site Preliminaries (Overhead)</td>
+                <td class="p-2.5">₱200,000 (10 days @ ₱20k)</td>
+                <td class="p-2.5 text-emerald-600 font-bold">₱100,000 (5 days @ ₱20k)</td>
+                <td class="p-2.5 text-emerald-600 font-bold">-₱100,000 (50% Compression)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-medium">Temporary Access Roads</td>
+                <td class="p-2.5">₱300,000</td>
+                <td class="p-2.5 text-emerald-600 font-bold">₱0</td>
+                <td class="p-2.5 text-emerald-600 font-bold">-₱300,000 (Avoided Civil Works)</td>
+              </tr>
+              <tr class="bg-sky-50/60 font-bold">
+                <td class="p-2.5 text-slate-900">TOTAL INSTALLED PROJECT COST (TIPC)</td>
+                <td class="p-2.5 text-slate-900">₱650,000</td>
+                <td class="p-2.5 text-emerald-700 text-sm font-black">₱519,000</td>
+                <td class="p-2.5 text-emerald-700 text-sm font-black">-₱131,000 NET SAVINGS (20.2%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-base font-extrabold text-slate-900 uppercase tracking-wider mb-2 text-sky-700">3. Unquantified Operational Risk Advantages</h3>
+        <ul class="space-y-2 list-disc list-inside text-xs sm:text-sm text-slate-700">
+          <li><strong>Zero Micro-Cracking Risk:</strong> Manual transport over boulder ridges flexes silicon wafers, causing hidden cell fracture and voiding 25-year performance warranties. SkyCrane's vibration-isolated cargo cradle preserves panel integrity.</li>
+          <li><strong>DOLE OSHS Zero-Harm Compliance:</strong> Eliminates catastrophic slip-and-fall hazards for manual porter crews carrying 30kg awkward panels on 45-degree inclines.</li>
+          <li><strong>Right-of-Way &amp; Environmental Protection:</strong> Avoids DENR environmental permits, tree cutting, and erosion risks associated with bulldozer road carving.</li>
+        </ul>
+      </div>
+
+      <div class="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        <button onclick="window.print()" class="btn btn-glass text-xs py-2 px-4 rounded-lg flex items-center gap-1.5 text-slate-800 border-slate-300">
+          <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Print / Save PDF Briefing
+        </button>
+        <a href="contact.html?subject=TIPC+White+Paper+Consultation" class="btn btn-orange text-xs py-2 px-5 rounded-lg">
+          Request Project Feasibility Audit →
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>

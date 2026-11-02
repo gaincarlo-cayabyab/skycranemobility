@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261030_v8" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102_v9" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -727,6 +727,7 @@
           <a href="about.html"           class="footer-link">About Us</a>
           <a href="solutions.html"       class="footer-link">Solutions</a>
           <a href="fleet-dji-fc100.html" class="footer-link">DJI FlyCart 100</a>
+          <a href="compliance.html"      class="footer-link">Compliance &amp; Safety</a>
           <a href="contact.html"         class="footer-link">Contact &amp; Quote</a>
         </div>
 
@@ -807,7 +808,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=20261030_v8"></script>
+  <script src="js/main.js?v=20261102_v9"></script>
   <script src="js/payload-calculator.js"></script>
   <script>
     (function () {
@@ -1064,5 +1065,23 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 
+
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var program = params.get('program');
+  var subject = params.get('subject');
+  var sel = document.getElementById('inquiry-type');
+  if (sel && program) {
+    if (program === 'EPC-Partner') sel.value = 'epc-partner';
+    if (program === 'Emergency-Charter') sel.value = 'emergency-charter';
+  }
+  var msgEl = document.getElementById('message');
+  if (msgEl && subject) {
+    msgEl.placeholder = 'Inquiry regarding: ' + decodeURIComponent(subject.replace(/\+/g,' ')) + '\n\n' + msgEl.placeholder;
+  }
+  // inquiryTypeFromURL marker
+})();
+</script>
 </body>
 </html>
