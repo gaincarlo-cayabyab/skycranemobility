@@ -393,3 +393,49 @@
   });
 
 })(window);
+
+
+window.switchCalcTab = function(tab) {
+    var tipcPanel      = document.getElementById('panel-tipc-savings');
+    var profilePanel   = document.getElementById('panel-flight-profile');
+    var btnTipc        = document.getElementById('tab-btn-tipc');
+    var btnFeasibility = document.getElementById('tab-btn-feasibility');
+    if (!tipcPanel || !profilePanel) return;
+
+    if (tab === 'tipc') {
+      profilePanel.classList.add('hidden');
+      profilePanel.style.display = 'none';
+      tipcPanel.classList.remove('hidden');
+      tipcPanel.classList.add('visible');
+      tipcPanel.style.display = 'block';
+      tipcPanel.style.opacity = '1';
+      tipcPanel.style.transform = 'none';
+
+      if (btnTipc) {
+        btnTipc.classList.add('active', 'tab-orange');
+        btnTipc.setAttribute('aria-selected', 'true');
+      }
+      if (btnFeasibility) {
+        btnFeasibility.classList.remove('active', 'tab-orange');
+        btnFeasibility.setAttribute('aria-selected', 'false');
+      }
+    } else {
+      tipcPanel.classList.add('hidden');
+      tipcPanel.style.display = 'none';
+      profilePanel.classList.remove('hidden');
+      profilePanel.classList.add('visible');
+      profilePanel.style.display = 'block';
+      profilePanel.style.opacity = '1';
+      profilePanel.style.transform = 'none';
+
+      if (btnFeasibility) {
+        btnFeasibility.classList.add('active');
+        btnFeasibility.classList.remove('tab-orange');
+        btnFeasibility.setAttribute('aria-selected', 'true');
+      }
+      if (btnTipc) {
+        btnTipc.classList.remove('active', 'tab-orange');
+        btnTipc.setAttribute('aria-selected', 'false');
+      }
+    }
+  };

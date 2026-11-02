@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261102_v15" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102_v16" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -1205,7 +1205,8 @@
               <a href="about.html#leadership" class="btn btn-orange text-xs py-2.5 px-5 rounded-xl">
                 Read Founder Profile &amp; Story →
               </a>
-              <a href="contact.html" class="btn text-xs py-2.5 px-5 rounded-xl font-bold" style="background:rgba(255,255,255,0.13);color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background 0.22s,border-color 0.22s;" onmouseover="this.style.background='rgba(255,255,255,0.24)';this.style.borderColor='rgba(255,255,255,0.75)';" onmouseout="this.style.background='rgba(255,255,255,0.13)';this.style.borderColor='rgba(255,255,255,0.5)';">
+              <a href="contact.html" class="btn text-xs py-2.5 px-5 rounded-xl font-extrabold" style="background:#FFFFFF;color:#0F172A !important;border:1.5px solid #FFFFFF;box-shadow:0 4px 14px rgba(0,0,0,0.25);display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.2s;" onmouseover="this.style.background='#F1F5F9';this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#FFFFFF';this.style.transform='translateY(0)';">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 Contact Executive Office
               </a>
             </div>
@@ -1517,7 +1518,7 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=20261102_v15"></script>
+<script src="js/main.js?v=20261102_v16"></script>
 
 <!-- Payload Calculator -->
 <script src="js/payload-calculator.js?v=20261102_v11"></script>
@@ -1532,8 +1533,10 @@
 
     if (tab === 'tipc') {
       profilePanel.classList.add('hidden');
+      profilePanel.style.display = 'none';
       tipcPanel.classList.remove('hidden');
       tipcPanel.classList.add('visible');
+      tipcPanel.style.display = 'block';
       tipcPanel.style.opacity = '1';
       tipcPanel.style.transform = 'none';
 
@@ -1547,8 +1550,10 @@
       }
     } else {
       tipcPanel.classList.add('hidden');
+      tipcPanel.style.display = 'none';
       profilePanel.classList.remove('hidden');
       profilePanel.classList.add('visible');
+      profilePanel.style.display = 'block';
       profilePanel.style.opacity = '1';
       profilePanel.style.transform = 'none';
 
