@@ -571,7 +571,7 @@
       if (typeof showToast === "function") {
         showToast(text, "warning");
       } else {
-        alert(text);
+        showToast(text, "warning");
       }
       if (el) {
         try {
@@ -737,7 +737,7 @@
     var emailVal   = emailInput ? emailInput.value.trim() : "";
 
     if (!emailVal || !emailVal.includes("@") || !emailVal.includes(".")) {
-      alert("Please enter a valid corporate email address (e.g., name@company.com).");
+      showToast("Please enter a valid corporate email address (e.g., name@company.com).", "error");
       if (emailInput) emailInput.focus();
       return false;
     }
