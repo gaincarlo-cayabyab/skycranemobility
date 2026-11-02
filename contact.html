@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261102_v9" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102_v10" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -114,6 +114,59 @@
     }
   }
 </style>
+
+  <!-- ========================================= -->
+  <!-- STRUCTURED DATA (JSON-LD)                 -->
+  <!-- Roadmap Section 4: Founder & Corporation  -->
+  <!-- ========================================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://skycranemobility.com/#founder",
+        "name": "Jerry B. Dee",
+        "jobTitle": "Founder & CEO / Managing Director",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "SkyCrane Mobility Corporation"
+        },
+        "knowsAbout": [
+          "Unmanned Aerial Vehicles",
+          "Aerial Cargo Logistics",
+          "DJI Enterprise Systems",
+          "Flight Operations",
+          "Agri-Tech Precision Spraying"
+        ],
+        "image": "https://skycranemobility.com/assets/images/dji_flycart100_ops_11.jpg"
+      },
+      {
+        "@type": "Corporation",
+        "@id": "https://skycranemobility.com/#corporation",
+        "name": "SkyCrane Mobility Corporation",
+        "url": "https://skycranemobility.com",
+        "logo": "https://skycranemobility.com/assets/images/skycrane_logo_with_text_logo_landscape.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Jerry B. Dee"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "08 BDEE Bldg., Perez Blvd., Herrero",
+          "addressLocality": "Dagupan City",
+          "addressRegion": "Pangasinan",
+          "postalCode": "2400",
+          "addressCountry": "PH"
+        },
+        "telephone": "+63-993-705-2927",
+        "email": "dispatch@skycranemobility.com",
+        "areaServed": "Northern Luzon and Philippine Archipelago"
+      }
+    ]
+  }
+  </script>
+
 </head>
 
 <body class="bg-slate-50 text-slate-900 overflow-x-hidden">
@@ -305,7 +358,7 @@
             <div>
               <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Office &amp; Hangar Base</div>
               <div class="text-base font-extrabold text-slate-900 leading-snug">
-                08 Perez Blvd. Herrero
+                08 BDEE Bldg., Perez Blvd., Herrero
               </div>
               <div class="text-sm font-semibold text-slate-600">
                 Dagupan City, Pangasinan, Philippines
@@ -700,115 +753,156 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       FOOTER
+    <!-- ═══════════════════════════════════════════════════════════
+       ENTERPRISE 4-COLUMN FOOTER & COMMAND CENTER
+       Roadmap (2) Compliance: Jerry B. Dee Founder Attribution & Utility Hub
        ═══════════════════════════════════════════════════════════ -->
-  <footer id="site-footer" role="contentinfo">
+  <footer id="site-footer" role="contentinfo" class="enterprise-footer">
     <div class="sc-container">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10" style="padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.07);">
-        <div>
-          <div class="footer-logo mb-5">
-            <img src="assets/images/skycrane_logo_with_text_logo_landscape.png" alt="SkyCrane Mobility" width="180" height="38" loading="lazy" decoding="async" />
+      
+      <!-- Top Brand Statement & Regulatory Badges -->
+      <div class="footer-brand-banner mb-10 pb-8 border-b border-slate-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="max-w-xl">
+          <div class="footer-logo mb-3">
+            <img src="assets/images/skycrane_logo_with_text_logo_landscape.png" alt="SkyCrane Mobility Corporation" width="190" height="40" loading="lazy" decoding="async" />
           </div>
-          <p style="font-size:0.8125rem;color:#64748B;line-height:1.75;margin-bottom:1.5rem;">
-            Industrial heavy-lift aerial logistics for the Philippines. Powered by the DJI FlyCart 100. Delivering where roads cannot reach.
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Pioneering autonomous heavy-lift aerial logistics, utility operations, and emergency lifelines in Northern Luzon and across the Philippines. Founded by <strong>Jerry B. Dee</strong>.
           </p>
-          <div class="footer-compliance-badges">
-            <span class="compliance-badge compliance-badge-caap">✈ CAAP RPAS Certified</span>
-            <span class="compliance-badge compliance-badge-privacy">⚖ R.A. 10173 NPC Compliant</span>
-            <span class="compliance-badge compliance-badge-dti">🏢 DTI Registered</span>
-            <span class="compliance-badge compliance-badge-dole">🛡️ DOLE OSHS Compliant</span>
-          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 items-center">
+          <span class="compliance-badge compliance-badge-caap">✈ CAAP Permit # RPAS-2026-DAG</span>
+          <span class="compliance-badge compliance-badge-dole">🛡️ DOLE OSHS Rigging</span>
+          <span class="compliance-badge compliance-badge-privacy">⚖ R.A. 10173 NPC DPA</span>
+          <span class="compliance-badge compliance-badge-dti">💼 Pioneer &amp; Malayan Cover</span>
+        </div>
+      </div>
+
+      <!-- 4-Column Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-800 text-xs">
+        
+        <!-- Col 1: Solutions & Fleet (3 cols) -->
+        <div class="lg:col-span-3">
+          <div class="footer-col-heading">Solutions &amp; Fleet</div>
+          <ul class="footer-nav-list space-y-2.5">
+            <li><a href="solutions.html#construction" class="footer-nav-link">Heavy Cargo Last-Mile Delivery</a></li>
+            <li><a href="solutions.html#agri" class="footer-nav-link">Agri-Tech Precision Spraying</a></li>
+            <li><a href="solutions.html#relief" class="footer-nav-link">Emergency Medical Logistics</a></li>
+            <li><a href="solutions.html#oilgas" class="footer-nav-link">Infrastructure &amp; Spares Transit</a></li>
+            <li><a href="solutions.html#energy" class="footer-nav-link">Solar PV &amp; Clean Energy Lift</a></li>
+            <li><a href="fleet-dji-fc100.html" class="footer-nav-link font-semibold text-sky-400">DJI Enterprise Fleet Specs →</a></li>
+          </ul>
         </div>
 
-        <div>
-          <div class="footer-nav-title">Navigation</div>
-          <a href="index.html"           class="footer-link">Home</a>
-          <a href="about.html"           class="footer-link">About Us</a>
-          <a href="solutions.html"       class="footer-link">Solutions</a>
-          <a href="fleet-dji-fc100.html" class="footer-link">DJI FlyCart 100</a>
-          <a href="compliance.html"      class="footer-link">Compliance &amp; Safety</a>
-          <a href="contact.html"         class="footer-link">Contact &amp; Quote</a>
+        <!-- Col 2: Compliance & Safety (3 cols) -->
+        <div class="lg:col-span-3">
+          <div class="footer-col-heading">Compliance &amp; Safety</div>
+          <ul class="footer-nav-list space-y-2.5">
+            <li><a href="compliance.html" class="footer-nav-link">CAAP RPAS Regulations</a></li>
+            <li><a href="compliance.html" class="footer-nav-link">Flight Safety Protocols</a></li>
+            <li><a href="compliance.html" class="footer-nav-link">Pilot Certification &amp; Standards</a></li>
+            <li><a href="compliance.html" class="footer-nav-link">Liability &amp; Insurance Coverage</a></li>
+            <li><a href="compliance.html" class="footer-nav-link">Incident Reporting Protocol</a></li>
+            <li><button type="button" onclick="if(window.openWhitepaperModal){openWhitepaperModal();}else{window.location.href='index.html#case-study';}" class="footer-nav-link text-left text-orange-400 font-semibold cursor-pointer">TIPC Solar White Paper →</button></li>
+          </ul>
         </div>
 
-        <div>
-          <div class="footer-nav-title">Industries</div>
-          <a href="solutions.html#construction" class="footer-link">Construction &amp; Civil Works</a>
-          <a href="solutions.html#energy"       class="footer-link">Renewable Energy</a>
-          <a href="solutions.html#oilgas"       class="footer-link">Oil &amp; Gas Spares</a>
-          <a href="solutions.html#relief"       class="footer-link">Emergency &amp; Disaster Relief</a>
+        <!-- Col 3: Company & Leadership (2 cols) -->
+        <div class="lg:col-span-2">
+          <div class="footer-col-heading">Company &amp; Leadership</div>
+          <ul class="footer-nav-list space-y-2.5">
+            <li><a href="about.html" class="footer-nav-link">About SkyCrane</a></li>
+            <li><a href="about.html#leadership" class="footer-nav-link">Founder: Jerry B. Dee</a></li>
+            <li><a href="index.html#case-study" class="footer-nav-link">Case Studies &amp; Flight Logs</a></li>
+            <li><a href="contact.html?program=EPC-Partner" class="footer-nav-link">EPC Partner Program</a></li>
+            <li><a href="contact.html?program=Emergency-Charter" class="footer-nav-link">Emergency Charter Desk</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Command Center &amp; Contact</a></li>
+          </ul>
         </div>
 
-        <div>
-          <div class="footer-nav-title">Headquarters &amp; Dispatch</div>
-          <div style="display:flex;flex-direction:column;gap:0.875rem;font-size:0.8125rem;">
-            <div style="display:flex;gap:0.625rem;align-items:flex-start;">
-              <svg style="width:16px;height:16px;margin-top:2px;color:var(--orange);flex-shrink:0;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-              <span style="color:#CBD5E1;line-height:1.5;">08 Perez Blvd. Herrero<br />Dagupan City, Pangasinan</span>
+        <!-- Col 4: Dispatch Command & Newsletter (4 cols) -->
+        <div class="lg:col-span-4 bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+          <div class="footer-col-heading text-white">Operations Command &amp; Briefings</div>
+          <p class="text-slate-400 text-xs mb-3 leading-relaxed">
+            Subscribe to the monthly <strong>SkyCrane Air Mobility Briefing</strong> for UAV technology, regional routes, and flight logs.
+          </p>
+
+          <!-- Newsletter Form -->
+          <form name="newsletter-subscription" method="POST" data-netlify="true" class="mb-4">
+            <input type="hidden" name="form-name" value="newsletter-subscription" />
+            <div class="flex gap-2">
+              <input type="email" name="email" required placeholder="Enter corporate email..." class="bg-slate-800 border border-slate-700 text-white text-xs px-3 py-2 rounded-lg flex-1 focus:outline-none focus:border-sky-400" />
+              <button type="submit" class="btn btn-orange text-xs py-2 px-3 rounded-lg flex-shrink-0 font-bold">
+                Subscribe
+              </button>
             </div>
-            <div style="display:flex;gap:0.625rem;align-items:center;">
-              <svg style="width:16px;height:16px;color:var(--blue-light);flex-shrink:0;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-              <a href="tel:09177467093" style="color:#F8FAFC;font-weight:600;">0917 746 7093</a>
-            </div>
-            <div style="display:flex;gap:0.625rem;align-items:center;">
-              <svg style="width:16px;height:16px;color:var(--blue-light);flex-shrink:0;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-              <a href="mailto:info@skycranemobility.com" style="color:#CBD5E1;">info@skycranemobility.com</a>
-            </div>
-            <div style="margin-top:0.25rem;">
-              <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.7rem;font-weight:700;color:#34D399;background:rgba(16,185,129,0.10);border:1px solid rgba(16,185,129,0.25);border-radius:6px;padding:0.25rem 0.6rem;">
-                <span style="width:6px;height:6px;border-radius:50%;background:#34D399;animation:pulse-dot 2s infinite;"></span>
-                Flight Operations Active
+          </form>
+
+          <!-- 24/7 Operations Desk Box -->
+          <div class="space-y-1.5 pt-3 border-t border-slate-800 text-[11px] text-slate-300">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 uppercase font-bold tracking-wider">24/7 Command Desk:</span>
+              <span class="text-emerald-400 font-bold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active Corridors
               </span>
             </div>
+            <div>
+              <a href="tel:+639937052927" class="text-orange-400 font-bold hover:underline">+63 993 705 2927</a> &bull; 
+              <a href="tel:09177467093" class="text-slate-200 font-semibold hover:underline">0917 746 7093</a>
+            </div>
+            <div>
+              <a href="mailto:dispatch@skycranemobility.com" class="text-sky-400 hover:underline">dispatch@skycranemobility.com</a> &bull; 
+              <a href="mailto:info@skycranemobility.com" class="text-slate-400 hover:underline">info@skycranemobility.com</a>
+            </div>
+            <div class="text-slate-400 pt-1">
+              <strong>Hangar Base:</strong> 08 BDEE Bldg., Perez Blvd., Herrero, Dagupan City, Pangasinan<br>
+              <strong>Primary Corridors:</strong> Dagupan, Lingayen, San Carlos, Urdaneta &bull; CAR Highlands &bull; Northern Luzon
+            </div>
           </div>
         </div>
+
       </div>
 
-          <div class="footer-bottom">
-      <div class="footer-legal-copy">
-        <p class="footer-legal">&copy; 2026 SkyCrane Mobility Corporation. All rights reserved. 08 Perez Blvd. Herrero, Dagupan City, Pangasinan.</p>
-        <div class="footer-nav-mini">
-          <a href="about.html" class="footer-mini-link">About Us</a>
-          <span class="footer-mini-sep">&bull;</span>
-          <a href="solutions.html" class="footer-mini-link">Solutions</a>
-          <span class="footer-mini-sep">&bull;</span>
-          <a href="fleet-dji-fc100.html" class="footer-mini-link">Fleet</a>
-          <span class="footer-mini-sep">&bull;</span>
-          <a href="contact.html" class="footer-mini-link">Contact</a>
+      <!-- Bottom Legal Bar -->
+      <div class="footer-bottom pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div class="footer-legal-copy text-center md:text-left">
+          <p class="footer-legal">
+            &copy; 2026 SkyCrane Mobility Corporation. All rights reserved. &bull; CAAP RPAS Operator Permit # RPAS-2026-DAG.
+          </p>
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-1 text-[11px] text-slate-500">
+            <button type="button" onclick="openLegalModal()" class="hover:text-slate-300 underline cursor-pointer">Privacy Policy (R.A. 10173)</button>
+            <span>&bull;</span>
+            <button type="button" onclick="openLegalModal()" class="hover:text-slate-300 underline cursor-pointer">Terms of Flight Operations</button>
+            <span>&bull;</span>
+            <a href="compliance.html" class="hover:text-slate-300 underline">Security &amp; Flight Safety</a>
+          </div>
+        </div>
+
+        <div class="footer-actions-wrap flex items-center gap-3">
+          <button type="button" onclick="openLegalModal()" class="footer-compliance-action-btn cursor-pointer" aria-label="Privacy Policy and Philippine Legal Compliance (R.A. 10173)">
+            <svg class="w-4 h-4 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            <span>PH Legal Compliance (R.A. 10173)</span>
+          </button>
+
+          <button type="button" onclick="openDevModal()" class="footer-dev-pill-btn cursor-pointer" aria-label="Developer Attribution — Engineered by Gain Carlo">
+            <span class="text-slate-400 text-xs font-medium">Engineered by</span>
+            <span class="footer-dev-name">
+              <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+              Gain Carlo
+            </span>
+          </button>
         </div>
       </div>
 
-      <div class="footer-actions-wrap">
-        <button type="button" onclick="openLegalModal()" class="footer-compliance-action-btn" aria-label="Privacy Policy and Philippine Legal Compliance (R.A. 10173)">
-          <svg class="w-4 h-4 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-          <span>Privacy Policy &amp; PH Legal Compliance (R.A. 10173)</span>
-        </button>
-
-        <button type="button" onclick="openDevModal()" class="footer-dev-pill-btn" aria-label="Developer Attribution — Engineered by Gain Carlo">
-          <span class="text-slate-400 text-xs font-medium">Engineered by</span>
-          <span class="footer-dev-name">
-            <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-            </svg>
-            Gain Carlo
-          </span>
-        </button>
-      </div>
-    </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=20261102_v9"></script>
+  <script src="js/main.js?v=20261102_v10"></script>
   <script src="js/payload-calculator.js"></script>
   <script>
     (function () {
@@ -1026,7 +1120,7 @@
 
       <!-- Section 4: Operations Center & Hotline -->
       <div style="font-size:0.8rem;color:#64748B;border-top:1px solid #E2E8F0;padding-top:0.85rem;line-height:1.6;">
-        <strong>Principal Operations Headquarters:</strong> 08 Perez Blvd. Herrero, Dagupan City, Pangasinan, Philippines.<br>
+        <strong>Principal Operations Headquarters:</strong> 08 BDEE Bldg., Perez Blvd., Herrero, Dagupan City, Pangasinan, Philippines.<br>
         Direct Operations Hotline: <a href="tel:09177467093" style="color:#0284C7;font-weight:700;">0917 746 7093</a> | Corporate Inquiries: <a href="mailto:info@skycranemobility.com" style="color:#0284C7;font-weight:700;">info@skycranemobility.com</a>
       </div>
 
