@@ -51,7 +51,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=20261102_v18" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102_v19" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -450,10 +450,13 @@
 
             <!-- Consultation Form -->
             <form
-              name="contact"
+              name="mission-consultation"
               method="POST"
-              id="quote-form"
+              id="consultation-form"
+              data-form="quote-form"
               action="javascript:void(0);"
+              novalidate
+              onsubmit="return window.handleConsultationSubmission ? window.handleConsultationSubmission(this, event) : false;"
             >
               
 
@@ -619,6 +622,7 @@
                 type="submit"
                 class="btn btn-orange w-full justify-center py-4 text-base font-bold shadow-lg hover:shadow-orange-500/25 transition cursor-pointer"
                 id="btn-submit-consultation"
+                onclick="if(window.handleConsultationSubmission){window.handleConsultationSubmission(this.form, event);return false;}"
               >
                 Submit Consultation Request →
               </button>
@@ -905,7 +909,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=20261102_v18"></script>
+  <script src="js/main.js?v=20261102_v19"></script>
   <script src="js/payload-calculator.js"></script>
   <script>
     (function () {

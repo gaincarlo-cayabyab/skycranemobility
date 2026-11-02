@@ -401,101 +401,9 @@
     var consultationForm = document.getElementById("consultation-form") || document.getElementById("quote-form") || document.getElementById("contactForm");
     if (consultationForm) {
       consultationForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        var submitBtn = document.getElementById("btn-submit-consultation");
-        var privacyConsent = document.getElementById("privacy-consent");
-
-        // Check Philippine Data Privacy Act Compliance Checkbox (R.A. 10173)
-        if (privacyConsent && !privacyConsent.checked) {
-          showToast("Compliance Required: Please check the Data Privacy Act (R.A. 10173) checkbox before submitting.", "warning");
-          privacyConsent.focus();
-          return;
+        if (typeof window.handleConsultationSubmission === "function") {
+          window.handleConsultationSubmission(consultationForm, e);
         }
-
-        // Validate required fields
-        var companyInput = document.getElementById("company");
-        var nameInput    = document.getElementById("full-name") || document.getElementById("name") || document.getElementById("full_name");
-        var phoneInput   = document.getElementById("phone");
-        var emailInput   = document.getElementById("email");
-        var locInput     = document.getElementById("location");
-        var msgInput     = document.getElementById("message") || document.getElementById("mission_details");
-
-        var company = companyInput ? companyInput.value.trim() : "";
-        var name    = nameInput ? nameInput.value.trim() : "";
-        var phone   = phoneInput ? phoneInput.value.trim() : "";
-        var email   = emailInput ? emailInput.value.trim() : "";
-        var loc     = locInput ? locInput.value.trim() : "";
-        var msg     = msgInput ? msgInput.value.trim() : "";
-
-        if (!company || !name || !phone || !email) {
-          showToast('Please fill out all required fields marked with an asterisk (*).', 'error');
-          return;
-        }
-
-        // Visual loading state
-        var origBtnHTML = submitBtn ? submitBtn.innerHTML : "Submit Consultation Request →";
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.style.opacity = "0.75";
-          submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg style="animation:spin 1s linear infinite;width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Transmitting Mission Feasibility Data...</span>';
-        }
-
-        // Persist consultation lead locally
-        try {
-          var leads = JSON.parse(localStorage.getItem("skycrane_consultation_leads") || "[]");
-          leads.push({
-            company: company,
-            name: name,
-            phone: phone,
-            email: email,
-            location: loc,
-            message: msg,
-            submittedAt: new Date().toISOString()
-          });
-          localStorage.setItem("skycrane_consultation_leads", JSON.stringify(leads));
-        } catch (storageErr) {
-          console.warn("Storage warning:", storageErr);
-        }
-
-        // Send submission directly to Zoho Mail via FormSubmit API
-        try {
-          fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify({
-              _subject: "New Mission Consultation Request - " + company,
-              _cc: "gaincarlocayabyab12@gmail.com",
-              _template: "table",
-              _autoresponse: "Thank you for contacting SkyCrane Mobility. Your flight consultation request has been received by our flight operations desk. A CAAP-certified coordinator will reach out to you shortly.",
-              Request_Type: "Mission Consultation Request",
-              Company_Organization: company,
-              Contact_Person: name,
-              Phone: phone,
-              Email: email,
-              Mission_Location: loc || "Not specified",
-              Mission_Details: msg || "General consultation requested",
-              Submission_Source: window.location.href,
-              Timestamp: new Date().toLocaleString()
-            })
-          }).catch(function (netErr) {
-            console.log("Form forwarding note:", netErr);
-          });
-        } catch (e) {}
-
-        // Complete UI transition: show custom modal, reset button & form
-        setTimeout(function () {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-            submitBtn.innerHTML = origBtnHTML;
-          }
-          consultationForm.reset();
-          window.showConsultationSuccessModal(name, company, email, phone, loc);
-        }, 400);
       });
     }
 
@@ -625,6 +533,162 @@
       document.body.style.overflow = "";
     }
   };
+
+  
+  // ═══ Global Consultation Form Submission Handler ═══
+  window.handleConsultationSubmission = function (formEl, event) {
+    if (event) {
+      if (typeof event.preventDefault === "function") event.preventDefault();
+      if (typeof event.stopPropagation === "function") event.stopPropagation();
+    }
+    if (!formEl) formEl = document.getElementById("consultation-form") || document.getElementById("quote-form");
+    if (!formEl) return false;
+
+    // Validate fields with clear, friendly Toast alerts
+    var companyInput = formEl.querySelector("#company") || document.getElementById("company");
+    var nameInput    = formEl.querySelector("#full-name") || formEl.querySelector("#name") || document.getElementById("full-name");
+    var phoneInput   = formEl.querySelector("#phone") || document.getElementById("phone");
+    var emailInput   = formEl.querySelector("#email") || document.getElementById("email");
+    var locInput     = formEl.querySelector("#location") || document.getElementById("location");
+    var payloadInput = formEl.querySelector("#payload") || document.getElementById("payload");
+    var systemInput  = formEl.querySelector("#payload-system") || document.getElementById("payload-system");
+    var dateInput    = formEl.querySelector("#target-date") || document.getElementById("target-date");
+    var msgInput     = formEl.querySelector("#message") || document.getElementById("message");
+    var privacyConsent = formEl.querySelector("#privacy-consent") || document.getElementById("privacy-consent");
+    var submitBtn    = formEl.querySelector("#btn-submit-consultation") || document.getElementById("btn-submit-consultation");
+
+    var company = companyInput ? companyInput.value.trim() : "";
+    var name    = nameInput ? nameInput.value.trim() : "";
+    var phone   = phoneInput ? phoneInput.value.trim() : "";
+    var email   = emailInput ? emailInput.value.trim() : "";
+    var loc     = locInput ? locInput.value.trim() : "";
+    var payload = payloadInput ? payloadInput.value : "";
+    var system  = systemInput ? systemInput.value : "";
+    var targetDate = dateInput ? dateInput.value : "";
+    var msg     = msgInput ? msgInput.value.trim() : "";
+
+    function warn(text, el) {
+      if (typeof showToast === "function") {
+        showToast(text, "warning");
+      } else {
+        alert(text);
+      }
+      if (el) {
+        try {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+          el.focus();
+        } catch (e) {}
+      }
+    }
+
+    if (!company) {
+      warn("Please enter your Company or Organization name.", companyInput);
+      return false;
+    }
+    if (!name) {
+      warn("Please enter the Contact Person name and role.", nameInput);
+      return false;
+    }
+    if (!phone) {
+      warn("Please enter your contact phone number for flight coordinator callback.", phoneInput);
+      return false;
+    }
+    if (!email || !email.includes("@") || !email.includes(".")) {
+      warn("Please enter a valid corporate email address (e.g., name@company.com).", emailInput);
+      return false;
+    }
+    if (!loc) {
+      warn("Please provide the target site location or municipality.", locInput);
+      return false;
+    }
+    if (privacyConsent && !privacyConsent.checked) {
+      warn("Compliance Required: Please check the box agreeing to the Data Privacy Act of 2012 (R.A. 10173).", privacyConsent);
+      return false;
+    }
+
+    // Prevent double submissions
+    if (submitBtn && submitBtn.disabled) return false;
+
+    // Visual button loading state
+    var origBtnHTML = submitBtn ? submitBtn.innerHTML : "Submit Consultation Request →";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.75";
+      submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg style="animation:spin 1s linear infinite;width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Transmitting Mission Feasibility Data...</span>';
+    }
+
+    // 1. Persist lead locally in localStorage
+    try {
+      var leads = JSON.parse(localStorage.getItem("skycrane_consultation_leads") || "[]");
+      leads.push({
+        company: company,
+        name: name,
+        phone: phone,
+        email: email,
+        location: loc,
+        payload: payload,
+        system: system,
+        targetDate: targetDate,
+        message: msg,
+        submittedAt: new Date().toISOString()
+      });
+      localStorage.setItem("skycrane_consultation_leads", JSON.stringify(leads));
+    } catch (e) {
+      console.warn("Storage warning:", e);
+    }
+
+    // 2. Dispatch via FormSubmit with full lowercase email compatibility
+    try {
+      fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: "New Mission Consultation Request - " + company,
+          _cc: "gaincarlocayabyab12@gmail.com",
+          _replyto: email,
+          email: email,
+          _template: "table",
+          _autoresponse: "Thank you for contacting SkyCrane Mobility. Your flight consultation request has been received by our flight operations desk. A CAAP-certified flight coordinator will reach out to you shortly.",
+          Request_Type: "Mission Consultation Request",
+          Company_Organization: company,
+          Contact_Person: name,
+          Phone_Number: phone,
+          Email_Address: email,
+          Target_Site_Location: loc || "Not specified",
+          Cargo_Payload_Envelope: payload || "Not specified",
+          Delivery_System: system || "Not specified",
+          Target_Timeline: targetDate || "Not specified",
+          Mission_Scope_Details: msg || "General consultation requested",
+          Submission_URL: window.location.href,
+          Submitted_At: new Date().toLocaleString()
+        })
+      }).catch(function (netErr) {
+        console.log("Form forwarding note:", netErr);
+      });
+    } catch (e) {}
+
+    // 3. Complete UI transition: show custom modal, reset button & form
+    setTimeout(function () {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.innerHTML = origBtnHTML;
+      }
+      formEl.reset();
+      if (typeof window.showConsultationSuccessModal === "function") {
+        window.showConsultationSuccessModal(name, company, email, phone, loc);
+      }
+      if (typeof showToast === "function") {
+        showToast("Consultation Request Logged! A flight coordinator will contact you shortly.", "info");
+      }
+    }, 450);
+
+    return false;
+  };
+
 
   window.showConsultationSuccessModal = function (name, company, email, phone, location) {
     var m = document.getElementById("consultationSuccessModal") || document.getElementById("successModal") || document.getElementById("feasibilityModal");
