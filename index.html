@@ -736,7 +736,7 @@
     </div>
 
     <!-- ── TAB 1: TIPC Project Cost Savings Calculator (Roadmap Section 3 & 4.3) ── -->
-    <div id="panel-tipc-savings" class="calc-panel reveal" role="tabpanel" aria-labelledby="tab-btn-tipc">
+    <div id="panel-tipc-savings" class="calc-panel visible" role="tabpanel" aria-labelledby="tab-btn-tipc">
       <div id="tipc-calculator-container">
         
         <!-- Header -->
@@ -912,7 +912,7 @@
     </div>
 
     <!-- ── TAB 2: Flight Profile Feasibility Analyzer (Legacy / Technical Mode) ── -->
-    <div id="panel-flight-profile" class="calc-panel reveal hidden" role="tabpanel" aria-labelledby="tab-btn-feasibility">
+    <div id="panel-flight-profile" class="calc-panel visible hidden" role="tabpanel" aria-labelledby="tab-btn-feasibility">
       <!-- Panel header -->
       <div class="flex items-center gap-3 mb-7">
         <div style="width:38px;height:38px;border-radius:10px;background:rgba(2,132,199,0.18);display:flex;align-items:center;justify-content:center;">
@@ -1504,28 +1504,70 @@
 <!-- Calculator Tab Switcher -->
 <script>
   window.switchCalcTab = function(tab) {
-    var tipcPanel     = document.getElementById('panel-tipc-savings');
-    var profilePanel  = document.getElementById('panel-flight-profile');
-    var btnTipc       = document.getElementById('tab-btn-tipc');
+    var tipcPanel      = document.getElementById('panel-tipc-savings');
+    var profilePanel   = document.getElementById('panel-flight-profile');
+    var btnTipc        = document.getElementById('tab-btn-tipc');
     var btnFeasibility = document.getElementById('tab-btn-feasibility');
     if (!tipcPanel || !profilePanel) return;
+
     if (tab === 'tipc') {
-      tipcPanel.classList.remove('hidden');
       profilePanel.classList.add('hidden');
-      btnTipc.classList.add('active', 'tab-orange');
-      btnFeasibility.classList.remove('active', 'tab-orange');
-      btnTipc.setAttribute('aria-selected', 'true');
-      btnFeasibility.setAttribute('aria-selected', 'false');
+      tipcPanel.classList.remove('hidden');
+      tipcPanel.classList.add('visible');
+      tipcPanel.style.opacity = '1';
+      tipcPanel.style.transform = 'none';
+
+      if (btnTipc) {
+        btnTipc.classList.add('active', 'tab-orange');
+        btnTipc.setAttribute('aria-selected', 'true');
+      }
+      if (btnFeasibility) {
+        btnFeasibility.classList.remove('active', 'tab-orange');
+        btnFeasibility.setAttribute('aria-selected', 'false');
+      }
     } else {
-      profilePanel.classList.remove('hidden');
       tipcPanel.classList.add('hidden');
-      btnFeasibility.classList.add('active');
-      btnFeasibility.classList.remove('tab-orange');
-      btnTipc.classList.remove('active', 'tab-orange');
-      btnTipc.setAttribute('aria-selected', 'false');
-      btnFeasibility.setAttribute('aria-selected', 'true');
+      profilePanel.classList.remove('hidden');
+      profilePanel.classList.add('visible');
+      profilePanel.style.opacity = '1';
+      profilePanel.style.transform = 'none';
+
+      if (btnFeasibility) {
+        btnFeasibility.classList.add('active');
+        btnFeasibility.classList.remove('tab-orange');
+        btnFeasibility.setAttribute('aria-selected', 'true');
+      }
+      if (btnTipc) {
+        btnTipc.classList.remove('active', 'tab-orange');
+        btnTipc.setAttribute('aria-selected', 'false');
+      }
     }
   };
+
+  // Ensure click event listeners are always attached
+  (function initCalcTabs() {
+    function bind() {
+      var b1 = document.getElementById('tab-btn-tipc');
+      var b2 = document.getElementById('tab-btn-feasibility');
+      if (b1) {
+        b1.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.switchCalcTab('tipc');
+        });
+      }
+      if (b2) {
+        b2.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.switchCalcTab('feasibility');
+        });
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bind);
+    } else {
+      bind();
+    }
+  })();
 </script>
 
 <script>
