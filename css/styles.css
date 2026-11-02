@@ -3189,3 +3189,19 @@ a[href="compliance.html"].nav-link.active {
 .newsletter-success-box .success-reset-btn:hover {
   color: #7DD3FC;
 }
+
+/* ============================================================
+   Hide Netlify Injected Badge & Drawer
+   ============================================================ */
+iframe[src*="netlify"],
+[data-netlify-deploy-id],
+#netlify-badge,
+.netlify-badge,
+div[class*="netlify-drawer"],
+iframe[title*="Netlify"],
+div[id*="netlify"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
