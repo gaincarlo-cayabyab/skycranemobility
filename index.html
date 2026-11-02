@@ -222,7 +222,7 @@
           "addressCountry": "PH"
         },
         "telephone": "+63-993-705-2927",
-        "email": "dispatch@skycranemobility.com",
+        "email": "info@skycranemobility.com",
         "areaServed": "Northern Luzon and Philippine Archipelago"
       }
     ]
@@ -742,9 +742,9 @@
         <!-- Header -->
         <div class="flex items-center justify-between flex-wrap gap-4 mb-6 pb-5 border-b border-white/10">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 20h16a2 2 0 002-2V8a2 2 0 00-2-2h-5l-2-3H9L7 6H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#F97316,#EA580C);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(249,115,22,0.45);flex-shrink:0;">
+              <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
             <div>
@@ -1360,15 +1360,13 @@
         <div class="footer-logo mb-3">
           <img src="assets/images/skycrane_logo_with_text_logo_landscape.png" alt="SkyCrane Mobility Corporation" width="190" height="40" loading="lazy" decoding="async" />
         </div>
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xl mb-0">
-            Pioneering autonomous heavy-lift aerial logistics, utility operations, and emergency lifelines in Northern Luzon and across the Philippines. Founded by <strong>Jerry B. Dee</strong>.
-          </p>
-          <div class="flex flex-wrap gap-2 items-center lg:justify-end flex-shrink-0">
-            <span class="compliance-badge compliance-badge-caap">✈ CAAP Permit # RPAS-2026-DAG</span>
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-2xl mb-3">
+          Pioneering autonomous heavy-lift aerial logistics, utility operations, and emergency lifelines in Northern Luzon and across the Philippines. Founded by <strong>Jerry B. Dee</strong>.
+        </p>
+        <div class="flex flex-wrap gap-2 items-center">
+          <span class="compliance-badge compliance-badge-caap">✈ CAAP Permit # RPAS-2026-DAG</span>
             <span class="compliance-badge compliance-badge-dole">🛡️ DOLE OSHS Rigging</span>
             <span class="compliance-badge compliance-badge-privacy">⚖ R.A. 10173 NPC DPA</span>
-          </div>
         </div>
       </div>
 
@@ -1422,11 +1420,11 @@
           </p>
 
           <!-- Newsletter Form -->
-          <form name="newsletter-subscription" method="POST" data-netlify="true" class="mb-4">
+          <form name="newsletter-subscription" method="POST" data-netlify="true" class="mb-4 footer-newsletter-form">
             <input type="hidden" name="form-name" value="newsletter-subscription" />
-            <div class="flex gap-2">
-              <input type="email" name="email" required placeholder="Enter corporate email..." class="bg-slate-800 border border-slate-700 text-white text-xs px-3 py-2 rounded-lg flex-1 focus:outline-none focus:border-sky-400" />
-              <button type="submit" class="btn btn-orange text-xs py-2 px-3 rounded-lg flex-shrink-0 font-bold">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input type="email" name="email" required placeholder="Enter corporate email..." class="bg-slate-800 border border-slate-700 text-white text-xs px-3.5 py-2.5 sm:py-2 rounded-lg flex-1 focus:outline-none focus:border-sky-400 min-h-[44px] sm:min-h-0" />
+              <button type="submit" class="btn btn-orange text-xs py-2.5 sm:py-2 px-4 rounded-lg flex-shrink-0 font-bold justify-center min-h-[44px] sm:min-h-0">
                 Subscribe
               </button>
             </div>

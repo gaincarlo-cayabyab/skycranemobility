@@ -2976,3 +2976,145 @@ a[href="compliance.html"].nav-link.active {
     justify-content: center !important;
   }
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   TIPC ICON BOX — Solid glowing pill for all screen sizes
+   ════════════════════════════════════════════════════════════ */
+#tipc-calculator-container .tipc-icon-box {
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TIPC HEADER — Mobile: stack header content vertically
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* TIPC Header row: pills stack below title on small phones */
+  #panel-tipc-savings .flex.items-center.justify-between.flex-wrap {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* TIPC header pill tags wrap nicely */
+  #panel-tipc-savings .flex.items-center.justify-between.flex-wrap > .flex.items-center.gap-2 {
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+  }
+
+  /* Input number boxes: slightly wider on mobile */
+  #tipc-input-panels {
+    width: 60px !important;
+  }
+  #tipc-input-roads {
+    width: 80px !important;
+  }
+
+  /* Input grid: single column, compact */
+  #tipc-calculator-container .grid.grid-cols-1.md\:grid-cols-3 {
+    gap: 1.25rem !important;
+  }
+
+  /* Terrain select: full-width touch friendly */
+  #tipc-select-terrain {
+    font-size: 0.8rem !important;
+    padding: 0.6rem 0.75rem !important;
+    min-height: 44px !important;
+  }
+
+  /* Label + number input rows */
+  #tipc-calculator-container .calc-label {
+    font-size: 0.7rem !important;
+  }
+
+  /* Net savings summary box: stack vertically on small phones */
+  .tipc-savings-card .flex.flex-col.md\:flex-row {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Impact summary box: full width */
+  .tipc-savings-card .bg-slate-900\/80 {
+    width: 100% !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Visual bar labels: allow wrapping */
+  #tipc-calculator-container .flex.justify-between.text-xs.text-slate-400 {
+    flex-wrap: wrap !important;
+    gap: 0.2rem !important;
+  }
+
+  /* Risk advantage grid: single column */
+  #panel-tipc-savings .grid.grid-cols-1.md\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  /* CTA row: fully stacked */
+  #panel-tipc-savings .flex.flex-col.sm\:flex-row.items-center.justify-between.gap-4 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Whitepaper text link: center */
+  #panel-tipc-savings button.text-sky-400 {
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER NEWSLETTER FORM — Mobile stack (all pages)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Stack the newsletter form vertically */
+  .footer-newsletter-form .flex {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  .footer-newsletter-form input[type="email"] {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 0.875rem !important;
+    padding: 0.65rem 0.875rem !important;
+    border-radius: 10px !important;
+  }
+  .footer-newsletter-form button[type="submit"] {
+    width: 100% !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+    font-size: 0.875rem !important;
+    padding: 0.65rem 1rem !important;
+    border-radius: 10px !important;
+  }
+
+  /* 24/7 Command Desk section: stack label + status on separate lines */
+  .enterprise-footer .space-y-1\.5 .flex.items-center.justify-between {
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+  }
+
+  /* Footer newsletter col: comfortable padding on small screens */
+  .enterprise-footer .lg\:col-span-4 {
+    padding: 1rem !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER BRAND BANNER — Badge alignment improvement
+   Ensures badges sit flush left below the paragraph on mobile
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .footer-brand-banner .flex.flex-col.lg\:flex-row.lg\:items-center.justify-between {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+  .footer-brand-banner .flex.flex-wrap.gap-2.items-center {
+    justify-content: flex-start !important;
+  }
+}
