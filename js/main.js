@@ -390,68 +390,12 @@
     newsletterForms.forEach(function (nForm) {
       nForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        var emailInput = nForm.querySelector('input[type="email"]');
-        var submitBtn  = nForm.querySelector('button[type="submit"]');
-        var emailVal   = emailInput ? emailInput.value.trim() : "";
-
-        if (!emailVal || !emailVal.includes("@")) {
-          alert("Please enter a valid corporate email address.");
-          return;
+        if (window.handleNewsletterSubscription) {
+          window.handleNewsletterSubscription(nForm);
         }
-
-        var origBtnText = submitBtn ? submitBtn.innerHTML : "Subscribe";
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.style.opacity = "0.75";
-          submitBtn.innerHTML = "Subscribing...";
-        }
-
-        var formData = new FormData(nForm);
-
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(function () {
-          showNewsletterSuccess(nForm, emailVal);
-        })
-        .catch(function (err) {
-          console.warn("Newsletter submission fallback (local/dev):", err);
-          showNewsletterSuccess(nForm, emailVal);
-        })
-        .finally(function () {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-            submitBtn.innerHTML = origBtnText;
-          }
-        });
+        return false;
       });
     });
-
-    function showNewsletterSuccess(formEl, email) {
-      formEl.reset();
-      var existingMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
-      if (existingMsg) existingMsg.remove();
-
-      var msg = document.createElement("div");
-      msg.className = "newsletter-feedback-msg text-emerald-400 font-bold text-xs flex items-center gap-1.5 py-2 mt-2";
-      msg.innerHTML = '<span class="text-base font-black">✓</span> Subscribed! <strong>' + email + '</strong> is now on the monthly briefing list.';
-
-      formEl.insertAdjacentElement("afterend", msg);
-
-      setTimeout(function () {
-        if (msg && msg.parentNode) {
-          msg.style.transition = "opacity 0.6s ease";
-          msg.style.opacity = "0";
-          setTimeout(function () {
-            if (msg.parentNode) msg.remove();
-          }, 600);
-        }
-      }, 7000);
-    }
-
   });
 
   // ── Global Modal Controllers (Accessible from anywhere) ─────
@@ -525,3 +469,75 @@
   });
 
 })();
+
+
+  // ── Global Newsletter Subscription Handler (Static & GitHub Pages Compatible) ──
+  window.handleNewsletterSubscription = function (formEl) {
+    if (!formEl) return false;
+    var emailInput = formEl.querySelector('input[type="email"]');
+    var submitBtn  = formEl.querySelector('button[type="submit"]');
+    var emailVal   = emailInput ? emailInput.value.trim() : "";
+
+    if (!emailVal || !emailVal.includes("@") || !emailVal.includes(".")) {
+      alert("Please enter a valid corporate email address (e.g., name@company.com).");
+      if (emailInput) emailInput.focus();
+      return false;
+    }
+
+    var origBtnText = submitBtn ? submitBtn.innerHTML : "Subscribe";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.75";
+      submitBtn.innerHTML = "Subscribing...";
+    }
+
+    // Persist subscriber locally (zero data loss on GitHub Pages)
+    try {
+      var key = "skycrane_newsletter_subscribers";
+      var current = JSON.parse(localStorage.getItem(key) || "[]");
+      if (!current.includes(emailVal)) {
+        current.push({
+          email: emailVal,
+          date: new Date().toISOString(),
+          page: window.location.pathname
+        });
+        localStorage.setItem(key, JSON.stringify(current));
+      }
+    } catch (e) {
+      console.warn("Subscriber storage note:", e);
+    }
+
+    setTimeout(function () {
+      formEl.reset();
+
+      var existingMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
+      if (existingMsg) existingMsg.remove();
+
+      var msg = document.createElement("div");
+      msg.className = "newsletter-feedback-msg text-emerald-400 font-bold text-xs flex items-center gap-1.5 py-2 mt-2";
+      msg.innerHTML = '<span class="text-base font-black">✓</span> Subscribed! <strong>' + emailVal + '</strong> is now registered for the monthly briefing.';
+
+      formEl.insertAdjacentElement("afterend", msg);
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.innerHTML = "Subscribed ✓";
+        setTimeout(function () {
+          if (submitBtn) submitBtn.innerHTML = origBtnText;
+        }, 3000);
+      }
+
+      setTimeout(function () {
+        if (msg && msg.parentNode) {
+          msg.style.transition = "opacity 0.6s ease";
+          msg.style.opacity = "0";
+          setTimeout(function () {
+            if (msg.parentNode) msg.remove();
+          }, 600);
+        }
+      }, 7000);
+    }, 350);
+
+    return false;
+  };

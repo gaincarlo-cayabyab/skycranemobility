@@ -1420,7 +1420,7 @@
           </p>
 
           <!-- Newsletter Form -->
-          <form name="newsletter-subscription" method="POST" data-netlify="true" class="mb-4 footer-newsletter-form">
+          <form name="newsletter-subscription" action="javascript:void(0);" method="POST" onsubmit="event.preventDefault(); window.handleNewsletterSubscription && window.handleNewsletterSubscription(this); return false;" class="mb-4 footer-newsletter-form">
             <input type="hidden" name="form-name" value="newsletter-subscription" />
             <div class="flex flex-col sm:flex-row gap-2">
               <input type="email" name="email" required placeholder="Enter corporate email..." class="bg-slate-800 border border-slate-700 text-white text-xs px-3.5 py-2.5 sm:py-2 rounded-lg flex-1 focus:outline-none focus:border-sky-400 min-h-[44px] sm:min-h-0" />
@@ -1497,7 +1497,7 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=20261102_v11"></script>
+<script src="js/main.js?v=20261102_v12"></script>
 
 <!-- Payload Calculator -->
 <script src="js/payload-calculator.js?v=20261102_v11"></script>
