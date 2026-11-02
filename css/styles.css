@@ -2697,3 +2697,282 @@ a[href="compliance.html"].nav-link.active {
   border-radius: 0 0.5rem 0.5rem 0;
   margin-top: 0.5rem;
 }
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE VIEW & RESPONSIVENESS OVERHAUL
+   - Dedicated Focus: Flight Feasibility & Project Cost Engine
+   - All Subpages & Content Modules (Solutions, Fleet, About, Compliance, Contact)
+   - Landing Page Hero & Core Layout Preserved 100% Untouched
+   ════════════════════════════════════════════════════════════ */
+
+/* ── 1. FLIGHT FEASIBILITY & PROJECT COST ENGINE (MOBILE FOCUS) ── */
+@media (max-width: 768px) {
+  /* Container Padding */
+  .calc-panel {
+    padding: 1.35rem 1rem !important;
+    border-radius: 20px !important;
+  }
+
+  /* Segmented Mode Switcher Tabs */
+  .calc-tab-nav {
+    display: flex !important;
+    width: 100% !important;
+    border-radius: 16px !important;
+    padding: 0.3rem !important;
+    gap: 0.35rem !important;
+    margin-bottom: 1.5rem !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+  }
+  .calc-tab-btn {
+    flex: 1 1 50% !important;
+    justify-content: center !important;
+    padding: 0.65rem 0.6rem !important;
+    font-size: 0.72rem !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    gap: 0.35rem !important;
+    text-align: center !important;
+  }
+  .calc-tab-btn span {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+  }
+  .calc-tab-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Net Savings Card */
+  .tipc-savings-card {
+    padding: 1.15rem 1rem !important;
+    border-radius: 16px !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .tipc-savings-value {
+    font-size: clamp(1.85rem, 6.5vw, 2.5rem) !important;
+    line-height: 1.1 !important;
+    margin: 0.25rem 0 !important;
+  }
+  #tipc-val-savings-pct {
+    font-size: 0.75rem !important;
+  }
+
+  /* Sliders & Inputs */
+  .calc-slider {
+    height: 8px !important;
+    margin: 0.6rem 0 !important;
+    touch-action: manipulation !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    cursor: pointer !important;
+    -webkit-appearance: none !important;
+  }
+
+  /* TIPC Comparison Table on Mobile */
+  .tipc-table-wrap {
+    border-radius: 12px !important;
+    margin-bottom: 1.5rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  }
+  .tipc-table {
+    min-width: 520px !important;
+    font-size: 0.75rem !important;
+  }
+  .tipc-table th {
+    padding: 0.75rem 0.65rem !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.05em !important;
+    background: #0B132B !important;
+  }
+  .tipc-table td {
+    padding: 0.75rem 0.65rem !important;
+    font-size: 0.75rem !important;
+    vertical-align: middle !important;
+  }
+  .tipc-table td:nth-child(2),
+  .tipc-table td:nth-child(3) {
+    white-space: nowrap !important;
+    font-weight: 700 !important;
+  }
+  .tipc-pill-tag {
+    font-size: 0.625rem !important;
+    padding: 0.2rem 0.5rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Visual Expenditure Bars */
+  #tipc-bar-conv,
+  #tipc-bar-sky {
+    min-height: 8px !important;
+  }
+
+  /* Action CTAs */
+  #btn-tipc-consult-cta,
+  #calc-evaluate-btn,
+  #cta-post-calc {
+    width: 100% !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    padding: 0.85rem 1.25rem !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* Extra Compact Phones ≤ 420px */
+@media (max-width: 420px) {
+  .calc-tab-btn span {
+    font-size: 0.68rem !important;
+  }
+  .tipc-savings-value {
+    font-size: 1.75rem !important;
+  }
+  .tipc-table {
+    min-width: 480px !important;
+  }
+}
+
+/* ── 2. SUBPAGE SECTIONS & GENERAL RESPONSIVENESS OVERHAUL ── */
+@media (max-width: 768px) {
+  /* Page Hero standard padding across subpages */
+  .page-hero {
+    padding: 4.5rem 1.25rem 2.5rem !important;
+  }
+  .page-hero-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.5rem) !important;
+    line-height: 1.18 !important;
+  }
+  .page-hero-sub {
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Filter Pills Horizontal Carousel */
+  .filter-pills-bar {
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 0.75rem !important;
+    gap: 0.5rem !important;
+    scrollbar-width: none !important;
+  }
+  .filter-pills-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .filter-pill {
+    white-space: nowrap !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.85rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Sector Cards on Solutions Page */
+  .sector-showcase-card {
+    padding: 1.5rem 1.15rem !important;
+    border-radius: 20px !important;
+  }
+  .sector-showcase-card h2 {
+    font-size: 1.45rem !important;
+    line-height: 1.25 !important;
+  }
+  .sector-showcase-card img {
+    max-height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  /* Case Study Card on Solutions & Index */
+  #case-study .bg-white {
+    padding: 1.5rem 1.15rem !important;
+    border-radius: 20px !important;
+  }
+
+  /* B2B Program Cards */
+  .b2b-program-card {
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 18px !important;
+  }
+  .b2b-program-card h3 {
+    font-size: 1.35rem !important;
+  }
+
+  /* Founder Spotlight & Leadership Cards */
+  .founder-quote-card,
+  #leadership .bg-white {
+    padding: 1.5rem 1.15rem !important;
+    border-radius: 20px !important;
+  }
+  .founder-quote-card img,
+  #leadership img {
+    max-height: 260px !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+
+  /* Fleet Specs Tables */
+  #specs table {
+    min-width: 290px !important;
+  }
+  #specs table td {
+    padding: 0.65rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Contact Page Inputs - Prevent iOS Auto-Zoom */
+  .form-control,
+  .form-control input,
+  .form-control select,
+  .form-control textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px !important; /* 16px prevents iOS Safari auto-zoom */
+  }
+
+  /* Footer Layout on Mobile */
+  .enterprise-footer {
+    padding: 3rem 1.25rem 6.5rem !important;
+  }
+  .footer-brand-banner {
+    margin-bottom: 2rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .footer-col-heading {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.25rem !important;
+  }
+  .footer-legal-copy {
+    text-align: center !important;
+  }
+  .footer-actions-wrap {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+  .footer-compliance-action-btn,
+  .footer-dev-pill-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
