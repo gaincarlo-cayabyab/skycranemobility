@@ -5,8 +5,7 @@
    ============================================================ */
 
 /* ── Google Fonts ────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&family=Outfit:wght@700;800;900&display=swap');
-
+/* Google Fonts loaded via HTML <head> for zero render-blocking */
 /* ── Design Tokens ───────────────────────────────────────── */
 :root {
   /* Backgrounds */

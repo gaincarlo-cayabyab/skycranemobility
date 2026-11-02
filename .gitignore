@@ -1,4 +1,5 @@
 deploy_skycrane.zip
 *.tmp
 temp_*.js
-
+*_orig.png
+assets/gif/
