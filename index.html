@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=25261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=26261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -797,10 +797,10 @@
           <!-- Input 2: Terrain Difficulty -->
           <div>
             <label class="calc-label" for="tipc-select-terrain">Terrain &amp; Elevation Corridor</label>
-            <select id="tipc-select-terrain" class="calc-input text-sm">
-              <option value="moderate">Moderate Foothills / Broken Trail (&lt;200m)</option>
-              <option value="steep" selected>Steep Mountain Ridge (500m Elevation Corridor)</option>
-              <option value="extreme">Roadless Alpine Peak / Remote Island Ravine</option>
+            <select id="tipc-select-terrain" class="calc-input text-sm cursor-pointer pr-10" style="background-color:#0f172a;color:#ffffff;">
+              <option value="moderate" style="background-color:#0f172a;color:#ffffff;">Moderate Foothills / Broken Trail (&lt;200m)</option>
+              <option value="steep" style="background-color:#0f172a;color:#ffffff;" selected>Steep Mountain Ridge (500m Elevation Corridor)</option>
+              <option value="extreme" style="background-color:#0f172a;color:#ffffff;">Roadless Alpine Peak / Remote Island Ravine</option>
             </select>
             <div class="text-[11px] text-slate-500 mt-1">Multipliers: Slope, rigging hazard, &amp; flight ceiling</div>
           </div>
@@ -901,17 +901,97 @@
           </div>
         </div>
 
-        <!-- Action CTAs -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
-          <button type="button" onclick="openWhitepaperModal()" class="text-xs font-bold text-sky-400 hover:text-sky-300 underline underline-offset-4 flex items-center gap-1.5 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            Read &amp; Print Solar Logistics White Paper (PDF Briefing)
-          </button>
-          <a href="contact.html?subject=TIPC+Solar+Quote" id="btn-tipc-consult-cta" class="btn btn-orange w-full sm:w-auto justify-center text-sm py-3 px-6 rounded-xl">
-            Request Formal TIPC Feasibility Audit &amp; Quote →
-          </a>
-        </div>
+        <!-- Action CTAs: High-Engagement White Paper Showcase & Feasibility Quote -->
+        <div class="mt-8 pt-6 border-t border-white/15">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+            
+            <!-- Engaging Interactive White Paper Access Card -->
+            <div class="lg:col-span-7">
+              <div onclick="openWhitepaperModal()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){openWhitepaperModal();event.preventDefault();}" class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-slate-900 via-sky-950/40 to-slate-900 border-2 border-sky-500/40 hover:border-sky-400 transition-all duration-300 shadow-xl hover:shadow-sky-500/20 hover:-translate-y-0.5 cursor-pointer h-full flex flex-col justify-between">
+                
+                <!-- Ambient Glow Background -->
+                <div class="absolute -top-12 -right-12 w-44 h-44 bg-sky-500/15 rounded-full blur-2xl pointer-events-none group-hover:bg-sky-500/25 transition-all"></div>
 
+                <!-- Top Row: Badges -->
+                <div class="flex items-center justify-between gap-2 mb-3 relative z-10">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1.5 bg-sky-500/20 border border-sky-400/40 text-sky-300 px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider">
+                      <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                      Technical White Paper
+                    </span>
+                    <span class="hidden sm:inline-flex bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 px-2 py-0.5 rounded text-[10px] font-bold">
+                      2 Guides Included
+                    </span>
+                  </div>
+                  <span class="text-[11px] font-bold text-sky-400 group-hover:text-white flex items-center gap-1 transition-colors">
+                    <span>Tap to Open</span>
+                    <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                  </span>
+                </div>
+
+                <!-- Middle: Icon + Title & Value Proposition -->
+                <div class="flex items-start gap-4 my-1 relative z-10">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 text-white flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 group-hover:shadow-sky-500/40 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="text-base sm:text-lg font-black text-white group-hover:text-sky-300 transition-colors leading-tight">
+                      Read &amp; Print Solar Logistics White Paper (PDF Briefing)
+                    </h4>
+                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                      Complete 132 kWp field study, TIPC savings formulas, mathematical ground vs aerial comparisons, and on-site checklist.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Bottom Bar: Interactive Quick-Action Pill -->
+                <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
+                  <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-1 text-slate-300">
+                      <svg class="w-3.5 h-3.5 text-sky-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                      Field Ops Guide
+                    </span>
+                    <span class="flex items-center gap-1 text-slate-300">
+                      <svg class="w-3.5 h-3.5 text-sky-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                      Engineering Model
+                    </span>
+                  </div>
+                  <span class="font-bold text-sky-400 group-hover:underline underline-offset-2 flex items-center gap-1">
+                    Free Instant Access &bull; PDF Export 🖨️
+                  </span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Quote / Audit CTA Card -->
+            <div class="lg:col-span-5 flex flex-col justify-between p-5 rounded-2xl bg-slate-900/90 border border-slate-700 shadow-xl">
+              <div>
+                <span class="text-[10px] font-black uppercase tracking-wider text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2.5 py-0.5 rounded-full inline-block mb-2">
+                  Direct Feasibility Quote
+                </span>
+                <h4 class="text-base font-extrabold text-white leading-tight">
+                  Ready to calculate your exact project savings?
+                </h4>
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Submit your payload weight and GPS corridor for a certified flight dispatch feasibility assessment.
+                </p>
+              </div>
+
+              <div class="mt-4">
+                <a href="contact.html?subject=TIPC+Solar+Quote" id="btn-tipc-consult-cta" class="btn btn-orange w-full justify-center text-sm sm:text-base py-3.5 px-6 rounded-xl shadow-lg hover:shadow-orange-500/30 transition-all font-bold text-center block">
+                  Request Formal TIPC Feasibility Audit &amp; Quote ↗
+                </a>
+                <div class="text-center text-[11px] text-slate-400 mt-2">
+                  ✓ Response within 24 hours &bull; CAAP Airspace Clearance Verified
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
         <!-- Mobile-Responsive TIPC Feasibility Audit & Quote Card (Guide Section 4) -->
         <div id="tipc-mobile-audit-card" style="max-width:600px;margin:28px auto 0;padding:24px;background-color:#0f172a;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.35);font-family:inherit;color:#ffffff;border:1px solid rgba(255,255,255,0.07);">
@@ -1612,23 +1692,23 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=25261102_v20"></script>
+<script src="js/main.js?v=26261102_v20"></script>
 
 <!-- Payload Calculator -->
-<script src="js/payload-calculator.js?v=25261102_v11"></script>
+<script src="js/payload-calculator.js?v=26261102_v11"></script>
 <!-- Calculator Tab Switcher -->
 <script>
   
   /* WP Tab Switcher */
   window.switchWpTab = function(tab) {
     ['mfg','cg'].forEach(function(t) {
-      var btn   = document.getElementById('wp-tab-' + t);
+      var btn = document.getElementById('wp-tab-' + t);
       var panel = document.getElementById('wp-panel-' + t);
       if (t === tab) {
-        if (btn)   { btn.classList.add('border-sky-400','text-white'); btn.classList.remove('text-slate-400','border-transparent'); btn.setAttribute('aria-selected','true'); }
+        if (btn) { btn.classList.add('active'); btn.setAttribute('aria-selected', 'true'); }
         if (panel) panel.classList.remove('hidden');
       } else {
-        if (btn)   { btn.classList.remove('border-sky-400','text-white'); btn.classList.add('text-slate-400','border-transparent'); btn.setAttribute('aria-selected','false'); }
+        if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-selected', 'false'); }
         if (panel) panel.classList.add('hidden');
       }
     });
@@ -2157,11 +2237,16 @@ s0.parentNode.insertBefore(s1,s0);
     </div>
 
         <!-- WP TAB BAR -->
-    <div class="flex border-b border-white/15 overflow-x-auto flex-shrink-0">
-      <button onclick="switchWpTab('mfg')" id="wp-tab-mfg" class="px-5 py-3 text-xs font-bold border-b-2 border-sky-400 text-white transition-all whitespace-nowrap" aria-selected="true">&#128203; Mobile Field Guide</button>
-      <button onclick="switchWpTab('cg')"  id="wp-tab-cg"  class="px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-white hover:border-sky-400 transition-all whitespace-nowrap" aria-selected="false">&#128208; Engineering Customer Guide</button>
+    <div class="wp-tab-bar">
+      <button type="button" onclick="switchWpTab('mfg')" id="wp-tab-mfg" class="wp-tab-btn active" aria-selected="true">
+        <span style="font-size:1.15em;">📋</span>
+        <span>Mobile Field Guide <span class="hidden sm:inline" style="font-size:0.75rem;font-weight:600;opacity:0.8;">(Field Operations)</span></span>
+      </button>
+      <button type="button" onclick="switchWpTab('cg')" id="wp-tab-cg" class="wp-tab-btn" aria-selected="false">
+        <span style="font-size:1.15em;">📐</span>
+        <span>Engineering Customer Guide <span class="hidden sm:inline" style="font-size:0.75rem;font-weight:600;opacity:0.8;">(TIPC Economic Savings Model)</span></span>
+      </button>
     </div>
-    <!-- WP PANEL mfg -->
     <div id="wp-panel-mfg">
 
 <!-- Modal Body -->

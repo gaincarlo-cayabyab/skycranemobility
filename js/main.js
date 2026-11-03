@@ -569,15 +569,13 @@
       var panel = document.getElementById("wp-panel-" + t);
       if (t === tab) {
         if (btn) {
-          btn.classList.add("border-sky-400", "text-white");
-          btn.classList.remove("text-slate-400", "border-transparent");
+          btn.classList.add("active");
           btn.setAttribute("aria-selected", "true");
         }
         if (panel) panel.classList.remove("hidden");
       } else {
         if (btn) {
-          btn.classList.remove("border-sky-400", "text-white");
-          btn.classList.add("text-slate-400", "border-transparent");
+          btn.classList.remove("active");
           btn.setAttribute("aria-selected", "false");
         }
         if (panel) panel.classList.add("hidden");

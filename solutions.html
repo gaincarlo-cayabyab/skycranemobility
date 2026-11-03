@@ -58,7 +58,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=25261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=26261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -933,7 +933,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=25261102_v20"></script>
+  <script src="js/main.js?v=26261102_v20"></script>
 
 <!-- ========================================= -->
 <!-- UPGRADED DEVELOPER PORTFOLIO MODAL        -->
@@ -1161,11 +1161,16 @@ s0.parentNode.insertBefore(s1,s0);
     </div>
 
         <!-- WP TAB BAR -->
-    <div class="flex border-b border-white/15 overflow-x-auto flex-shrink-0">
-      <button onclick="switchWpTab('mfg')" id="wp-tab-mfg" class="px-5 py-3 text-xs font-bold border-b-2 border-sky-400 text-white transition-all whitespace-nowrap" aria-selected="true">&#128203; Mobile Field Guide</button>
-      <button onclick="switchWpTab('cg')"  id="wp-tab-cg"  class="px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-white hover:border-sky-400 transition-all whitespace-nowrap" aria-selected="false">&#128208; Engineering Customer Guide</button>
+    <div class="wp-tab-bar">
+      <button type="button" onclick="switchWpTab('mfg')" id="wp-tab-mfg" class="wp-tab-btn active" aria-selected="true">
+        <span style="font-size:1.15em;">📋</span>
+        <span>Mobile Field Guide <span class="hidden sm:inline" style="font-size:0.75rem;font-weight:600;opacity:0.8;">(Field Operations)</span></span>
+      </button>
+      <button type="button" onclick="switchWpTab('cg')" id="wp-tab-cg" class="wp-tab-btn" aria-selected="false">
+        <span style="font-size:1.15em;">📐</span>
+        <span>Engineering Customer Guide <span class="hidden sm:inline" style="font-size:0.75rem;font-weight:600;opacity:0.8;">(TIPC Economic Savings Model)</span></span>
+      </button>
     </div>
-    <!-- WP PANEL mfg -->
     <div id="wp-panel-mfg">
 
 <!-- Modal Body -->
@@ -1745,13 +1750,13 @@ window.closeWhitepaperModal = function() {
   /* WP Tab Switcher */
   window.switchWpTab = function(tab) {
     ['mfg','cg'].forEach(function(t) {
-      var btn   = document.getElementById('wp-tab-' + t);
+      var btn = document.getElementById('wp-tab-' + t);
       var panel = document.getElementById('wp-panel-' + t);
       if (t === tab) {
-        if (btn)   { btn.classList.add('border-sky-400','text-white'); btn.classList.remove('text-slate-400','border-transparent'); btn.setAttribute('aria-selected','true'); }
+        if (btn) { btn.classList.add('active'); btn.setAttribute('aria-selected', 'true'); }
         if (panel) panel.classList.remove('hidden');
       } else {
-        if (btn)   { btn.classList.remove('border-sky-400','text-white'); btn.classList.add('text-slate-400','border-transparent'); btn.setAttribute('aria-selected','false'); }
+        if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-selected', 'false'); }
         if (panel) panel.classList.add('hidden');
       }
     });
