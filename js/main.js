@@ -502,6 +502,16 @@
 
 
     // ── Global Modal Controllers (Accessible from anywhere) ─────
+  
+  // Auto-open whitepaper modal on hash
+  if (window.location.hash === "#whitepaper" || window.location.hash === "#whitepaperModal") {
+    setTimeout(function() {
+      if (typeof window.openWhitepaperModal === "function") {
+        window.openWhitepaperModal();
+      }
+    }, 350);
+  }
+
   window.openLegalModal = function () {
     var m = document.getElementById("legalModal");
     if (m) {
@@ -532,6 +542,47 @@
       m.style.display = "none";
       document.body.style.overflow = "";
     }
+  };
+
+  window.openWhitepaperModal = function () {
+    var m = document.getElementById("whitepaperModal");
+    if (m) {
+      m.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    } else {
+      window.location.href = "index.html#case-study";
+    }
+  };
+
+  window.closeWhitepaperModal = function () {
+    var m = document.getElementById("whitepaperModal");
+    if (m) {
+      m.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  };
+
+  window.switchWpTab = function (tab) {
+    var tabs = ["mfg", "cg"];
+    tabs.forEach(function (t) {
+      var btn = document.getElementById("wp-tab-" + t);
+      var panel = document.getElementById("wp-panel-" + t);
+      if (t === tab) {
+        if (btn) {
+          btn.classList.add("border-sky-400", "text-white");
+          btn.classList.remove("text-slate-400", "border-transparent");
+          btn.setAttribute("aria-selected", "true");
+        }
+        if (panel) panel.classList.remove("hidden");
+      } else {
+        if (btn) {
+          btn.classList.remove("border-sky-400", "text-white");
+          btn.classList.add("text-slate-400", "border-transparent");
+          btn.setAttribute("aria-selected", "false");
+        }
+        if (panel) panel.classList.add("hidden");
+      }
+    });
   };
 
   
@@ -723,6 +774,7 @@
       window.closeLegalModal();
       window.closeDevModal();
       window.closeConsultationSuccessModal();
+      if (typeof window.closeWhitepaperModal === "function") window.closeWhitepaperModal();
     }
   });
 
