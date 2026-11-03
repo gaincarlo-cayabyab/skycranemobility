@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=22261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=23261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -969,12 +969,33 @@
           </div>
 
           <!-- CTA Button -->
-          <a href="contact.html?subject=TIPC+Feasibility+Audit+Request"
+          <button type="button"
             id="btn-tipc-audit-generate"
-            style="display:block;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);color:#ffffff;font-size:16px;font-weight:700;padding:14px;border:none;border-radius:10px;cursor:pointer;text-align:center;box-shadow:0 4px 12px rgba(2,132,199,0.4);text-decoration:none;transition:opacity 0.2s;"
+            onclick="handleTipcAuditSubmit()"
+            style="display:block;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);color:#ffffff;font-size:16px;font-weight:700;padding:14px;border:none;border-radius:10px;cursor:pointer;text-align:center;box-shadow:0 4px 12px rgba(2,132,199,0.4);transition:opacity 0.2s;"
             onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
             Generate TIPC Audit &amp; Quote →
-          </a>
+          </button>
+          <script>
+            function handleTipcAuditSubmit() {
+              var locEl = document.getElementById('tipc-audit-location');
+              var panelEl = document.getElementById('tipc-audit-panels');
+              var corrEl = document.getElementById('tipc-audit-corridor');
+              var locVal = locEl ? locEl.value.trim() : '';
+              var panelVal = panelEl ? panelEl.value.trim() : '';
+              var corrVal = corrEl ? corrEl.value : '';
+
+              var params = new URLSearchParams();
+              params.set('subject', 'TIPC Feasibility Audit & Quote Request');
+              if (locVal) params.set('location', locVal);
+              var details = [];
+              if (panelVal) details.push('Panel Scope: ' + panelVal);
+              if (corrVal) details.push('Corridor: ' + corrVal);
+              if (details.length > 0) params.set('scope', details.join(' | '));
+
+              window.location.href = 'contact.html?' + params.toString();
+            }
+          </script>
 
           <p style="font-size:11px;text-align:center;color:#64748b;margin-top:14px;margin-bottom:0;">
             🔒 Confidential evaluation prepared for commercial solar developers &amp; EPC contractors.
@@ -1591,10 +1612,10 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=22261102_v20"></script>
+<script src="js/main.js?v=23261102_v20"></script>
 
 <!-- Payload Calculator -->
-<script src="js/payload-calculator.js?v=22261102_v11"></script>
+<script src="js/payload-calculator.js?v=23261102_v11"></script>
 <!-- Calculator Tab Switcher -->
 <script>
   window.switchCalcTab = function(tab) {

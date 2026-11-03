@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=22261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=23261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -913,7 +913,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=22261102_v20"></script>
+  <script src="js/main.js?v=23261102_v20"></script>
   <script src="js/payload-calculator.js"></script>
   <script>
     (function () {
@@ -1176,14 +1176,30 @@ s0.parentNode.insertBefore(s1,s0);
   var params = new URLSearchParams(window.location.search);
   var program = params.get('program');
   var subject = params.get('subject');
+  var locParam = params.get('location');
+  var scopeParam = params.get('scope');
+
   var sel = document.getElementById('inquiry-type');
   if (sel && program) {
     if (program === 'EPC-Partner') sel.value = 'epc-partner';
     if (program === 'Emergency-Charter') sel.value = 'emergency-charter';
+  } else if (sel && subject && subject.toLowerCase().includes('tipc')) {
+    sel.value = 'general';
   }
+
+  var locEl = document.getElementById('location');
+  if (locEl && locParam) {
+    locEl.value = decodeURIComponent(locParam.replace(/\+/g, ' '));
+  }
+
   var msgEl = document.getElementById('message');
-  if (msgEl && subject) {
-    msgEl.placeholder = 'Inquiry regarding: ' + decodeURIComponent(subject.replace(/\+/g,' ')) + '\n\n' + msgEl.placeholder;
+  if (msgEl) {
+    var prefillParts = [];
+    if (subject) prefillParts.push('Inquiry: ' + decodeURIComponent(subject.replace(/\+/g, ' ')));
+    if (scopeParam) prefillParts.push('Project Parameters: ' + decodeURIComponent(scopeParam.replace(/\+/g, ' ')));
+    if (prefillParts.length > 0) {
+      msgEl.value = prefillParts.join('\n') + '\n\nPlease evaluate flight corridor terrain, payload rigging, and preliminary TIPC savings schedule.';
+    }
   }
   // inquiryTypeFromURL marker
 })();
