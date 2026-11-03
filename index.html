@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=21261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=22261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -912,6 +912,75 @@
           </a>
         </div>
 
+
+        <!-- Mobile-Responsive TIPC Feasibility Audit & Quote Card (Guide Section 4) -->
+        <div id="tipc-mobile-audit-card" style="max-width:600px;margin:28px auto 0;padding:24px;background-color:#0f172a;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.35);font-family:inherit;color:#ffffff;border:1px solid rgba(255,255,255,0.07);">
+
+          <!-- Header -->
+          <div style="text-align:center;margin-bottom:20px;">
+            <span style="background-color:#0284c7;color:#ffffff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:10px;">
+              SkyCrane Feasibility Engine
+            </span>
+            <h2 style="font-size:20px;font-weight:800;margin:6px 0 10px;color:#f8fafc;line-height:1.3;">
+              Request Formal TIPC Feasibility Audit &amp; Quote
+            </h2>
+            <p style="font-size:13px;color:#94a3b8;margin:0;line-height:1.5;">
+              Get a customized economic savings model for your commercial solar installation within 24 hours.
+            </p>
+          </div>
+
+          <!-- Key Metrics Quick View -->
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;">
+            <div style="flex:1 1 130px;background-color:#1e293b;padding:12px;border-radius:10px;text-align:center;">
+              <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Avg. Schedule Time</div>
+              <div style="font-size:18px;font-weight:700;color:#38bdf8;margin-top:4px;">50% Faster</div>
+            </div>
+            <div style="flex:1 1 130px;background-color:#1e293b;padding:12px;border-radius:10px;text-align:center;">
+              <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Civil Road Cost</div>
+              <div style="font-size:18px;font-weight:700;color:#4ade80;margin-top:4px;">₱0 Avoided</div>
+            </div>
+            <div style="flex:1 1 130px;background-color:#1e293b;padding:12px;border-radius:10px;text-align:center;">
+              <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Net TIPC Savings</div>
+              <div style="font-size:18px;font-weight:700;color:#fb923c;margin-top:4px;">₱131,000+</div>
+            </div>
+          </div>
+
+          <!-- Quick Audit Fields -->
+          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;">
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Project Location / Site Type</label>
+              <input id="tipc-audit-location" type="text" placeholder="e.g., Commercial Rooftop, Benguet Mountain Site"
+                style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #334155;background-color:#1e293b;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Total Panel Quantity &amp; System Capacity</label>
+              <input id="tipc-audit-panels" type="text" placeholder="e.g., 240 panels (132 kWp)"
+                style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #334155;background-color:#1e293b;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Estimated Transit Corridor Distance</label>
+              <select id="tipc-audit-corridor"
+                style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #334155;background-color:#1e293b;color:#ffffff;font-size:14px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;">
+                <option style="background-color:#1e293b;">100m – 300m Corridor</option>
+                <option style="background-color:#1e293b;" selected>300m – 600m Corridor (Standard)</option>
+                <option style="background-color:#1e293b;">600m – 1,000m+ Corridor</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="contact.html?subject=TIPC+Feasibility+Audit+Request"
+            id="btn-tipc-audit-generate"
+            style="display:block;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);color:#ffffff;font-size:16px;font-weight:700;padding:14px;border:none;border-radius:10px;cursor:pointer;text-align:center;box-shadow:0 4px 12px rgba(2,132,199,0.4);text-decoration:none;transition:opacity 0.2s;"
+            onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+            Generate TIPC Audit &amp; Quote →
+          </a>
+
+          <p style="font-size:11px;text-align:center;color:#64748b;margin-top:14px;margin-bottom:0;">
+            🔒 Confidential evaluation prepared for commercial solar developers &amp; EPC contractors.
+          </p>
+        </div>
+
       </div>
     </div>
 
@@ -1522,10 +1591,10 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=21261102_v20"></script>
+<script src="js/main.js?v=22261102_v20"></script>
 
 <!-- Payload Calculator -->
-<script src="js/payload-calculator.js?v=21261102_v11"></script>
+<script src="js/payload-calculator.js?v=22261102_v11"></script>
 <!-- Calculator Tab Switcher -->
 <script>
   window.switchCalcTab = function(tab) {
