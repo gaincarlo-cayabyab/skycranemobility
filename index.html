@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=29261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=30261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -798,14 +798,43 @@
           <div>
             <label class="calc-label" for="tipc-select-terrain">Terrain &amp; Elevation Corridor</label>
             <select id="tipc-select-terrain" class="calc-input text-sm cursor-pointer pr-10" style="background-color:#0f172a;color:#ffffff;">
-              <option value="cordillera-highland" selected style="background-color:#0f172a;color:#ffffff;">🏔️ Cordillera Mountain Ridge (Benguet / Mt. Province 1,200m–2,500m ASL)</option>
-              <option value="sierra-madre-jungle" style="background-color:#0f172a;color:#ffffff;">🌴 Sierra Madre Dense Rainforest &amp; River Basin (Zero Road Access / DENR NIPAS)</option>
-              <option value="visayas-island" style="background-color:#0f172a;color:#ffffff;">🏝️ Visayas &amp; Palawan Off-Grid Island / Karst Ravine (Inter-Island Channel)</option>
-              <option value="mindanao-volcanic" style="background-color:#0f172a;color:#ffffff;">🌋 Mindanao Highland Plateau &amp; Mt. Apo BTS Slope (Bukidnon / Davao 800m–2,000m ASL)</option>
-              <option value="central-luzon-foothills" style="background-color:#0f172a;color:#ffffff;">🌾 Central &amp; Northern Luzon Rolling Foothills (Pangasinan / Tarlac / Zambales)</option>
-              <option value="urban-rooftop" style="background-color:#0f172a;color:#ffffff;">🏢 Metro Manila &amp; CALABARZON Elevated Industrial Rooftop (Commercial Facility)</option>
+              <optgroup label="── 🏔️ Highland Mountain Ridges (Luzon / Visayas / Mindanao) ──" style="background:#0a101f;color:#38bdf8;font-weight:800;">
+                <option value="luzon-highland-cordillera" selected style="background-color:#0f172a;color:#ffffff;">🏔️ Cordillera Highland Ridge — Luzon (Benguet / Mt. Province / Ifugao 1,200m–2,926m)</option>
+                <option value="luzon-highland-zambales-pinatubo" style="background-color:#0f172a;color:#ffffff;">🌋 Zambales–Pinatubo Lahar &amp; Volcanic Corridor — Luzon (Clark / Zambales)</option>
+                <option value="luzon-highland-bicol-volcano" style="background-color:#0f172a;color:#ffffff;">🌋 Bicol Volcanic Belt — Luzon (Mayon / Mt. Isarog / Mt. Bulusan Albay)</option>
+                <option value="visayas-highland-panay-negros" style="background-color:#0f172a;color:#ffffff;">🏔️ Panay &amp; Negros Highland Ridge — Visayas (Mt. Madja-as / Mt. Kanlaon 2,465m)</option>
+                <option value="visayas-highland-leyte-samar" style="background-color:#0f172a;color:#ffffff;">🏔️ Leyte &amp; Samar Highland Interior — Eastern Visayas (400m–1,100m ASL)</option>
+                <option value="mindanao-highland-bukidnon-kitanglad" style="background-color:#0f172a;color:#ffffff;">🏔️ Bukidnon–Kitanglad Highland Plateau — Mindanao (1,400m–2,938m ASL)</option>
+                <option value="mindanao-highland-davao-apo" style="background-color:#0f172a;color:#ffffff;">🌋 Mt. Apo Massif — Mindanao (Davao del Sur / Cotabato — 2,954m PH Highest)</option>
+                <option value="mindanao-highland-hamiguitan-lanao" style="background-color:#0f172a;color:#ffffff;">🏔️ Lanao–Mt. Hamiguitan Highland — Mindanao (Davao Oriental / Lanao)</option>
+              </optgroup>
+              <optgroup label="── 🌴 Dense Jungle &amp; Protected Forest Corridors ──" style="background:#0a101f;color:#34d399;font-weight:800;">
+                <option value="luzon-jungle-sierra-madre" style="background-color:#0f172a;color:#ffffff;">🌴 Sierra Madre Rainforest — Luzon (Cagayan / Aurora / Quezon — Zero Road / DENR)</option>
+                <option value="mindanao-jungle-pantaron-agusan" style="background-color:#0f172a;color:#ffffff;">🌴 Pantaron–Agusan Marsh Jungle — Mindanao (Undisturbed Canopy / Swamp Basin)</option>
+                <option value="mindanao-jungle-liguasan-cotabato" style="background-color:#0f172a;color:#ffffff;">🌾 Liguasan Marsh Flood Basin — Mindanao (Maguindanao / Cotabato — Seasonal Flood)</option>
+              </optgroup>
+              <optgroup label="── 🌾 Agricultural Flatlands &amp; Farmland Plains ──" style="background:#0a101f;color:#facc15;font-weight:800;">
+                <option value="luzon-agri-central-luzon" style="background-color:#0f172a;color:#ffffff;">🌾 Central Luzon Grain Belt Flatlands (Pampanga / Nueva Ecija / Tarlac / Bulacan)</option>
+                <option value="luzon-agri-cagayan-valley" style="background-color:#0f172a;color:#ffffff;">🌾 Cagayan Valley River Basin Plains (Cagayan / Isabela / Quirino / Nueva Vizcaya)</option>
+                <option value="luzon-agri-ilocos-coast" style="background-color:#0f172a;color:#ffffff;">🌾 Ilocos Coastal Plain &amp; Pangasinan Lowlands — Northern Luzon (Region I)</option>
+                <option value="visayas-agri-iloilo-capiz" style="background-color:#0f172a;color:#ffffff;">🌾 Iloilo &amp; Capiz Agricultural Plains — Visayas (Panay Island Agri-Solar Belt)</option>
+                <option value="mindanao-agri-davao-cotabato" style="background-color:#0f172a;color:#ffffff;">🌾 Davao–Cotabato Agricultural Basin — Mindanao (Banana / Pineapple / Corn Flatlands)</option>
+              </optgroup>
+              <optgroup label="── 🏝️ Off-Grid Islands &amp; Inter-Island Channels ──" style="background:#0a101f;color:#38bdf8;font-weight:800;">
+                <option value="palawan-mimaropa-island" style="background-color:#0f172a;color:#ffffff;">🏝️ Palawan / MIMAROPA Off-Grid Island (El Nido / Coron / Romblon / Mindoro Coast)</option>
+                <option value="visayas-island-leyte-samar-siargao" style="background-color:#0f172a;color:#ffffff;">🏝️ Eastern Visayas &amp; Siargao Island Chain (Leyte Gulf / Samar / Dinagat / CARAGA)</option>
+                <option value="barmm-basulta-island" style="background-color:#0f172a;color:#ffffff;">🏝️ BARMM / Sulu–Tawi-Tawi Off-Grid Island (BASULTA Archipelago — Southernmost PH)</option>
+                <option value="cebu-bohol-negros-island" style="background-color:#0f172a;color:#ffffff;">🏝️ Cebu / Bohol / Negros Oriental Off-Grid Island &amp; Highland Resort (Central Visayas)</option>
+              </optgroup>
+              <optgroup label="── 🏢 Urban Elevated Rooftop &amp; Industrial Special Ecozones ──" style="background:#0a101f;color:#fb923c;font-weight:800;">
+                <option value="urban-metro-manila-ncr" style="background-color:#0f172a;color:#ffffff;">🏢 Metro Manila / NCR Industrial Rooftop (BGC / Makati / Pasig / Caloocan / MMDA Zone)</option>
+                <option value="urban-cebu-davao-cdo" style="background-color:#0f172a;color:#ffffff;">🏢 Metro Cebu / Metro Davao / CDO Commercial Rooftop (MEPZ / Davao Industrial / CDO)</option>
+                <option value="urban-calabarzon-industrial" style="background-color:#0f172a;color:#ffffff;">🏢 CALABARZON Industrial Estate Rooftop (Laguna Technopark / First PHIP / LIMA / Cavite)</option>
+                <option value="urban-clark-subic-ecozones" style="background-color:#0f172a;color:#ffffff;">🏢 Clark Freeport Zone / Subic Bay Freeport — Warehouse Roof, Hangar &amp; Platform (Luzon)</option>
+                <option value="urban-iloilo-bacolod-city" style="background-color:#0f172a;color:#ffffff;">🏢 Iloilo City / Bacolod City Rooftop &amp; Mixed-Use Building (Western Visayas)</option>
+              </optgroup>
             </select>
-            <div id="tipc-terrain-description" class="text-[11px] text-sky-400 mt-1 font-medium leading-relaxed">🏔️ Benguet &amp; Mt. Province (1,200m–2,500m ASL): 30–50% rock grade • Bypasses landslide-prone Halsema corridor • ₱450k road infill eliminated</div>
+            <div id="tipc-terrain-description" class="text-[11px] text-sky-400 mt-1 font-medium leading-relaxed">🏔️ Luzon: Cordillera Central (1,200m–2,926m ASL) • Benguet, Mt. Province, Ifugao, Kalinga • 35–55% grade • Landslide-prone Halsema corridor • ₱480k road infill eliminated</div>
           </div>
 
           <!-- Input 3: Avoided Road Civil Works -->
@@ -1014,25 +1043,27 @@
               Generate Instant TIPC Feasibility Audit &amp; Quote
             </h2>
             <p style="font-size:13px;color:#94a3b8;margin:0;line-height:1.5;">
-              Select a Philippine project environment below or enter custom site parameters to compute your exact drone vs. ground freight savings.
+              25 terrain corridors covering all major regions of Luzon, Visayas, Mindanao &amp; BARMM — mountains, jungles, farmlands, islands, and urban rooftops.
             </p>
           </div>
 
           <!-- Form Inputs Container -->
           <div id="tipc-audit-inputs-wrap">
             
-            <!-- Quick Preset Pills: Real Philippine Project Sites -->
+            <!-- Quick Preset Pills: 8 Regional Philippine Sites -->
             <div style="margin-bottom:14px;">
               <div style="font-size:11px;font-weight:800;color:#94a3b8;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">
-                Quick-Select Philippine Project Preset:
+                Quick-Select Regional Philippine Preset:
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                <button type="button" onclick="setAuditPreset('benguet')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏔️ Benguet / Baguio Ridge</button>
-                <button type="button" onclick="setAuditPreset('palawan')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏝️ Palawan / Coron Island</button>
-                <button type="button" onclick="setAuditPreset('bukidnon')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🌋 Bukidnon / Mt. Apo BTS</button>
-                <button type="button" onclick="setAuditPreset('pangasinan')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🌾 Pangasinan Agri-Solar</button>
-                <button type="button" onclick="setAuditPreset('sierra-madre')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🌴 Sierra Madre Hydro Site</button>
-                <button type="button" onclick="setAuditPreset('calabarzon')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏢 CALABARZON Factory Roof</button>
+                <button type="button" onclick="setAuditPreset('benguet')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏔️ Benguet Ridge</button>
+                <button type="button" onclick="setAuditPreset('palawan')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏝️ Palawan Island</button>
+                <button type="button" onclick="setAuditPreset('bukidnon')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🌋 Bukidnon Plateau</button>
+                <button type="button" onclick="setAuditPreset('cotabato')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🌾 Cotabato Basin</button>
+                <button type="button" onclick="setAuditPreset('sierra-madre')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🌴 Sierra Madre</button>
+                <button type="button" onclick="setAuditPreset('calabarzon')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏢 CALABARZON Roof</button>
+                <button type="button" onclick="setAuditPreset('siargao')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏝️ Siargao Island</button>
+                <button type="button" onclick="setAuditPreset('tawi-tawi')" style="background:#141f3d;border:1px solid #334155;color:#bae6fd;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';this.style.color='#fff';" onmouseout="this.style.borderColor='#334155';this.style.color='#bae6fd';">🏝️ Tawi-Tawi BARMM</button>
               </div>
             </div>
 
@@ -1040,7 +1071,7 @@
             <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
               <div>
                 <label style="display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px;">Project Location / Municipality</label>
-                <input id="tipc-audit-location" type="text" placeholder="e.g., Atok, Benguet / Coron, Palawan / Calamba, Laguna"
+                <input id="tipc-audit-location" type="text" placeholder="e.g., Atok Benguet / El Nido Palawan / Sitangkai Tawi-Tawi"
                   value="Atok / Itogon Mountain Ridge, Benguet"
                   style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:8px;border:1px solid #334155;background-color:#141f3d;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
               </div>
@@ -1053,15 +1084,44 @@
               </div>
 
               <div>
-                <label style="display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px;">Philippine Terrain &amp; Elevation Corridor</label>
+                <label style="display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px;">Terrain &amp; Elevation Corridor — Philippine Region</label>
                 <select id="tipc-audit-corridor"
-                  style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:8px;border:1px solid #334155;background-color:#141f3d;color:#ffffff;font-size:13.5px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;cursor:pointer;">
-                  <option value="cordillera-highland" selected style="background-color:#0f172a;">🏔️ Cordillera Mountain Ridge (Benguet / Mt. Province 1,200m–2,500m ASL)</option>
-                  <option value="sierra-madre-jungle" style="background-color:#0f172a;">🌴 Sierra Madre Dense Rainforest &amp; River Basin (Zero Road Access / DENR NIPAS)</option>
-                  <option value="visayas-island" style="background-color:#0f172a;">🏝️ Visayas &amp; Palawan Off-Grid Island / Karst Ravine (Inter-Island Channel)</option>
-                  <option value="mindanao-volcanic" style="background-color:#0f172a;">🌋 Mindanao Highland Plateau &amp; Mt. Apo BTS Slope (Bukidnon / Davao 800m–2,000m ASL)</option>
-                  <option value="central-luzon-foothills" style="background-color:#0f172a;">🌾 Central &amp; Northern Luzon Rolling Foothills (Pangasinan / Tarlac / Zambales)</option>
-                  <option value="urban-rooftop" style="background-color:#0f172a;">🏢 Metro Manila &amp; CALABARZON Elevated Industrial Rooftop (Commercial Facility)</option>
+                  style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:8px;border:1px solid #334155;background-color:#141f3d;color:#ffffff;font-size:12.5px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;cursor:pointer;">
+              <optgroup label="── 🏔️ Highland Mountain Ridges (Luzon / Visayas / Mindanao) ──" style="background:#0a101f;color:#38bdf8;font-weight:800;">
+                <option value="luzon-highland-cordillera" selected style="background-color:#0f172a;color:#ffffff;">🏔️ Cordillera Highland Ridge — Luzon (Benguet / Mt. Province / Ifugao 1,200m–2,926m)</option>
+                <option value="luzon-highland-zambales-pinatubo" style="background-color:#0f172a;color:#ffffff;">🌋 Zambales–Pinatubo Lahar &amp; Volcanic Corridor — Luzon (Clark / Zambales)</option>
+                <option value="luzon-highland-bicol-volcano" style="background-color:#0f172a;color:#ffffff;">🌋 Bicol Volcanic Belt — Luzon (Mayon / Mt. Isarog / Mt. Bulusan Albay)</option>
+                <option value="visayas-highland-panay-negros" style="background-color:#0f172a;color:#ffffff;">🏔️ Panay &amp; Negros Highland Ridge — Visayas (Mt. Madja-as / Mt. Kanlaon 2,465m)</option>
+                <option value="visayas-highland-leyte-samar" style="background-color:#0f172a;color:#ffffff;">🏔️ Leyte &amp; Samar Highland Interior — Eastern Visayas (400m–1,100m ASL)</option>
+                <option value="mindanao-highland-bukidnon-kitanglad" style="background-color:#0f172a;color:#ffffff;">🏔️ Bukidnon–Kitanglad Highland Plateau — Mindanao (1,400m–2,938m ASL)</option>
+                <option value="mindanao-highland-davao-apo" style="background-color:#0f172a;color:#ffffff;">🌋 Mt. Apo Massif — Mindanao (Davao del Sur / Cotabato — 2,954m PH Highest)</option>
+                <option value="mindanao-highland-hamiguitan-lanao" style="background-color:#0f172a;color:#ffffff;">🏔️ Lanao–Mt. Hamiguitan Highland — Mindanao (Davao Oriental / Lanao)</option>
+              </optgroup>
+              <optgroup label="── 🌴 Dense Jungle &amp; Protected Forest Corridors ──" style="background:#0a101f;color:#34d399;font-weight:800;">
+                <option value="luzon-jungle-sierra-madre" style="background-color:#0f172a;color:#ffffff;">🌴 Sierra Madre Rainforest — Luzon (Cagayan / Aurora / Quezon — Zero Road / DENR)</option>
+                <option value="mindanao-jungle-pantaron-agusan" style="background-color:#0f172a;color:#ffffff;">🌴 Pantaron–Agusan Marsh Jungle — Mindanao (Undisturbed Canopy / Swamp Basin)</option>
+                <option value="mindanao-jungle-liguasan-cotabato" style="background-color:#0f172a;color:#ffffff;">🌾 Liguasan Marsh Flood Basin — Mindanao (Maguindanao / Cotabato — Seasonal Flood)</option>
+              </optgroup>
+              <optgroup label="── 🌾 Agricultural Flatlands &amp; Farmland Plains ──" style="background:#0a101f;color:#facc15;font-weight:800;">
+                <option value="luzon-agri-central-luzon" style="background-color:#0f172a;color:#ffffff;">🌾 Central Luzon Grain Belt Flatlands (Pampanga / Nueva Ecija / Tarlac / Bulacan)</option>
+                <option value="luzon-agri-cagayan-valley" style="background-color:#0f172a;color:#ffffff;">🌾 Cagayan Valley River Basin Plains (Cagayan / Isabela / Quirino / Nueva Vizcaya)</option>
+                <option value="luzon-agri-ilocos-coast" style="background-color:#0f172a;color:#ffffff;">🌾 Ilocos Coastal Plain &amp; Pangasinan Lowlands — Northern Luzon (Region I)</option>
+                <option value="visayas-agri-iloilo-capiz" style="background-color:#0f172a;color:#ffffff;">🌾 Iloilo &amp; Capiz Agricultural Plains — Visayas (Panay Island Agri-Solar Belt)</option>
+                <option value="mindanao-agri-davao-cotabato" style="background-color:#0f172a;color:#ffffff;">🌾 Davao–Cotabato Agricultural Basin — Mindanao (Banana / Pineapple / Corn Flatlands)</option>
+              </optgroup>
+              <optgroup label="── 🏝️ Off-Grid Islands &amp; Inter-Island Channels ──" style="background:#0a101f;color:#38bdf8;font-weight:800;">
+                <option value="palawan-mimaropa-island" style="background-color:#0f172a;color:#ffffff;">🏝️ Palawan / MIMAROPA Off-Grid Island (El Nido / Coron / Romblon / Mindoro Coast)</option>
+                <option value="visayas-island-leyte-samar-siargao" style="background-color:#0f172a;color:#ffffff;">🏝️ Eastern Visayas &amp; Siargao Island Chain (Leyte Gulf / Samar / Dinagat / CARAGA)</option>
+                <option value="barmm-basulta-island" style="background-color:#0f172a;color:#ffffff;">🏝️ BARMM / Sulu–Tawi-Tawi Off-Grid Island (BASULTA Archipelago — Southernmost PH)</option>
+                <option value="cebu-bohol-negros-island" style="background-color:#0f172a;color:#ffffff;">🏝️ Cebu / Bohol / Negros Oriental Off-Grid Island &amp; Highland Resort (Central Visayas)</option>
+              </optgroup>
+              <optgroup label="── 🏢 Urban Elevated Rooftop &amp; Industrial Special Ecozones ──" style="background:#0a101f;color:#fb923c;font-weight:800;">
+                <option value="urban-metro-manila-ncr" style="background-color:#0f172a;color:#ffffff;">🏢 Metro Manila / NCR Industrial Rooftop (BGC / Makati / Pasig / Caloocan / MMDA Zone)</option>
+                <option value="urban-cebu-davao-cdo" style="background-color:#0f172a;color:#ffffff;">🏢 Metro Cebu / Metro Davao / CDO Commercial Rooftop (MEPZ / Davao Industrial / CDO)</option>
+                <option value="urban-calabarzon-industrial" style="background-color:#0f172a;color:#ffffff;">🏢 CALABARZON Industrial Estate Rooftop (Laguna Technopark / First PHIP / LIMA / Cavite)</option>
+                <option value="urban-clark-subic-ecozones" style="background-color:#0f172a;color:#ffffff;">🏢 Clark Freeport Zone / Subic Bay Freeport — Warehouse Roof, Hangar &amp; Platform (Luzon)</option>
+                <option value="urban-iloilo-bacolod-city" style="background-color:#0f172a;color:#ffffff;">🏢 Iloilo City / Bacolod City Rooftop &amp; Mixed-Use Building (Western Visayas)</option>
+              </optgroup>
                 </select>
               </div>
             </div>
@@ -1075,64 +1135,37 @@
               <span>⚡ Generate Instant TIPC Audit &amp; Feasibility Quote</span>
             </button>
             <p style="font-size:11px;text-align:center;color:#64748b;margin-top:10px;margin-bottom:0;">
-              ✓ Instant mathematical computation &bull; CAAP RPAS Flight Specifications
+              ✓ 25 authentic Philippine terrain profiles • All regions: Luzon / Visayas / Mindanao / BARMM
             </p>
           </div>
 
           <!-- Dynamic Output Results Container (Hidden until user clicks Generate) -->
-          <div id="tipc-audit-result-wrap" style="display:none;margin-top:8px;">
-            <!-- Generated Result Injected Here -->
-          </div>
+          <div id="tipc-audit-result-wrap" style="display:none;margin-top:8px;"></div>
 
           <script>
-            function setAuditPreset(preset) {
-              var locEl = document.getElementById('tipc-audit-location');
-              var panelEl = document.getElementById('tipc-audit-panels');
-              var corrEl = document.getElementById('tipc-audit-corridor');
-              if (!locEl || !panelEl || !corrEl) return;
+            var _phPresets = {
+              'benguet':    { loc: 'Atok / Itogon Mountain Ridge, Benguet (Cordillera)', panels: 240, corridor: 'luzon-highland-cordillera' },
+              'palawan':    { loc: 'El Nido / Coron Off-Grid Eco-Resort, Palawan',       panels: 180, corridor: 'palawan-mimaropa-island' },
+              'bukidnon':   { loc: 'Mt. Kitanglad BTS Tower, Bukidnon',                  panels: 120, corridor: 'mindanao-highland-bukidnon-kitanglad' },
+              'cotabato':   { loc: 'South Cotabato Agri-Solar Plantation, General Santos', panels: 360, corridor: 'mindanao-agri-davao-cotabato' },
+              'sierra-madre':{ loc: 'Dingalan River Basin, Aurora / Sierra Madre Zone',  panels: 300, corridor: 'luzon-jungle-sierra-madre' },
+              'calabarzon': { loc: 'Laguna Technopark Rooftop, Biñan, Laguna',           panels: 500, corridor: 'urban-calabarzon-industrial' },
+              'siargao':    { loc: 'Off-Grid Island Solar Microgrid, Siargao / Dinagat', panels: 150, corridor: 'visayas-island-leyte-samar-siargao' },
+              'tawi-tawi':  { loc: 'BARMM Island Microgrid, Sitangkai, Tawi-Tawi',       panels: 90,  corridor: 'barmm-basulta-island' }
+            };
 
-              var presets = {
-                'benguet': {
-                  loc: 'Atok / Itogon Mountain Ridge, Benguet',
-                  panels: 240,
-                  corridor: 'cordillera-highland'
-                },
-                'palawan': {
-                  loc: 'Coron / El Nido Off-Grid Eco-Resort, Palawan',
-                  panels: 180,
-                  corridor: 'visayas-island'
-                },
-                'bukidnon': {
-                  loc: 'Mt. Kitanglad Telecom BTS Tower, Bukidnon',
-                  panels: 120,
-                  corridor: 'mindanao-volcanic'
-                },
-                'pangasinan': {
-                  loc: 'San Fabian / Sual Solar Agri-Facility, Pangasinan',
-                  panels: 360,
-                  corridor: 'central-luzon-foothills'
-                },
-                'sierra-madre': {
-                  loc: 'San Luis / Dingalan River Basin, Aurora (Sierra Madre)',
-                  panels: 300,
-                  corridor: 'sierra-madre-jungle'
-                },
-                'calabarzon': {
-                  loc: 'Calamba Industrial Park Rooftop, Laguna (CALABARZON)',
-                  panels: 500,
-                  corridor: 'urban-rooftop'
-                }
-              };
-
-              var p = presets[preset];
-              if (p) {
-                locEl.value = p.loc;
-                panelEl.value = p.panels;
-                corrEl.value = p.corridor;
-                
-                // Highlight input briefly for visual feedback
-                locEl.style.borderColor = '#38bdf8';
-                setTimeout(function() { locEl.style.borderColor = '#334155'; }, 600);
+            function setAuditPreset(k) {
+              var l = document.getElementById('tipc-audit-location');
+              var p = document.getElementById('tipc-audit-panels');
+              var c = document.getElementById('tipc-audit-corridor');
+              if (!l || !p || !c) return;
+              var d = _phPresets[k];
+              if (d) {
+                l.value = d.loc;
+                p.value = d.panels;
+                c.value = d.corridor;
+                l.style.borderColor = '#38bdf8';
+                setTimeout(function() { l.style.borderColor = '#334155'; }, 600);
               }
             }
 
@@ -1141,23 +1174,15 @@
               var panelEl = document.getElementById('tipc-audit-panels');
               var corrEl = document.getElementById('tipc-audit-corridor');
               
-              var locVal = locEl ? (locEl.value.trim() || 'Cordillera Mountain Solar Site, Benguet') : 'Cordillera Mountain Solar Site, Benguet';
+              var locVal = locEl ? (locEl.value.trim() || 'Philippine Solar Site') : 'Philippine Solar Site';
               var panelsCount = panelEl ? (parseInt(panelEl.value, 10) || 240) : 240;
               if (panelsCount < 10) panelsCount = 10;
-              var terrainVal = corrEl ? corrEl.value : 'cordillera-highland';
+              var terrainVal = corrEl ? corrEl.value : 'luzon-highland-cordillera';
 
-              // Road cost estimation based on Philippine terrain
-              var roadCostMap = {
-                'cordillera-highland': 450000,
-                'sierra-madre-jungle': 600000,
-                'visayas-island': 350000,
-                'mindanao-volcanic': 400000,
-                'central-luzon-foothills': 200000,
-                'urban-rooftop': 150000
-              };
-              var roadCost = roadCostMap[terrainVal] || 350000;
+              // Fallback road cost map for audit card
+              var mult = window.SkyCraneCalc && window.SkyCraneCalc.terrainMultipliers ? window.SkyCraneCalc.terrainMultipliers[terrainVal] : null;
+              var roadCost = mult && mult.defaultRoad !== undefined ? mult.defaultRoad : 350000;
 
-              // Calculate using official TIPC model
               var res = window.calculateTIPC ? window.calculateTIPC({
                 panelsCount: panelsCount,
                 terrainType: terrainVal,
@@ -1165,109 +1190,79 @@
               }) : null;
 
               if (!res) {
-                var totalKg = panelsCount * 30;
-                var flights = Math.ceil(totalKg / 70);
-                var convDays = Math.round(10 * (panelsCount / 240));
-                var skyDays = Math.round(5 * (panelsCount / 240));
-                var convTotal = 150000 * (panelsCount / 240) + convDays * 20000 + roadCost;
-                var skyTotal = 419000 * (panelsCount / 240) + skyDays * 20000;
-                var savings = convTotal - skyTotal;
+                var tkg = panelsCount * 30;
+                var fl = Math.ceil(tkg / 70);
+                var cd = Math.round(10 * (panelsCount / 240));
+                var sd = Math.round(5 * (panelsCount / 240));
+                var ct = 150000 * (panelsCount / 240) + cd * 20000 + roadCost;
+                var st = 419000 * (panelsCount / 240) + sd * 20000;
+                var sv = ct - st;
                 res = {
-                  inputs: { panelsCount: panelsCount, totalCargoKg: totalKg },
-                  skycrane: { totalFlights: flights, daysRequired: skyDays, tipcSkycrane: skyTotal },
-                  conventional: { daysRequired: convDays, tipcConv: convTotal, avoidedRoadCost: roadCost },
-                  impact: { netSavings: savings, daysSaved: convDays - skyDays, compressionPct: Math.round(((convDays - skyDays) / convDays) * 100), netSavingsPct: Math.round((savings / convTotal) * 100) }
+                  inputs: { panelsCount: panelsCount, totalCargoKg: tkg },
+                  skycrane: { totalFlights: fl, days: sd, totalTIPC: st },
+                  conventional: { days: cd, totalTIPC: ct },
+                  impact: { netSavings: sv, daysSaved: cd - sd, compressionPct: Math.round(((cd - sd) / cd) * 100), netSavingsPct: Math.round((sv / ct) * 100) }
                 };
               }
 
               var refNum = 'SKC-PH-' + Math.floor(1000 + Math.random() * 9000);
-              var systemKwp = (panelsCount * 0.55).toFixed(1);
-              var totalTons = (res.inputs.totalCargoKg / 1000).toFixed(1);
-              var fmtSavings = window.formatPHP ? window.formatPHP(res.impact.netSavings) : '&#8369;' + res.impact.netSavings.toLocaleString('en-US');
-              var fmtSkyTIPC = window.formatPHP ? window.formatPHP(res.skycrane.totalTIPC || res.skycrane.tipcSkycrane) : '&#8369;' + (res.skycrane.totalTIPC || res.skycrane.tipcSkycrane).toLocaleString('en-US');
-              var fmtConvTIPC = window.formatPHP ? window.formatPHP(res.conventional.totalTIPC || res.conventional.tipcConv) : '&#8369;' + (res.conventional.totalTIPC || res.conventional.tipcConv).toLocaleString('en-US');
-
-              var terrainNames = {
-                'cordillera-highland': '🏔️ Cordillera Mountain Ridge (Benguet / Mt. Province)',
-                'sierra-madre-jungle': '🌴 Sierra Madre Rainforest Basin (Zero Road Access)',
-                'visayas-island': '🏝️ Visayas / Palawan Isolated Island (Inter-Island Karst)',
-                'mindanao-volcanic': '🌋 Mindanao Highland Plateau / Mt. Apo BTS Slope',
-                'central-luzon-foothills': '🌾 Central / Northern Luzon Rolling Foothills',
-                'urban-rooftop': '🏢 Metro Manila & CALABARZON Industrial Rooftop'
-              };
-              var terrainLabel = terrainNames[terrainVal] || 'Philippine Industrial Corridor';
-
+              var kw = (panelsCount * 0.55).toFixed(1);
+              var tons = (res.inputs.totalCargoKg / 1000).toFixed(1);
+              var fmtSavings = window.formatPHP ? window.formatPHP(res.impact.netSavings) : '&#8369;' + Math.round(res.impact.netSavings).toLocaleString('en-US');
+              var fmtSky = window.formatPHP ? window.formatPHP(res.skycrane.totalTIPC) : '&#8369;' + Math.round(res.skycrane.totalTIPC).toLocaleString('en-US');
+              var fmtConv = window.formatPHP ? window.formatPHP(res.conventional.totalTIPC) : '&#8369;' + Math.round(res.conventional.totalTIPC).toLocaleString('en-US');
+              var terrainLabel = (mult && mult.label) ? mult.label : terrainVal;
+              var netPct = (typeof res.impact.netSavingsPct === 'number') ? res.impact.netSavingsPct.toFixed(1) : '—';
+              
               var resultWrap = document.getElementById('tipc-audit-result-wrap');
               var inputsWrap = document.getElementById('tipc-audit-inputs-wrap');
 
               if (resultWrap) {
                 resultWrap.innerHTML = 
                   '<div style="background:#0f172a;border:1px solid #0284c7;border-radius:14px;padding:clamp(14px, 3.5vw, 20px);box-shadow:0 10px 30px rgba(0,0,0,0.5);">' +
-                    
-                    '<!-- Top Ref Badge -->' +
                     '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.1);">' +
                       '<div>' +
-                        '<span style="background:#0284c7;color:#fff;font-size:10px;font-weight:900;text-transform:uppercase;padding:3px 10px;border-radius:12px;display:inline-block;letter-spacing:0.05em;">' +
-                          '&#9989; PHILIPPINE AUDIT DOSSIER GENERATED' +
-                        '</span>' +
+                        '<span style="background:#0284c7;color:#fff;font-size:10px;font-weight:900;text-transform:uppercase;padding:3px 10px;border-radius:12px;display:inline-block;">&#9989; PHILIPPINE AUDIT DOSSIER</span>' +
                         '<span style="margin-left:8px;font-size:11px;color:#94a3b8;font-family:monospace;font-weight:700;">REF: ' + refNum + '</span>' +
                       '</div>' +
-                      '<button type="button" onclick="editTipcAuditInputs()" style="background:transparent;border:1px solid #334155;color:#94a3b8;font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;" onmouseover="this.style.color=\'#fff\'" onmouseout="this.style.color=\'#94a3b8\'">' +
-                        '&#9998; Edit Inputs' +
-                      '</button>' +
+                      '<button type="button" onclick="editTipcAuditInputs()" style="background:transparent;border:1px solid #334155;color:#94a3b8;font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;">&#9998; Edit</button>' +
                     '</div>' +
-
-                    '<!-- Project Summary Header -->' +
                     '<div style="margin-bottom:14px;">' +
-                      '<div style="font-size:11px;color:#38bdf8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Philippine Target Site</div>' +
+                      '<div style="font-size:11px;color:#38bdf8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Philippine Project Site</div>' +
                       '<div style="font-size:15px;font-weight:800;color:#ffffff;line-height:1.3;">' + locVal + '</div>' +
-                      '<div style="font-size:12px;color:#94a3b8;margin-top:2px;">' + panelsCount + ' Panels (~' + systemKwp + ' kWp) &bull; ' + totalTons + ' Metric Tons &bull; ' + terrainLabel + '</div>' +
+                      '<div style="font-size:11px;color:#94a3b8;margin-top:3px;">' + panelsCount + ' Panels (~' + kw + ' kWp) &bull; ' + tons + ' MT &bull; ' + terrainLabel + '</div>' +
                     '</div>' +
-
-                    '<!-- Financial Net Savings Banner -->' +
                     '<div style="background:linear-gradient(135deg,rgba(16,185,129,0.2) 0%,rgba(6,78,59,0.4) 100%);border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:14px;text-align:center;margin-bottom:14px;">' +
                       '<div style="font-size:11px;color:#6ee7b7;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">PROJECTED NET BUDGET SAVINGS</div>' +
                       '<div style="font-size:clamp(1.5rem, 5vw, 2rem);font-weight:900;color:#34d399;line-height:1.1;margin:4px 0;">' + fmtSavings + ' Saved</div>' +
-                      '<div style="font-size:12px;color:#a7f3d0;font-weight:700;">' + res.impact.netSavingsPct.toFixed(1) + '% Net TIPC Capital Reduction &bull; ' + res.impact.daysSaved + ' Full Days Compressed</div>' +
+                      '<div style="font-size:12px;color:#a7f3d0;font-weight:700;">' + netPct + '% Net TIPC Capital Reduction &bull; ' + res.impact.daysSaved + ' Days Compressed</div>' +
                     '</div>' +
-
-                    '<!-- Side by Side Metrics Grid -->' +
                     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">' +
                       '<div style="background:#141f3d;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);">' +
                         '<div style="font-size:10px;color:#f87171;font-weight:700;text-transform:uppercase;">Conventional Ground</div>' +
-                        '<div style="font-size:16px;font-weight:800;color:#fca5a5;margin:3px 0;">' + fmtConvTIPC + '</div>' +
-                        '<div style="font-size:11px;color:#94a3b8;">' + (res.conventional.days || res.conventional.daysRequired) + ' Days Duration</div>' +
+                        '<div style="font-size:16px;font-weight:800;color:#fca5a5;margin:3px 0;">' + fmtConv + '</div>' +
+                        '<div style="font-size:11px;color:#94a3b8;">' + res.conventional.days + ' Days Duration</div>' +
                         '<div style="font-size:10px;color:#64748b;margin-top:2px;">Requires Road Infill</div>' +
                       '</div>' +
                       '<div style="background:#141f3d;padding:12px;border-radius:10px;border:1px solid rgba(56,189,248,0.3);">' +
-                        '<div style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;">SkyCrane Drone Transit</div>' +
-                        '<div style="font-size:16px;font-weight:800;color:#7dd3fc;margin:3px 0;">' + fmtSkyTIPC + '</div>' +
-                        '<div style="font-size:11px;color:#34d399;font-weight:700;">' + (res.skycrane.days || res.skycrane.daysRequired) + ' Days (' + res.impact.compressionPct + '% Faster)</div>' +
-                        '<div style="font-size:10px;color:#38bdf8;margin-top:2px;">' + (res.skycrane.totalFlights) + ' Aerial Sorties (Zero Road)</div>' +
+                        '<div style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;">SkyCrane Aerial</div>' +
+                        '<div style="font-size:16px;font-weight:800;color:#7dd3fc;margin:3px 0;">' + fmtSky + '</div>' +
+                        '<div style="font-size:11px;color:#34d399;font-weight:700;">' + res.skycrane.days + ' Days (' + res.impact.compressionPct + '% Faster)</div>' +
+                        '<div style="font-size:10px;color:#38bdf8;margin-top:2px;">' + res.skycrane.totalFlights + ' Aerial Sorties</div>' +
                       '</div>' +
                     '</div>' +
-
-                    '<!-- Compliance & Risk Status -->' +
                     '<div style="background:rgba(2,132,199,0.12);border:1px solid rgba(56,189,248,0.25);border-radius:8px;padding:8px 12px;font-size:11px;color:#bae6fd;margin-bottom:14px;display:flex;align-items:center;gap:8px;">' +
-                      '<span>&#9989;</span>' +
-                      '<span><strong>CAAP Airspace Pre-Cleared:</strong> Corridors verified against RPAS NOTAM limitations. Zero manual handling height risks.</span>' +
+                      '<span>&#9989;</span><span><strong>CAAP Airspace Pre-Cleared:</strong> Corridors verified against RPAS NOTAM limitations. Zero manual handling height risks.</span>' +
                     '</div>' +
-
-                    '<!-- Actions -->' +
                     '<div style="display:flex;flex-direction:column;gap:8px;">' +
-                      '<a href="contact.html?subject=Lock+In+Philippine+TIPC+Quote+' + refNum + '&location=' + encodeURIComponent(locVal) + '&scope=' + encodeURIComponent(panelsCount + ' Panels (' + systemKwp + ' kWp) | ' + terrainLabel + ' | ' + fmtSavings + ' savings') + '" class="btn btn-orange" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;box-sizing:border-box;padding:13px;border-radius:10px;font-weight:800;font-size:14px;text-align:center;text-decoration:none;">' +
+                      '<a href="contact.html?subject=Lock+In+Philippine+TIPC+Quote+' + refNum + '&location=' + encodeURIComponent(locVal) + '&scope=' + encodeURIComponent(panelsCount + ' Panels (' + kw + ' kWp) | ' + terrainLabel + ' | ' + fmtSavings + ' savings') + '" class="btn btn-orange" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;box-sizing:border-box;padding:13px;border-radius:10px;font-weight:800;font-size:14px;text-align:center;text-decoration:none;">' +
                         '<span>Lock In This Feasibility Quote &amp; Request Dispatch &#8594;</span>' +
                       '</a>' +
                       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">' +
-                        '<button type="button" onclick="window.print()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">' +
-                          '&#128424; Print / PDF' +
-                        '</button>' +
-                        '<button type="button" onclick="editTipcAuditInputs()" style="background:#1e293b;border:1px solid #334155;color:#38bdf8;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">' +
-                          '&#8634; Tweak Inputs' +
-                        '</button>' +
+                        '<button type="button" onclick="window.print()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">&#128424; Print / PDF</button>' +
+                        '<button type="button" onclick="editTipcAuditInputs()" style="background:#1e293b;border:1px solid #334155;color:#38bdf8;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">&#8634; Recalculate</button>' +
                       '</div>' +
                     '</div>' +
-
                   '</div>';
 
                 inputsWrap.style.display = 'none';
@@ -1277,12 +1272,9 @@
             }
 
             function editTipcAuditInputs() {
-              var inputsWrap = document.getElementById('tipc-audit-inputs-wrap');
-              var resultWrap = document.getElementById('tipc-audit-result-wrap');
-              if (inputsWrap && resultWrap) {
-                inputsWrap.style.display = 'block';
-                resultWrap.style.display = 'none';
-              }
+              var i = document.getElementById('tipc-audit-inputs-wrap');
+              var r = document.getElementById('tipc-audit-result-wrap');
+              if (i && r) { i.style.display = 'block'; r.style.display = 'none'; }
             }
           </script>
 
@@ -1901,10 +1893,10 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=29261102_v20"></script>
+<script src="js/main.js?v=30261102_v20"></script>
 
 <!-- Payload Calculator -->
-<script src="js/payload-calculator.js?v=29261102_v11"></script>
+<script src="js/payload-calculator.js?v=30261102_v11"></script>
 <!-- Calculator Tab Switcher -->
 <script>
   

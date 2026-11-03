@@ -125,97 +125,274 @@
    * Net Savings:       ₱131,000 (20.2% Net TIPC Reduction), 5 days saved (50% compression)
    */
   var terrainMultipliers = {
-      // 🇵🇭 Comprehensive Philippine Topographical Profiles & Logistics Realities
-      "cordillera-highland": {
-        name: "Cordillera Mountain Ridge (Benguet / Mt. Province 1,200m–2,500m ASL)",
-        convDays: 1.50,
-        convDirect: 1.25,
-        skyDays: 0.95,
-        skyDirect: 1.10,
-        defaultRoad: 450000,
-        challenge: "🏔️ Benguet & Mt. Province (1,200m–2,500m ASL): 30–50% rock grade • Bypasses landslide-prone Halsema corridor • ₱450k road infill eliminated"
-      },
-      "sierra-madre-jungle": {
-        name: "Sierra Madre Dense Rainforest & River Basin (Zero Road Access / DENR NIPAS)",
-        convDays: 1.70,
-        convDirect: 1.35,
-        skyDays: 1.05,
-        skyDirect: 1.15,
-        defaultRoad: 600000,
-        challenge: "🌴 Sierra Madre Basin: Zero road access • Protected DENR NIPAS canopy transit • ₱600k bulldozer road cutting eliminated"
-      },
-      "visayas-island": {
-        name: "Visayas & Palawan Off-Grid Island / Karst Ravine (Inter-Island Channel)",
-        convDays: 1.40,
-        convDirect: 1.20,
-        skyDays: 0.90,
-        skyDirect: 1.05,
-        defaultRoad: 350000,
-        challenge: "🏝️ Palawan & Visayas Karst Island: Inter-island coral reef barrier • Eliminates shallow barge stranding & banca re-handling"
-      },
-      "mindanao-volcanic": {
-        name: "Mindanao Highland Plateau & Mt. Apo BTS Slope (Bukidnon / Davao 800m–2,000m ASL)",
-        convDays: 1.30,
-        convDirect: 1.15,
-        skyDays: 0.85,
-        skyDirect: 1.00,
-        defaultRoad: 400000,
-        challenge: "🌋 Bukidnon & Mt. Apo BTS Slopes (800m–2,000m ASL): Remote telecom tower pad delivery • Bypasses impassable volcanic mud trails"
-      },
-      "central-luzon-foothills": {
-        name: "Central & Northern Luzon Rolling Foothills (Pangasinan / Tarlac / Zambales)",
-        convDays: 0.80,
-        convDirect: 0.90,
-        skyDays: 0.70,
-        skyDirect: 0.92,
-        defaultRoad: 200000,
-        challenge: "🌾 Pangasinan & Tarlac Foothills: Unpaved farm-to-market dirt tracks • Zero soil compaction on agricultural solar tables"
-      },
-      "urban-rooftop": {
-        name: "Metro Manila & CALABARZON Elevated Industrial Rooftop (Commercial Facility)",
-        convDays: 0.70,
-        convDirect: 0.95,
-        skyDays: 0.50,
-        skyDirect: 0.85,
-        defaultRoad: 150000,
-        challenge: "🏢 Metro Manila & CALABARZON Industrial Rooftops: 15m–35m vertical lift • Eliminates heavy mobile crane street closures & permits"
-      },
+    // ══════════════════════════════════════════════════════════════════════════
+    // 🇵🇭 1. HIGHLAND MOUNTAIN RIDGES (LUZON, VISAYAS, MINDANAO)
+    // ══════════════════════════════════════════════════════════════════════════
+    "luzon-highland-cordillera": {
+      name: "Cordillera Central Mountain Ridge (Benguet / Mt. Province / Baguio 1,200m–2,926m ASL)",
+      label: "🏔️ Cordillera Highland Ridge — Luzon (Benguet / Mt. Province / Ifugao)",
+      convDays: 1.55, convDirect: 1.28, skyDays: 0.95, skyDirect: 1.12,
+      defaultRoad: 480000,
+      challenge: "🏔️ Luzon: Cordillera Central (1,200m–2,926m ASL) • Benguet, Mt. Province, Ifugao, Kalinga • 35–55% grade • Landslide-prone Halsema corridor • ₱480k road infill eliminated"
+    },
+    "luzon-highland-zambales-pinatubo": {
+      name: "Zambales Mountain Range / Mt. Pinatubo Lahar Corridor (Clark–Pampanga–Zambales)",
+      label: "🌋 Zambales–Pinatubo Lahar & Volcanic Corridor — Luzon (Clark / Zambales)",
+      convDays: 1.35, convDirect: 1.20, skyDays: 0.85, skyDirect: 1.05,
+      defaultRoad: 380000,
+      challenge: "🌋 Luzon: Zambales & Pinatubo Lahar Zone • Active seasonal lahar channels sever roads • Mt. Tapulao slope (2,037m ASL) • ₱380k lahar road construction eliminated"
+    },
+    "luzon-highland-bicol-volcano": {
+      name: "Bicol Volcanic Arc — Mayon Danger Zones, Mt. Isarog & Mt. Bulusan (Albay / Sorsogon)",
+      label: "🌋 Bicol Volcanic Belt — Luzon (Mayon / Mt. Isarog / Mt. Bulusan)",
+      convDays: 1.40, convDirect: 1.22, skyDays: 0.90, skyDirect: 1.08,
+      defaultRoad: 420000,
+      challenge: "🌋 Luzon–Bicol: Mayon Permanent Danger Zone (6km radius) • Volcanic debris & steep pyroclastic slopes sever access routes • ₱420k road works bypassed"
+    },
+    "visayas-highland-panay-negros": {
+      name: "Panay Central Mountain Range / Negros Volcanic Belt (Mt. Madja-as / Mt. Kanlaon 2,465m)",
+      label: "🏔️ Panay & Negros Highland Ridge — Visayas (Antique / Capiz / Negros)",
+      convDays: 1.45, convDirect: 1.22, skyDays: 0.92, skyDirect: 1.08,
+      defaultRoad: 440000,
+      challenge: "🏔️ Visayas: Mt. Madja-as (Antique) & Mt. Kanlaon (Negros) • Covers Antique, Capiz, Iloilo uplands & Negros Occidental ridges • Trail-only access • ₱440k road infill bypassed"
+    },
+    "visayas-highland-leyte-samar": {
+      name: "Eastern Samar & Leyte Central Ridgeline — Elevated Interior Terrain (400m–1,100m ASL)",
+      label: "🏔️ Leyte & Samar Highland Interior — Eastern Visayas (400m–1,100m ASL)",
+      convDays: 1.35, convDirect: 1.18, skyDays: 0.88, skyDirect: 1.05,
+      defaultRoad: 350000,
+      challenge: "🏔️ Eastern Visayas: Leyte central ridge & Samar forested highlands • Post-typhoon road washouts, unstable clay embankments • ₱350k road reinforcement eliminated"
+    },
+    "mindanao-highland-bukidnon-kitanglad": {
+      name: "Kitanglad–Kalatungan Mountain Range (Bukidnon / Lanao del Sur 1,400m–2,938m ASL)",
+      label: "🏔️ Bukidnon–Kitanglad Highland Plateau — Mindanao (1,400m–2,938m ASL)",
+      convDays: 1.45, convDirect: 1.22, skyDays: 0.90, skyDirect: 1.05,
+      defaultRoad: 430000,
+      challenge: "🏔️ Mindanao: Mt. Dulang-dulang & Mt. Kitanglad Protected Landscape (2,938m ASL) • DENR Protected Area, zero heavy machinery access • ₱430k mountain track bypassed"
+    },
+    "mindanao-highland-davao-apo": {
+      name: "Mount Apo Massif — Davao del Sur / North Cotabato BTS Tower & Solar Slopes (2,954m ASL)",
+      label: "🌋 Mt. Apo Massif — Mindanao (Davao del Sur / Cotabato — 2,954m PH Highest)",
+      convDays: 1.55, convDirect: 1.30, skyDays: 0.95, skyDirect: 1.12,
+      defaultRoad: 500000,
+      challenge: "🌋 Mindanao: Mt. Apo (2,954m — PH Highest Peak) • Davao del Sur & Cotabato telecom BTS summits • Solfataric volcanic terrain & NIPAS protected slopes • ₱500k road bypass"
+    },
+    "mindanao-highland-hamiguitan-lanao": {
+      name: "Mt. Hamiguitan UNESCO Range / Lanao del Norte–Sur Elevated Terrain (1,100m–1,620m ASL)",
+      label: "🏔️ Lanao–Mt. Hamiguitan Highland — Mindanao (Davao Oriental / Lanao)",
+      convDays: 1.30, convDirect: 1.15, skyDays: 0.85, skyDirect: 1.02,
+      defaultRoad: 370000,
+      challenge: "🏔️ Mindanao: Mt. Hamiguitan UNESCO World Heritage Range (Davao Oriental) & Lanao ridge • Protected pygmy forest canopy prohibits bulldozing • ₱370k road cost bypassed"
+    },
 
-      // Backwards Compatibility Aliases
-      "moderate": {
-        name: "Central & Northern Luzon Rolling Foothills",
-        convDays: 0.80,
-        convDirect: 0.90,
-        skyDays: 0.70,
-        skyDirect: 0.92,
-        defaultRoad: 200000,
-        challenge: "🌾 Pangasinan & Tarlac Foothills: Unpaved farm-to-market dirt tracks"
-      },
-      "steep": {
-        name: "Cordillera Mountain Ridge (Benguet / Mt. Province)",
-        convDays: 1.20,
-        convDirect: 1.10,
-        skyDays: 0.95,
-        skyDirect: 1.00,
-        defaultRoad: 450000,
-        challenge: "🏔️ Benguet & Mt. Province (1,200m–2,500m ASL): 30–50% rock grade"
-      },
-      "extreme": {
-        name: "Sierra Madre Dense Rainforest & River Basin",
-        convDays: 1.65,
-        convDirect: 1.30,
-        skyDays: 1.15,
-        skyDirect: 1.15,
-        defaultRoad: 600000,
-        challenge: "🌴 Sierra Madre Basin: Zero road access • Protected DENR NIPAS canopy transit"
-      }
-    };
+    // ══════════════════════════════════════════════════════════════════════════
+    // 🌴 2. DENSE JUNGLE & PROTECTED FOREST CORRIDORS
+    // ══════════════════════════════════════════════════════════════════════════
+    "luzon-jungle-sierra-madre": {
+      name: "Sierra Madre Mountain Range — Dense Rainforest Corridor (Cagayan / Aurora / Quezon)",
+      label: "🌴 Sierra Madre Rainforest — Luzon (Cagayan / Aurora / Quezon — Zero Road / DENR)",
+      convDays: 1.75, convDirect: 1.38, skyDays: 1.08, skyDirect: 1.18,
+      defaultRoad: 620000,
+      challenge: "🌴 Luzon: Sierra Madre (longest range in PH) • Cagayan to Quezon • 100% DENR NIPAS • Zero bulldozer clearance allowed • Typhoon river flash-floods • ₱620k road cutting bypassed"
+    },
+    "mindanao-jungle-pantaron-agusan": {
+      name: "Pantaron Mountain Range / Agusan Marsh Wildlife Sanctuary — Central Mindanao Forest",
+      label: "🌴 Pantaron–Agusan Marsh Jungle — Mindanao (Undisturbed Canopy / Swamp Basin)",
+      convDays: 1.80, convDirect: 1.40, skyDays: 1.10, skyDirect: 1.20,
+      defaultRoad: 650000,
+      challenge: "🌴 Mindanao: Pantaron Range + Agusan Marsh (PH deepest swamp forest) • Floating peat bogs block trucks • 100% aerial vertical winch delivery • ₱650k civil works eliminated"
+    },
+    "mindanao-jungle-liguasan-cotabato": {
+      name: "Liguasan Marsh / Cotabato River Basin — Maguindanao / Sultan Kudarat Flood Wetland",
+      label: "🌾 Liguasan Marsh Flood Basin — Mindanao (Maguindanao / Cotabato — Seasonal Wetland)",
+      convDays: 1.55, convDirect: 1.28, skyDays: 1.00, skyDirect: 1.10,
+      defaultRoad: 520000,
+      challenge: "🌾 Mindanao: Liguasan Marsh (2nd largest freshwater wetland in PH) • 4–6 months seasonal flooding blocks ground freight • Floating solar array logistics • ₱520k road bypass"
+    },
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // 🌾 3. AGRICULTURAL FLATLANDS & FARMLAND PLAINS
+    // ══════════════════════════════════════════════════════════════════════════
+    "luzon-agri-central-luzon": {
+      name: "Central Luzon Agricultural Plain — Pampanga / Nueva Ecija / Tarlac / Bulacan",
+      label: "🌾 Central Luzon Grain Belt Flatlands (Pampanga / Nueva Ecija / Tarlac / Bulacan)",
+      convDays: 0.75, convDirect: 0.88, skyDays: 0.65, skyDirect: 0.90,
+      defaultRoad: 180000,
+      challenge: "🌾 Luzon: Central Luzon Grain Belt • Unpaved farm-to-market clay tracks • Zero soil compaction on irrigation embankments & rice table arrays • ₱180k track infill saved"
+    },
+    "luzon-agri-cagayan-valley": {
+      name: "Cagayan Valley River Basin Lowland Plains — Cagayan / Isabela / Quirino / Nueva Vizcaya",
+      label: "🌾 Cagayan Valley River Basin Plains (Cagayan / Isabela / Quirino / Nueva Vizcaya)",
+      convDays: 0.78, convDirect: 0.87, skyDays: 0.68, skyDirect: 0.90,
+      defaultRoad: 175000,
+      challenge: "🌾 Luzon: Cagayan Valley (widest river basin in PH) • Isabela & Cagayan agri-solar corridor • Seasonal Cagayan River overflow submerges farm roads • ₱175k road grading saved"
+    },
+    "luzon-agri-ilocos-coast": {
+      name: "Ilocos Coastal Plain & Pangasinan Lowlands — Region I Agri & Wind/Solar Belt",
+      label: "🌾 Ilocos Coastal Plain & Pangasinan Lowlands — Northern Luzon (Region I)",
+      convDays: 0.72, convDirect: 0.88, skyDays: 0.62, skyDirect: 0.90,
+      defaultRoad: 190000,
+      challenge: "🌾 Luzon: Ilocos Region & Pangasinan coastal plains • Narrow farm bridges unable to support heavy mobile crane trucks • Direct field staging • ₱190k road reinforcement saved"
+    },
+    "visayas-agri-iloilo-capiz": {
+      name: "Iloilo & Capiz Lowland Agricultural Plains — Panay Island Agri-Solar Belt",
+      label: "🌾 Iloilo & Capiz Agricultural Plains — Visayas (Panay Island Agri-Solar Belt)",
+      convDays: 0.75, convDirect: 0.87, skyDays: 0.65, skyDirect: 0.90,
+      defaultRoad: 170000,
+      challenge: "🌾 Visayas–Panay: Iloilo & Capiz rice/sugarcane plains • Soft alluvial soil collapses under heavy wheeled trucks • Zero crop damage during harvest season • ₱170k saved"
+    },
+    "mindanao-agri-davao-cotabato": {
+      name: "Davao del Norte & South Cotabato Agricultural Lowlands — Fruit Plantation Corridor",
+      label: "🌾 Davao–Cotabato Agricultural Basin — Mindanao (Banana / Pineapple / Corn Flatlands)",
+      convDays: 0.78, convDirect: 0.88, skyDays: 0.68, skyDirect: 0.90,
+      defaultRoad: 185000,
+      challenge: "🌾 Mindanao: Davao del Norte–South Cotabato agri-basin • Plantation access lane congestion • Pre-harvest solar array installation with zero road blockages • ₱185k saved"
+    },
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // 🏝️ 4. OFF-GRID ISLANDS & INTER-ISLAND CHANNELS
+    // ══════════════════════════════════════════════════════════════════════════
+    "palawan-mimaropa-island": {
+      name: "Palawan & MIMAROPA Off-Grid Island — El Nido / Coron / Romblon / Mindoro Coral Coast",
+      label: "🏝️ Palawan / MIMAROPA Off-Grid Island (El Nido / Coron / Romblon / Mindoro Coast)",
+      convDays: 1.45, convDirect: 1.22, skyDays: 0.90, skyDirect: 1.05,
+      defaultRoad: 360000,
+      challenge: "🏝️ Palawan–MIMAROPA: Coral reef barriers prevent LCT barge landing • Karst lagoons <1m depth • Bypasses shallow barge grounding & banca re-handling • ₱360k saved"
+    },
+    "visayas-island-leyte-samar-siargao": {
+      name: "Eastern Visayas & CARAGA Off-Grid Island Clusters — Leyte Gulf / Samar / Siargao / Dinagat",
+      label: "🏝️ Eastern Visayas & Siargao Island Chain (Leyte Gulf / Samar / Dinagat / CARAGA)",
+      convDays: 1.38, convDirect: 1.18, skyDays: 0.88, skyDirect: 1.05,
+      defaultRoad: 330000,
+      challenge: "🏝️ Eastern Visayas–CARAGA: Leyte Gulf islands, Samar islets & Siargao off-grid microgrids • Remote island barangays without cargo piers • ₱330k marine charter cost eliminated"
+    },
+    "barmm-basulta-island": {
+      name: "BARMM — Sulu Archipelago & Tawi-Tawi Island Chains: Sitangkai / Sibutu / Basilan",
+      label: "🏝️ BARMM / Sulu–Tawi-Tawi Off-Grid Island (BASULTA Archipelago — Southernmost PH)",
+      convDays: 1.65, convDirect: 1.35, skyDays: 1.05, skyDirect: 1.15,
+      defaultRoad: 580000,
+      challenge: "🏝️ BARMM–BASULTA: Tawi-Tawi & Sulu archipelago (Sitangkai/Sibutu) • NPC-SPUG diesel replacement solar microgrids • Extreme inter-island freight distance • ₱580k freight saved"
+    },
+    "cebu-bohol-negros-island": {
+      name: "Central Visayas Off-Grid Island & Highland Resort Access — Cebu Outlying / Bohol / Negros",
+      label: "🏝️ Cebu / Bohol / Negros Oriental Off-Grid Island & Highland Resort (Central Visayas)",
+      convDays: 1.35, convDirect: 1.18, skyDays: 0.85, skyDirect: 1.03,
+      defaultRoad: 320000,
+      challenge: "🏝️ Central Visayas: Cebu outlying islands, Bohol remote upland barangays & Negros Oriental coastal solar • Shallow-draft passenger boat only routes • ₱320k barge costs bypassed"
+    },
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // 🏢 5. URBAN ELEVATED ROOFTOP & INDUSTRIAL SPECIAL ECOZONES
+    // ══════════════════════════════════════════════════════════════════════════
+    "urban-metro-manila-ncr": {
+      name: "Metro Manila NCR — Industrial, Commercial & High-Rise Rooftop Solar (BGC / Makati / Caloocan)",
+      label: "🏢 Metro Manila / NCR Industrial Rooftop (BGC / Makati / Pasig / Caloocan / MMDA Zone)",
+      convDays: 0.65, convDirect: 0.95, skyDays: 0.45, skyDirect: 0.82,
+      defaultRoad: 140000,
+      challenge: "🏢 NCR: Metro Manila 15m–45m rooftop delivery • MMDA-mandated street closure permits (₱80k+) • Eliminates overnight crane lane closures & overhead line hazards • ₱140k saved"
+    },
+    "urban-cebu-davao-cdo": {
+      name: "Metro Cebu (Mandaue/Lapu-Lapu) / Metro Davao / Cagayan de Oro — Commercial Rooftops",
+      label: "🏢 Metro Cebu / Metro Davao / CDO Commercial Rooftop (MEPZ / Davao Industrial / CDO)",
+      convDays: 0.70, convDirect: 0.94, skyDays: 0.50, skyDirect: 0.85,
+      defaultRoad: 150000,
+      challenge: "🏢 Visayas–Mindanao Urban: Cebu MEPZ II, Davao Industrial & CDO Uptown rooftops • City street heavy crane restrictions • Direct rooftop staging via flight sortie • ₱150k saved"
+    },
+    "urban-calabarzon-industrial": {
+      name: "CALABARZON Special Economic Zone Rooftops — Laguna Technopark / First PHIP / LIMA / Cavite",
+      label: "🏢 CALABARZON Industrial Estate Rooftop (Laguna Technopark / First PHIP / LIMA / Cavite)",
+      convDays: 0.68, convDirect: 0.94, skyDays: 0.48, skyDirect: 0.83,
+      defaultRoad: 145000,
+      challenge: "🏢 CALABARZON: Laguna Technopark / LIMA / Cavite Ecozone manufacturing roofs • Multi-tenant park traffic coordination • 15m–40m vertical staging • ₱145k crane costs eliminated"
+    },
+    "urban-clark-subic-ecozones": {
+      name: "Clark Freeport Zone / Subic Bay Freeport — Warehouse Roof, Hangar & Elevated Solar Platform",
+      label: "🏢 Clark Freeport Zone / Subic Bay Freeport — Warehouse Roof, Hangar & Platform (Luzon)",
+      convDays: 0.70, convDirect: 0.93, skyDays: 0.50, skyDirect: 0.84,
+      defaultRoad: 150000,
+      challenge: "🏢 Clark–Subic: CEZA & SBMA economic zone platforms • Wide-span aviation hangars & warehouse roofs • Direct aerial drop with zero forklift mast height limits • ₱150k saved"
+    },
+    "urban-iloilo-bacolod-city": {
+      name: "Iloilo City CBD & Bacolod City Industrial Park — Commercial & Mixed-Use Building Rooftops",
+      label: "🏢 Iloilo City / Bacolod City Rooftop & Mixed-Use Building (Western Visayas)",
+      convDays: 0.72, convDirect: 0.95, skyDays: 0.52, skyDirect: 0.86,
+      defaultRoad: 148000,
+      challenge: "🏢 Western Visayas Urban: Iloilo CBD & Bacolod City commercial rooftop solar • Hospital, mall & school installations • Zero city traffic disruption & zero crane permits • ₱148k saved"
+    },
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKWARD COMPATIBILITY ALIASES
+    // ══════════════════════════════════════════════════════════════════════════
+    "moderate": {
+      name: "Central Luzon Agricultural Plain (Tarlac / Pampanga)",
+      label: "",
+      convDays: 0.75, convDirect: 0.88, skyDays: 0.65, skyDirect: 0.90,
+      defaultRoad: 180000,
+      challenge: "🌾 Central Luzon agricultural corridor"
+    },
+    "steep": {
+      name: "Cordillera Mountain Ridge (Benguet / Mt. Province)",
+      label: "",
+      convDays: 1.20, convDirect: 1.10, skyDays: 0.95, skyDirect: 1.00,
+      defaultRoad: 450000,
+      challenge: "🏔️ Cordillera highland ridge (Benguet / Mt. Province)"
+    },
+    "extreme": {
+      name: "Sierra Madre Rainforest (Zero Road Access / DENR)",
+      label: "",
+      convDays: 1.65, convDirect: 1.30, skyDays: 1.15, skyDirect: 1.15,
+      defaultRoad: 600000,
+      challenge: "🌴 Sierra Madre rainforest basin (Zero road access)"
+    },
+    "cordillera-highland": {
+      name: "Cordillera Central Mountain Ridge",
+      label: "",
+      convDays: 1.55, convDirect: 1.28, skyDays: 0.95, skyDirect: 1.12,
+      defaultRoad: 480000,
+      challenge: "🏔️ Luzon: Cordillera Central (1,200m–2,926m ASL)"
+    },
+    "sierra-madre-jungle": {
+      name: "Sierra Madre Mountain Range",
+      label: "",
+      convDays: 1.75, convDirect: 1.38, skyDays: 1.08, skyDirect: 1.18,
+      defaultRoad: 620000,
+      challenge: "🌴 Luzon: Sierra Madre (Zero road access / DENR NIPAS)"
+    },
+    "visayas-island": {
+      name: "Palawan & MIMAROPA Off-Grid Island",
+      label: "",
+      convDays: 1.45, convDirect: 1.22, skyDays: 0.90, skyDirect: 1.05,
+      defaultRoad: 360000,
+      challenge: "🏝️ Palawan–MIMAROPA: Coral reef barrier"
+    },
+    "mindanao-volcanic": {
+      name: "Mindanao Highland / Mt. Apo BTS Slope",
+      label: "",
+      convDays: 1.45, convDirect: 1.22, skyDays: 0.90, skyDirect: 1.05,
+      defaultRoad: 430000,
+      challenge: "🌋 Mindanao: Highland Plateau / Mt. Apo BTS Slopes"
+    },
+    "central-luzon-foothills": {
+      name: "Central & Northern Luzon Rolling Foothills",
+      label: "",
+      convDays: 0.75, convDirect: 0.88, skyDays: 0.65, skyDirect: 0.90,
+      defaultRoad: 180000,
+      challenge: "🌾 Pangasinan & Central Luzon agricultural plain"
+    },
+    "urban-rooftop": {
+      name: "Metro Manila & CALABARZON Industrial Rooftop",
+      label: "",
+      convDays: 0.65, convDirect: 0.95, skyDays: 0.45, skyDirect: 0.82,
+      defaultRoad: 140000,
+      challenge: "🏢 Metro Manila & CALABARZON industrial rooftops"
+    }
+  };
 
   function calculateTIPC(params) {
     var p = params || {};
     var panels       = Math.max(10, parseInt(p.panelsCount, 10) || 240);
     var panelWeight  = Math.max(15, parseFloat(p.panelWeightKg) || 30);
-    var terrain      = p.terrainType || "steep"; // "moderate", "steep", "extreme"
+    var terrain      = p.terrainType || "luzon-highland-cordillera"; // 25 Philippine terrain profiles
     var roadCost     = (p.roadCost !== undefined && p.roadCost !== null) ? Math.max(0, parseFloat(p.roadCost)) : 300000;
     var prelimDaily  = (p.prelimDaily !== undefined && p.prelimDaily !== null) ? Math.max(0, parseFloat(p.prelimDaily)) : 20000;
 
