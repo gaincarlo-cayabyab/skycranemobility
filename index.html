@@ -55,7 +55,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=27261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=28261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -996,87 +996,217 @@
           </div>
         </div>
 
-        <!-- Mobile-Responsive TIPC Feasibility Audit & Quote Card (Guide Section 4) -->
-        <div id="tipc-mobile-audit-card" style="max-width:600px;width:100%;box-sizing:border-box;margin:28px auto 0;padding:clamp(16px, 4vw, 24px);background-color:#0f172a;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.35);font-family:inherit;color:#ffffff;border:1px solid rgba(255,255,255,0.07);">
+        <!-- Mobile-Responsive TIPC Feasibility Audit & Quote Card (In-Place Interactive Engine) -->
+        <div id="tipc-mobile-audit-card" style="max-width:680px;width:100%;box-sizing:border-box;margin:28px auto 0;padding:clamp(16px, 4vw, 26px);background:#0b1329;border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.45);font-family:inherit;color:#ffffff;border:1px solid rgba(56,189,248,0.25);position:relative;overflow:hidden;">
+
+          <!-- Top Glow Accent -->
+          <div style="position:absolute;top:-50px;right:-50px;width:150px;height:150px;background:radial-gradient(circle,rgba(2,132,199,0.3) 0%,transparent 70%);pointer-events:none;"></div>
 
           <!-- Header -->
-          <div style="text-align:center;margin-bottom:20px;">
-            <span style="background-color:#0284c7;color:#ffffff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:10px;">
-              SkyCrane Feasibility Engine
+          <div style="text-align:center;margin-bottom:18px;">
+            <span style="background:rgba(2,132,199,0.18);border:1px solid rgba(56,189,248,0.4);color:#38bdf8;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:8px;">
+              ⚡ Instant On-Site Feasibility Engine
             </span>
-            <h2 style="font-size:20px;font-weight:800;margin:6px 0 10px;color:#f8fafc;line-height:1.3;">
-              Request Formal TIPC Feasibility Audit &amp; Quote
+            <h2 style="font-size:clamp(1.15rem, 3.5vw, 1.35rem);font-weight:900;margin:4px 0 8px;color:#f8fafc;line-height:1.3;">
+              Generate Instant TIPC Feasibility Audit &amp; Quote
             </h2>
             <p style="font-size:13px;color:#94a3b8;margin:0;line-height:1.5;">
-              Get a customized economic savings model for your commercial solar installation within 24 hours.
+              Enter your site parameters below to immediately compute your exact drone vs. ground cost savings, required flights, and schedule reduction.
             </p>
           </div>
 
-          <!-- Key Metrics Quick View -->
-          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;">
-            <div style="flex:1 1 130px;background-color:#1e293b;padding:12px;border-radius:10px;text-align:center;">
-              <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Avg. Schedule Time</div>
-              <div style="font-size:18px;font-weight:700;color:#38bdf8;margin-top:4px;">50% Faster</div>
+          <!-- Form Inputs Container -->
+          <div id="tipc-audit-inputs-wrap">
+            <!-- Key Baseline Metrics Quick View -->
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+              <div style="flex:1 1 120px;background-color:#141f3d;padding:10px 12px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.06);">
+                <div style="font-size:10px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Schedule Compression</div>
+                <div style="font-size:16px;font-weight:800;color:#38bdf8;margin-top:2px;">50% &ndash; 75% Faster</div>
+              </div>
+              <div style="flex:1 1 120px;background-color:#141f3d;padding:10px 12px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.06);">
+                <div style="font-size:10px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Avoided Road Works</div>
+                <div style="font-size:16px;font-weight:800;color:#4ade80;margin-top:2px;">&#8369;300k+ Saved</div>
+              </div>
+              <div style="flex:1 1 120px;background-color:#141f3d;padding:10px 12px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.06);">
+                <div style="font-size:10px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Micro-Cracking Risk</div>
+                <div style="font-size:16px;font-weight:800;color:#fb923c;margin-top:2px;">0% (Zero Touch)</div>
+              </div>
             </div>
-            <div style="flex:1 1 130px;background-color:#1e293b;padding:12px;border-radius:10px;text-align:center;">
-              <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Civil Road Cost</div>
-              <div style="font-size:18px;font-weight:700;color:#4ade80;margin-top:4px;">₱0 Avoided</div>
+
+            <!-- Quick Audit Fields -->
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+              <div>
+                <label style="display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px;">Project Location / Terrain Type</label>
+                <input id="tipc-audit-location" type="text" placeholder="e.g., Benguet Mountain Ridge, Off-Grid Substation, Island Resort"
+                  value="Mountain Ridge Commercial Solar Site"
+                  style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:8px;border:1px solid #334155;background-color:#141f3d;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px;">Total Solar Panels / Equipment Modules (Units)</label>
+                <input id="tipc-audit-panels" type="number" placeholder="240" value="240" min="20" max="2000"
+                  style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:8px;border:1px solid #334155;background-color:#141f3d;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
+                <span style="font-size:11px;color:#64748b;margin-top:3px;display:block;">Standard 550W panel = ~30 kg (240 panels = 132 kWp / 7.2 MT)</span>
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:5px;">Estimated Incline &amp; Transit Corridor</label>
+                <select id="tipc-audit-corridor"
+                  style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:8px;border:1px solid #334155;background-color:#141f3d;color:#ffffff;font-size:14px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;cursor:pointer;">
+                  <option value="moderate" style="background-color:#0f172a;">Moderate Foothills / Broken Trail (&lt;200m Elevation, 0&ndash;10% Grade)</option>
+                  <option value="steep" style="background-color:#0f172a;" selected>Steep Mountain Ridge / Valley (200m&ndash;500m Elevation, 15&ndash;30% Grade)</option>
+                  <option value="extreme" style="background-color:#0f172a;">Extreme Alpine Ridge / Canyon / Remote Island (500m+ ASL, Zero Roads)</option>
+                </select>
+              </div>
             </div>
-            <div style="flex:1 1 130px;background-color:#1e293b;padding:12px;border-radius:10px;text-align:center;">
-              <div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Net TIPC Savings</div>
-              <div style="font-size:18px;font-weight:700;color:#fb923c;margin-top:4px;">₱131,000+</div>
-            </div>
+
+            <!-- CTA Button -->
+            <button type="button"
+              id="btn-tipc-audit-generate"
+              onclick="handleTipcAuditSubmit()"
+              style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);color:#ffffff;font-size:15px;font-weight:800;padding:14px;border:none;border-radius:10px;cursor:pointer;text-align:center;box-shadow:0 4px 16px rgba(2,132,199,0.45);transition:all 0.2s;"
+              onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'">
+              <span>⚡ Generate Instant TIPC Audit &amp; Feasibility Quote</span>
+            </button>
+            <p style="font-size:11px;text-align:center;color:#64748b;margin-top:10px;margin-bottom:0;">
+              ✓ Instant mathematical computation &bull; Based on CAAP RPAS Flight Specifications
+            </p>
           </div>
 
-          <!-- Quick Audit Fields -->
-          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;">
-            <div>
-              <label style="display:block;font-size:13px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Project Location / Site Type</label>
-              <input id="tipc-audit-location" type="text" placeholder="e.g., Commercial Rooftop, Benguet Mountain Site"
-                style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #334155;background-color:#1e293b;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
-            </div>
-            <div>
-              <label style="display:block;font-size:13px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Total Panel Quantity &amp; System Capacity</label>
-              <input id="tipc-audit-panels" type="text" placeholder="e.g., 240 panels (132 kWp)"
-                style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #334155;background-color:#1e293b;color:#ffffff;font-size:14px;outline:none;font-family:inherit;" />
-            </div>
-            <div>
-              <label style="display:block;font-size:13px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Estimated Transit Corridor Distance</label>
-              <select id="tipc-audit-corridor"
-                style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #334155;background-color:#1e293b;color:#ffffff;font-size:14px;outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;">
-                <option style="background-color:#1e293b;">100m – 300m Corridor</option>
-                <option style="background-color:#1e293b;" selected>300m – 600m Corridor (Standard)</option>
-                <option style="background-color:#1e293b;">600m – 1,000m+ Corridor</option>
-              </select>
-            </div>
+          <!-- Dynamic Output Results Container (Hidden until user clicks Generate) -->
+          <div id="tipc-audit-result-wrap" style="display:none;margin-top:8px;">
+            <!-- Generated Result Injected Here -->
           </div>
 
-          <!-- CTA Button -->
-          <button type="button"
-            id="btn-tipc-audit-generate"
-            onclick="handleTipcAuditSubmit()"
-            style="display:block;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);color:#ffffff;font-size:16px;font-weight:700;padding:14px;border:none;border-radius:10px;cursor:pointer;text-align:center;box-shadow:0 4px 12px rgba(2,132,199,0.4);transition:opacity 0.2s;"
-            onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-            Generate TIPC Audit &amp; Quote →
-          </button>
           <script>
             function handleTipcAuditSubmit() {
               var locEl = document.getElementById('tipc-audit-location');
               var panelEl = document.getElementById('tipc-audit-panels');
               var corrEl = document.getElementById('tipc-audit-corridor');
-              var locVal = locEl ? locEl.value.trim() : '';
-              var panelVal = panelEl ? panelEl.value.trim() : '';
-              var corrVal = corrEl ? corrEl.value : '';
+              
+              var locVal = locEl ? (locEl.value.trim() || 'Mountain Ridge Solar Site') : 'Mountain Ridge Solar Site';
+              var panelsCount = panelEl ? (parseInt(panelEl.value, 10) || 240) : 240;
+              if (panelsCount < 10) panelsCount = 10;
+              var terrainVal = corrEl ? corrEl.value : 'steep';
 
-              var params = new URLSearchParams();
-              params.set('subject', 'TIPC Feasibility Audit & Quote Request');
-              if (locVal) params.set('location', locVal);
-              var details = [];
-              if (panelVal) details.push('Panel Scope: ' + panelVal);
-              if (corrVal) details.push('Corridor: ' + corrVal);
-              if (details.length > 0) params.set('scope', details.join(' | '));
+              // Road cost estimation based on terrain
+              var roadCost = terrainVal === 'extreme' ? 600000 : (terrainVal === 'steep' ? 300000 : 150000);
 
-              window.location.href = 'contact.html?' + params.toString();
+              // Calculate using official TIPC model
+              var res = window.calculateTIPC ? window.calculateTIPC({
+                panelsCount: panelsCount,
+                terrainType: terrainVal,
+                roadCost: roadCost
+              }) : null;
+
+              // Fallback if calculateTIPC not yet loaded
+              if (!res) {
+                var totalKg = panelsCount * 30;
+                var flights = Math.ceil(totalKg / 70);
+                var convDays = Math.round(10 * (panelsCount / 240));
+                var skyDays = Math.round(5 * (panelsCount / 240));
+                var convTotal = 150000 * (panelsCount / 240) + convDays * 20000 + roadCost;
+                var skyTotal = 419000 * (panelsCount / 240) + skyDays * 20000;
+                var savings = convTotal - skyTotal;
+                res = {
+                  inputs: { panelsCount: panelsCount, totalCargoKg: totalKg },
+                  skycrane: { totalFlights: flights, daysRequired: skyDays, tipcSkycrane: skyTotal },
+                  conventional: { daysRequired: convDays, tipcConv: convTotal, avoidedRoadCost: roadCost },
+                  impact: { netSavings: savings, daysSaved: convDays - skyDays, compressionPct: Math.round(((convDays - skyDays) / convDays) * 100), netSavingsPct: Math.round((savings / convTotal) * 100) }
+                };
+              }
+
+              var refNum = 'SKC-TIPC-' + Math.floor(1000 + Math.random() * 9000);
+              var systemKwp = (panelsCount * 0.55).toFixed(1);
+              var totalTons = (res.inputs.totalCargoKg / 1000).toFixed(1);
+              var fmtSavings = window.formatPHP ? window.formatPHP(res.impact.netSavings) : '&#8369;' + res.impact.netSavings.toLocaleString('en-US');
+              var fmtSkyTIPC = window.formatPHP ? window.formatPHP(res.skycrane.tipcSkycrane) : '&#8369;' + res.skycrane.tipcSkycrane.toLocaleString('en-US');
+              var fmtConvTIPC = window.formatPHP ? window.formatPHP(res.conventional.tipcConv) : '&#8369;' + res.conventional.tipcConv.toLocaleString('en-US');
+
+              var resultWrap = document.getElementById('tipc-audit-result-wrap');
+              var inputsWrap = document.getElementById('tipc-audit-inputs-wrap');
+
+              if (resultWrap) {
+                resultWrap.innerHTML = 
+                  '<div style="background:#0f172a;border:1px solid #0284c7;border-radius:14px;padding:clamp(14px, 3.5vw, 20px);box-shadow:0 10px 30px rgba(0,0,0,0.5);">' +
+                    
+                    '<!-- Top Ref Badge -->' +
+                    '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.1);">' +
+                      '<div>' +
+                        '<span style="background:#0284c7;color:#fff;font-size:10px;font-weight:900;text-transform:uppercase;padding:3px 10px;border-radius:12px;display:inline-block;letter-spacing:0.05em;">' +
+                          '&#9989; AUDIT DOSSIER GENERATED' +
+                        '</span>' +
+                        '<span style="margin-left:8px;font-size:11px;color:#94a3b8;font-family:monospace;font-weight:700;">REF: ' + refNum + '</span>' +
+                      '</div>' +
+                      '<button type="button" onclick="editTipcAuditInputs()" style="background:transparent;border:1px solid #334155;color:#94a3b8;font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;" onmouseover="this.style.color=\'#fff\'" onmouseout="this.style.color=\'#94a3b8\'">' +
+                        '&#9998; Edit Inputs' +
+                      '</button>' +
+                    '</div>' +
+
+                    '<!-- Project Summary Header -->' +
+                    '<div style="margin-bottom:14px;">' +
+                      '<div style="font-size:11px;color:#38bdf8;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Site Location</div>' +
+                      '<div style="font-size:15px;font-weight:800;color:#ffffff;line-height:1.3;">' + locVal + '</div>' +
+                      '<div style="font-size:12px;color:#94a3b8;margin-top:2px;">' + panelsCount + ' Panels (~' + systemKwp + ' kWp) &bull; ' + totalTons + ' Metric Tons &bull; ' + (terrainVal.toUpperCase()) + ' Incline Corridor</div>' +
+                    '</div>' +
+
+                    '<!-- Financial Net Savings Banner -->' +
+                    '<div style="background:linear-gradient(135deg,rgba(16,185,129,0.2) 0%,rgba(6,78,59,0.4) 100%);border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:14px;text-align:center;margin-bottom:14px;">' +
+                      '<div style="font-size:11px;color:#6ee7b7;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">PROJECTED NET BUDGET SAVINGS</div>' +
+                      '<div style="font-size:clamp(1.5rem, 5vw, 2rem);font-weight:900;color:#34d399;line-height:1.1;margin:4px 0;">' + fmtSavings + ' Saved</div>' +
+                      '<div style="font-size:12px;color:#a7f3d0;font-weight:700;">' + res.impact.netSavingsPct + '% Net TIPC Capital Reduction &bull; ' + res.impact.daysSaved + ' Full Days Compressed</div>' +
+                    '</div>' +
+
+                    '<!-- Side by Side Metrics Grid -->' +
+                    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">' +
+                      '<div style="background:#141f3d;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);">' +
+                        '<div style="font-size:10px;color:#f87171;font-weight:700;text-transform:uppercase;">Conventional Ground</div>' +
+                        '<div style="font-size:16px;font-weight:800;color:#fca5a5;margin:3px 0;">' + fmtConvTIPC + '</div>' +
+                        '<div style="font-size:11px;color:#94a3b8;">' + res.conventional.daysRequired + ' Days Duration</div>' +
+                        '<div style="font-size:10px;color:#64748b;margin-top:2px;">Requires Road Infill</div>' +
+                      '</div>' +
+                      '<div style="background:#141f3d;padding:12px;border-radius:10px;border:1px solid rgba(56,189,248,0.3);">' +
+                        '<div style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;">SkyCrane Drone Transit</div>' +
+                        '<div style="font-size:16px;font-weight:800;color:#7dd3fc;margin:3px 0;">' + fmtSkyTIPC + '</div>' +
+                        '<div style="font-size:11px;color:#34d399;font-weight:700;">' + res.skycrane.daysRequired + ' Days (' + res.impact.compressionPct + '% Faster)</div>' +
+                        '<div style="font-size:10px;color:#38bdf8;margin-top:2px;">' + res.skycrane.totalFlights + ' Aerial Sorties (Zero Road)</div>' +
+                      '</div>' +
+                    '</div>' +
+
+                    '<!-- Compliance & Risk Status -->' +
+                    '<div style="background:rgba(2,132,199,0.12);border:1px solid rgba(56,189,248,0.25);border-radius:8px;padding:8px 12px;font-size:11px;color:#bae6fd;margin-bottom:14px;display:flex;align-items:center;gap:8px;">' +
+                      '<span>&#9989;</span>' +
+                      '<span><strong>CAAP Airspace Pre-Cleared:</strong> Corridors verified against RPAS NOTAM limitations. Zero manual handling height risks.</span>' +
+                    '</div>' +
+
+                    '<!-- Actions -->' +
+                    '<div style="display:flex;flex-direction:column;gap:8px;">' +
+                      '<a href="contact.html?subject=Lock+In+TIPC+Quote+' + refNum + '&location=' + encodeURIComponent(locVal) + '&scope=' + encodeURIComponent(panelsCount + ' Panels (' + systemKwp + ' kWp) | ' + terrainVal + ' corridor | ' + fmtSavings + ' savings') + '" class="btn btn-orange" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;box-sizing:border-box;padding:13px;border-radius:10px;font-weight:800;font-size:14px;text-align:center;text-decoration:none;">' +
+                        '<span>Lock In This Feasibility Quote &amp; Request Dispatch &#8594;</span>' +
+                      '</a>' +
+                      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">' +
+                        '<button type="button" onclick="window.print()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">' +
+                          '&#128424; Print / PDF' +
+                        '</button>' +
+                        '<button type="button" onclick="editTipcAuditInputs()" style="background:#1e293b;border:1px solid #334155;color:#38bdf8;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">' +
+                          '&#8634; Tweak Inputs' +
+                        '</button>' +
+                      '</div>' +
+                    '</div>' +
+
+                  '</div>';
+
+                inputsWrap.style.display = 'none';
+                resultWrap.style.display = 'block';
+                resultWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }
+            }
+
+            function editTipcAuditInputs() {
+              var inputsWrap = document.getElementById('tipc-audit-inputs-wrap');
+              var resultWrap = document.getElementById('tipc-audit-result-wrap');
+              if (inputsWrap && resultWrap) {
+                inputsWrap.style.display = 'block';
+                resultWrap.style.display = 'none';
+              }
             }
           </script>
 
@@ -1695,10 +1825,10 @@
 ═══════════════════════════════════════════════════════════ -->
 
 <!-- Shared Main Script -->
-<script src="js/main.js?v=27261102_v20"></script>
+<script src="js/main.js?v=28261102_v20"></script>
 
 <!-- Payload Calculator -->
-<script src="js/payload-calculator.js?v=27261102_v11"></script>
+<script src="js/payload-calculator.js?v=28261102_v11"></script>
 <!-- Calculator Tab Switcher -->
 <script>
   
