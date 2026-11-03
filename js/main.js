@@ -536,6 +536,34 @@
     }
   };
 
+  window.copyDevPhone = function (btn) {
+    var phone = "+639937052927";
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(phone);
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = phone;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (btn) {
+      var lbl = btn.querySelector(".copy-lbl");
+      if (lbl) {
+        var orig = lbl.textContent;
+        lbl.textContent = "Copied ✓";
+        btn.style.color = "#34d399";
+        btn.style.borderColor = "#34d399";
+        setTimeout(function () {
+          lbl.textContent = orig;
+          btn.style.color = "";
+          btn.style.borderColor = "";
+        }, 2000);
+      }
+    }
+  };
+
   window.closeDevModal = function () {
     var m = document.getElementById("devModal");
     if (m) {
