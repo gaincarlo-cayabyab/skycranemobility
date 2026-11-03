@@ -124,6 +124,93 @@
    * SkyCrane TIPC:     ₱419k Direct + ₱100k Prelims (5d)  + ₱0 Roads    = ₱519,000
    * Net Savings:       ₱131,000 (20.2% Net TIPC Reduction), 5 days saved (50% compression)
    */
+  var terrainMultipliers = {
+      // 🇵🇭 Comprehensive Philippine Topographical Profiles & Logistics Realities
+      "cordillera-highland": {
+        name: "Cordillera Mountain Ridge (Benguet / Mt. Province 1,200m–2,500m ASL)",
+        convDays: 1.50,
+        convDirect: 1.25,
+        skyDays: 0.95,
+        skyDirect: 1.10,
+        defaultRoad: 450000,
+        challenge: "🏔️ Benguet & Mt. Province (1,200m–2,500m ASL): 30–50% rock grade • Bypasses landslide-prone Halsema corridor • ₱450k road infill eliminated"
+      },
+      "sierra-madre-jungle": {
+        name: "Sierra Madre Dense Rainforest & River Basin (Zero Road Access / DENR NIPAS)",
+        convDays: 1.70,
+        convDirect: 1.35,
+        skyDays: 1.05,
+        skyDirect: 1.15,
+        defaultRoad: 600000,
+        challenge: "🌴 Sierra Madre Basin: Zero road access • Protected DENR NIPAS canopy transit • ₱600k bulldozer road cutting eliminated"
+      },
+      "visayas-island": {
+        name: "Visayas & Palawan Off-Grid Island / Karst Ravine (Inter-Island Channel)",
+        convDays: 1.40,
+        convDirect: 1.20,
+        skyDays: 0.90,
+        skyDirect: 1.05,
+        defaultRoad: 350000,
+        challenge: "🏝️ Palawan & Visayas Karst Island: Inter-island coral reef barrier • Eliminates shallow barge stranding & banca re-handling"
+      },
+      "mindanao-volcanic": {
+        name: "Mindanao Highland Plateau & Mt. Apo BTS Slope (Bukidnon / Davao 800m–2,000m ASL)",
+        convDays: 1.30,
+        convDirect: 1.15,
+        skyDays: 0.85,
+        skyDirect: 1.00,
+        defaultRoad: 400000,
+        challenge: "🌋 Bukidnon & Mt. Apo BTS Slopes (800m–2,000m ASL): Remote telecom tower pad delivery • Bypasses impassable volcanic mud trails"
+      },
+      "central-luzon-foothills": {
+        name: "Central & Northern Luzon Rolling Foothills (Pangasinan / Tarlac / Zambales)",
+        convDays: 0.80,
+        convDirect: 0.90,
+        skyDays: 0.70,
+        skyDirect: 0.92,
+        defaultRoad: 200000,
+        challenge: "🌾 Pangasinan & Tarlac Foothills: Unpaved farm-to-market dirt tracks • Zero soil compaction on agricultural solar tables"
+      },
+      "urban-rooftop": {
+        name: "Metro Manila & CALABARZON Elevated Industrial Rooftop (Commercial Facility)",
+        convDays: 0.70,
+        convDirect: 0.95,
+        skyDays: 0.50,
+        skyDirect: 0.85,
+        defaultRoad: 150000,
+        challenge: "🏢 Metro Manila & CALABARZON Industrial Rooftops: 15m–35m vertical lift • Eliminates heavy mobile crane street closures & permits"
+      },
+
+      // Backwards Compatibility Aliases
+      "moderate": {
+        name: "Central & Northern Luzon Rolling Foothills",
+        convDays: 0.80,
+        convDirect: 0.90,
+        skyDays: 0.70,
+        skyDirect: 0.92,
+        defaultRoad: 200000,
+        challenge: "🌾 Pangasinan & Tarlac Foothills: Unpaved farm-to-market dirt tracks"
+      },
+      "steep": {
+        name: "Cordillera Mountain Ridge (Benguet / Mt. Province)",
+        convDays: 1.20,
+        convDirect: 1.10,
+        skyDays: 0.95,
+        skyDirect: 1.00,
+        defaultRoad: 450000,
+        challenge: "🏔️ Benguet & Mt. Province (1,200m–2,500m ASL): 30–50% rock grade"
+      },
+      "extreme": {
+        name: "Sierra Madre Dense Rainforest & River Basin",
+        convDays: 1.65,
+        convDirect: 1.30,
+        skyDays: 1.15,
+        skyDirect: 1.15,
+        defaultRoad: 600000,
+        challenge: "🌴 Sierra Madre Basin: Zero road access • Protected DENR NIPAS canopy transit"
+      }
+    };
+
   function calculateTIPC(params) {
     var p = params || {};
     var panels       = Math.max(10, parseInt(p.panelsCount, 10) || 240);
@@ -133,11 +220,7 @@
     var prelimDaily  = (p.prelimDaily !== undefined && p.prelimDaily !== null) ? Math.max(0, parseFloat(p.prelimDaily)) : 20000;
 
     // Terrain Multipliers
-    var terrainMultipliers = {
-      moderate : { convDays: 0.60, convDirect: 0.85, skyDays: 0.60, skyDirect: 0.90 },
-      steep    : { convDays: 1.00, convDirect: 1.00, skyDays: 1.00, skyDirect: 1.00 },
-      extreme  : { convDays: 1.60, convDirect: 1.30, skyDays: 1.30, skyDirect: 1.15 }
-    };
+    
     var mult = terrainMultipliers[terrain] || terrainMultipliers.steep;
 
     // Scale Factor based on baseline 240 panels
@@ -242,6 +325,10 @@
       var savingsPctEl = document.getElementById("tipc-val-savings-pct");
       var daysSavedEl  = document.getElementById("tipc-val-days-saved");
       var flightsEl    = document.getElementById("tipc-val-flights");
+      var terrainDescEl = document.getElementById("tipc-terrain-description");
+      if (terrainDescEl && mult && mult.challenge) {
+        terrainDescEl.textContent = mult.challenge;
+      }
 
       if (netSavingsEl) {
         netSavingsEl.textContent = (result.impact.isSavings ? "Save " : "+") + formatPHP(result.impact.netSavings);
@@ -317,7 +404,15 @@
     }
 
     if (selectTerrain) {
-      selectTerrain.addEventListener("change", refreshTIPC);
+      selectTerrain.addEventListener("change", function () {
+        var terrain = selectTerrain.value;
+        var mult = terrainMultipliers[terrain] || terrainMultipliers["cordillera-highland"] || terrainMultipliers.steep;
+        if (mult && mult.defaultRoad !== undefined && inputRoads && sliderRoads) {
+          inputRoads.value = mult.defaultRoad;
+          sliderRoads.value = mult.defaultRoad;
+        }
+        refreshTIPC();
+      });
     }
 
     // Run initial calculation
@@ -381,6 +476,7 @@
   global.formatPHP                 = formatPHP;
 
   global.SkyCraneCalc = {
+    terrainMultipliers: terrainMultipliers,
     evaluate     : evaluateFlightFeasibility,
     calculateTIPC: calculateTIPC,
     formatPHP    : formatPHP,
