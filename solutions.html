@@ -58,7 +58,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=23261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=24261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -933,7 +933,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=23261102_v20"></script>
+  <script src="js/main.js?v=24261102_v20"></script>
 
 <!-- ========================================= -->
 <!-- UPGRADED DEVELOPER PORTFOLIO MODAL        -->
@@ -1131,89 +1131,362 @@ s0.parentNode.insertBefore(s1,s0);
 <!-- ========================================= -->
 <!-- TECHNICAL WHITEPAPER BRIEFING MODAL       -->
 <!-- ========================================= -->
+<!-- ============================================================
+     SOLAR LOGISTICS TECHNICAL WHITE PAPER & MOBILE FIELD GUIDE
+     Doc ID: SKC-WP-2026-02 (TIPC Economic Savings & Field Operations)
+     ============================================================ -->
 <div id="whitepaperModal" class="modal-overlay" onclick="if(event.target===this)closeWhitepaperModal()">
-  <div class="whitepaper-card">
+  <div class="whitepaper-card" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
     
     <!-- Modal Header -->
     <div class="whitepaper-header">
-      <div class="flex items-center justify-between">
-        <span class="text-[11px] font-black uppercase tracking-wider text-sky-400 bg-sky-500/20 px-2.5 py-1 rounded-full border border-sky-400/30">
-          Technical White Paper Briefing
-        </span>
-        <button type="button" onclick="closeWhitepaperModal()" class="text-slate-400 hover:text-white p-1 rounded-lg" aria-label="Close White Paper modal">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+      <button onclick="closeWhitepaperModal()" aria-label="Close white paper" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 border border-sky-400/30 px-3 py-1 rounded-full text-xs font-bold mb-3">
+        <span>🛸 Technical White Paper &amp; Field Guide</span> &bull; <span>Doc ID: SKC-WP-2026-02</span>
       </div>
-      <h2 class="text-xl sm:text-2xl font-black text-white mt-3">
-        The Economics of Heavy-Lift UAV Logistics in Philippine Infrastructure
+      <h2 id="wp-modal-title" class="text-2xl sm:text-3xl font-black font-display text-white mb-2 leading-tight">
+        SkyCrane TIPC Model &amp; Mobile Field Guide
       </h2>
-      <div class="flex flex-wrap gap-4 text-xs text-slate-300 mt-2">
-        <div><strong>Author:</strong> Gain Carlo Cayabyab (Systems Engineering)</div>
+      <p class="text-xs sm:text-sm text-slate-300">
+        Simplified Guide for Project Managers, Field Crews, &amp; Decision Makers &bull; Everything you need to know about drone-assisted solar panel delivery in plain, easy language.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-4 text-xs text-slate-300 pt-3 border-t border-white/15">
+        <div><strong>Author:</strong> Gain Carlo Cayabyab (Lead Systems Architect)</div>
         <div><strong>Entity:</strong> SkyCrane Mobility Corporation (OPC)</div>
-        <div><strong>Date:</strong> 2026 Baseline Operational Review</div>
+        <div><strong>Permit:</strong> CAAP RPAS Operator # RPAS-2026-DAG</div>
+        <div><strong>Baseline:</strong> 132 kWp Commercial Solar Review</div>
       </div>
     </div>
 
     <!-- Modal Body -->
-    <div class="whitepaper-body text-slate-700 text-sm space-y-6">
+    <div class="whitepaper-body text-slate-700 text-sm space-y-8">
       
+      <!-- 1. Executive Summary: The 60-Second Overview -->
       <div>
-        <h3 class="text-base font-extrabold text-slate-900 uppercase tracking-wider mb-2 text-sky-700">1. Executive Summary &amp; The Economic Dilemma</h3>
-        <p class="leading-relaxed text-xs sm:text-sm">
-          Evaluating heavy-lift drone logistics purely through direct freight rate creates a distorted economic view. While aerial transport commands a freight premium over manual porters or pack mules, conventional ground freight incurs heavy hidden costs: building temporary access roads, lengthy project preliminary overhead, and irreversible solar module micro-cracking damage during steep manual carriage.
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 01</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">📱 Executive Summary: The 60-Second Overview</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+          When moving solar panels to high roofs or tough mountain terrain, looking <strong>only</strong> at direct transport costs can be deceiving. Here is how conventional manual labor compares with SkyCrane aerial logistics on a 132 kWp project:
         </p>
+
+        <!-- Visual Side-by-Side Comparison Box -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="text-xs font-black uppercase tracking-wider text-slate-500 mb-2">Conventional Manual Transport</div>
+            <div class="space-y-1.5 text-xs text-slate-700 font-mono">
+              <div class="flex justify-between"><span>Direct Freight:</span> <span class="font-bold">₱150,000</span></div>
+              <div class="flex justify-between"><span>Site Overhead (10d):</span> <span class="font-bold">₱200,000</span></div>
+              <div class="flex justify-between"><span>Road Construction:</span> <span class="font-bold">₱300,000</span></div>
+              <div class="pt-2 border-t border-slate-300 flex justify-between text-sm font-black text-slate-900">
+                <span>TOTAL COST:</span> <span>₱650,000</span>
+              </div>
+            </div>
+            <div class="mt-2 text-[11px] text-slate-500">Duration: 10 Full Working Days</div>
+          </div>
+
+          <div class="bg-sky-50/70 p-4 rounded-xl border border-sky-300">
+            <div class="text-xs font-black uppercase tracking-wider text-sky-700 mb-2">SkyCrane Aerial Logistics</div>
+            <div class="space-y-1.5 text-xs text-slate-700 font-mono">
+              <div class="flex justify-between"><span>Direct Freight:</span> <span class="font-bold text-orange-600">₱419,000</span></div>
+              <div class="flex justify-between"><span>Site Overhead (5d):</span> <span class="font-bold text-emerald-600">₱100,000</span></div>
+              <div class="flex justify-between"><span>Road Construction:</span> <span class="font-bold text-emerald-600">₱0</span></div>
+              <div class="pt-2 border-t border-sky-300 flex justify-between text-sm font-black text-emerald-700">
+                <span>TOTAL COST:</span> <span>₱519,000</span>
+              </div>
+            </div>
+            <div class="mt-2 text-[11px] font-bold text-emerald-700">Duration: 5 Days (50% Faster)</div>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-300 rounded-xl p-3.5 text-center text-xs sm:text-sm font-extrabold text-emerald-800">
+          🎯 NET PROJECT SAVINGS WITH SKYCRANE: ₱131,000 + 5 FULL DAYS SAVED!
+        </div>
+
+        <div class="mt-3 p-3 bg-slate-100 rounded-lg text-xs text-slate-700 border-l-4 border-orange-500">
+          💡 <strong>Key Takeaway:</strong> Drone lifting costs more upfront for transport, but it cuts work time in half (from 10 days down to 5 days) and removes the need to build temporary roads. This saves overall project money (<strong>Total Installed Project Cost / TIPC</strong>).
+        </div>
       </div>
 
+      <!-- 2. Simple Jargon Buster -->
       <div>
-        <h3 class="text-base font-extrabold text-slate-900 uppercase tracking-wider mb-2 text-sky-700">2. Baseline Empirical Case Study: 132 kWp Commercial Array</h3>
-        <p class="leading-relaxed text-xs sm:text-sm mb-3">
-          <strong>Project Location:</strong> Cordillera mountain ridge, 500m elevation climb above nearest vehicular drop point.<br>
-          <strong>Cargo Payload:</strong> 240 monocrystalline solar modules (30 kg each, total 7,200 kg).<br>
-          <strong>Aircraft Configuration:</strong> DJI FlyCart 100 dual-battery mode, 2 modules (60 kg) + 10 kg tactical rigging fixture = 70 kg payload per flight (82% of max 85 kg rating).
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 02</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">🧠 Simple Jargon Buster (What Do These Words Mean?)</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3">
+          A quick reference guide for everyday project conversations:
         </p>
         
-        <div class="overflow-x-auto rounded-lg border border-slate-200">
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
           <table class="w-full text-xs text-left">
             <thead class="bg-slate-100 text-slate-800 font-bold">
               <tr>
-                <th class="p-2.5">Financial Component</th>
-                <th class="p-2.5">Conventional Ground Transport</th>
-                <th class="p-2.5">SkyCrane Aerial Logistics</th>
-                <th class="p-2.5">Net Variance</th>
+                <th class="p-3 w-1/4">Complex Term</th>
+                <th class="p-3 w-5/12">Simple Explanation</th>
+                <th class="p-3 w-1/3">Why It Matters To You</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200">
               <tr>
-                <td class="p-2.5 font-medium">Direct Logistics Rate</td>
-                <td class="p-2.5">₱150,000</td>
-                <td class="p-2.5 text-orange-600 font-bold">₱419,000</td>
-                <td class="p-2.5 text-orange-600 font-bold">+₱269,000 (Freight Premium)</td>
+                <td class="p-3 font-bold text-slate-900">Total Installed Project Cost (TIPC)</td>
+                <td class="p-3">The total money spent from start to finish on the entire job site, not just transport.</td>
+                <td class="p-3 text-emerald-700 font-semibold">Looking at TIPC shows your real savings.</td>
               </tr>
               <tr>
-                <td class="p-2.5 font-medium">Site Preliminaries (Overhead)</td>
-                <td class="p-2.5">₱200,000 (10 days @ ₱20k)</td>
-                <td class="p-2.5 text-emerald-600 font-bold">₱100,000 (5 days @ ₱20k)</td>
-                <td class="p-2.5 text-emerald-600 font-bold">-₱100,000 (50% Compression)</td>
+                <td class="p-3 font-bold text-slate-900">Direct Logistics Premium</td>
+                <td class="p-3">The extra money paid directly for drone services vs. basic manual labor.</td>
+                <td class="p-3">SkyCrane costs ₱269,000 more upfront, but saves money elsewhere.</td>
               </tr>
               <tr>
-                <td class="p-2.5 font-medium">Temporary Access Roads</td>
-                <td class="p-2.5">₱300,000</td>
-                <td class="p-2.5 text-emerald-600 font-bold">₱0</td>
-                <td class="p-2.5 text-emerald-600 font-bold">-₱300,000 (Avoided Civil Works)</td>
+                <td class="p-3 font-bold text-slate-900">Site Preliminaries</td>
+                <td class="p-3">Fixed daily costs to keep a job site running (manager pay, generator fuel, guards, rentals).</td>
+                <td class="p-3 text-emerald-700 font-semibold">Faster completion saves ₱20,000/day in site fees.</td>
               </tr>
-              <tr class="bg-sky-50/60 font-bold">
-                <td class="p-2.5 text-slate-900">TOTAL INSTALLED PROJECT COST (TIPC)</td>
-                <td class="p-2.5 text-slate-900">₱650,000</td>
-                <td class="p-2.5 text-emerald-700 text-sm font-black">₱519,000</td>
-                <td class="p-2.5 text-emerald-700 text-sm font-black">-₱131,000 NET SAVINGS (20.2%)</td>
+              <tr>
+                <td class="p-3 font-bold text-slate-900">Micro-Cracking</td>
+                <td class="p-3">Tiny, invisible cracks in solar cells caused by rough manual carrying up ladders/slopes.</td>
+                <td class="p-3 text-emerald-700 font-semibold">Causes panel failure later. Drones eliminate this risk completely.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-slate-900">Delivery Microcycle</td>
+                <td class="p-3">The time it takes to move one load from the ground to the installation zone.</td>
+                <td class="p-3">Drones take 15 minutes per load; manual labor takes 45 minutes.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
+      <!-- 3. Delivery Speed: Drone vs. Manual Labor -->
       <div>
-        <h3 class="text-base font-extrabold text-slate-900 uppercase tracking-wider mb-2 text-sky-700">3. Unquantified Operational Risk Advantages</h3>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 03</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">⏱️ Delivery Speed: Drone vs. Manual Labor</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          A step-by-step microcycle breakdown of how a single load of solar panels is delivered:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- SkyCrane Microcycle -->
+          <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-200">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-extrabold text-sm text-sky-900">🚁 SkyCrane Drone Delivery</h4>
+              <span class="bg-sky-600 text-white text-[11px] font-black px-2 py-0.5 rounded-full">15 Mins Total</span>
+            </div>
+            <ol class="space-y-2 text-xs text-slate-700 list-decimal list-inside">
+              <li><strong>Prepare &amp; Hook Up (3 mins):</strong> Secure 2 panels (60 kg) in the protective carrier frame (10 kg total 70 kg).</li>
+              <li><strong>Flight Out (2 mins):</strong> Smooth automated flight at 10 m/s direct to the roof or hill.</li>
+              <li><strong>Unhook &amp; Handover (2 mins):</strong> Quick-release unhook to the receiving crew.</li>
+              <li><strong>Return Flight (2 mins):</strong> Drone flies back empty to the landing pad.</li>
+              <li><strong>Battery Swap &amp; Check (6 mins):</strong> Fast battery swap and safety check for the next run.</li>
+            </ol>
+            <div class="mt-3 pt-2 border-t border-sky-200 text-xs font-bold text-sky-800">
+              Result: 24 loads/day = 48 panels/day (Takes 5 full working days)
+            </div>
+          </div>
+
+          <!-- Manual Labor Microcycle -->
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-extrabold text-sm text-slate-800">🏃 Manual Ground Delivery</h4>
+              <span class="bg-slate-600 text-white text-[11px] font-black px-2 py-0.5 rounded-full">45 Mins Total</span>
+            </div>
+            <ol class="space-y-2 text-xs text-slate-700 list-decimal list-inside">
+              <li><strong>Loading (8 mins):</strong> Manual lifting and tying onto ground carts or manual hoists.</li>
+              <li><strong>Hauling (12 mins):</strong> Walking or dragging heavy panels across uneven ground or ladders.</li>
+              <li><strong>Unloading (5 mins):</strong> Manually carrying panels to the installation spot.</li>
+              <li><strong>Return &amp; Rest (20 mins):</strong> Walking back and taking mandatory physical rest breaks.</li>
+            </ol>
+            <div class="mt-3 pt-2 border-t border-slate-200 text-xs font-bold text-slate-700">
+              Result: 12 loads/day = 24 panels/day (Takes 10 full working days)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Detailed Cost Breakdown (Tables 1, 2, 3) -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 04</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">📊 Detailed Cost Breakdown (132 kWp Baseline)</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          All numbers use standard commercial rates in the Philippines based on a baseline <strong>132 kWp solar project</strong> (240 panels total, 7,200 kg cargo mass, 500m elevation climb):
+        </p>
+
+        <!-- Table 1: Direct Costs -->
+        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-800 mb-2">Table 1: Direct Transport Costs Only</h4>
+        <div class="overflow-x-auto rounded-xl border border-slate-200 mb-5">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-100 text-slate-800 font-bold">
+              <tr>
+                <th class="p-2.5">Cost Item</th>
+                <th class="p-2.5">Conventional Labor</th>
+                <th class="p-2.5">SkyCrane Drone</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-2.5 font-medium">Labor Pay</td>
+                <td class="p-2.5">₱40,000 (4 crew × 10 days)</td>
+                <td class="p-2.5 text-emerald-700 font-semibold">₱20,000 (4 crew × 5 days)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-medium">Support Equipment</td>
+                <td class="p-2.5">₱80,000 (Hoists &amp; light transport)</td>
+                <td class="p-2.5 text-emerald-700 font-semibold">₱15,000 (Site power support)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-medium">Vehicle Fuel</td>
+                <td class="p-2.5">₱30,000 (Ground transport fuel)</td>
+                <td class="p-2.5 text-emerald-700 font-semibold">₱0</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-medium">Drone Flight Fee</td>
+                <td class="p-2.5">₱0</td>
+                <td class="p-2.5 font-semibold text-orange-600">₱350,000 (₱70,000/day × 5 days)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-medium">Setup &amp; Transport</td>
+                <td class="p-2.5">₱0</td>
+                <td class="p-2.5 font-semibold text-orange-600">₱34,000 (Mobilization)</td>
+              </tr>
+              <tr class="bg-slate-50 font-bold">
+                <td class="p-2.5 text-slate-900">TOTAL DIRECT COST</td>
+                <td class="p-2.5 text-slate-900">₱150,000</td>
+                <td class="p-2.5 text-orange-700">₱419,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-500 mb-5 italic">Direct Aerial Premium: +₱269,000</p>
+
+        <!-- Table 2: Daily Overhead Savings -->
+        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-800 mb-2">Table 2: Daily Overhead Savings (Site Preliminaries)</h4>
+        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 mb-5 text-xs text-slate-700 space-y-1.5">
+          <p class="font-semibold text-slate-900 mb-1">Cutting execution time from 10 days to 5 days saves <strong>5 full days</strong> of site preliminaries:</p>
+          <div class="flex justify-between"><span>&bull; Site Supervision &amp; Engineers:</span> <span class="font-semibold">₱8,500 / day</span></div>
+          <div class="flex justify-between"><span>&bull; Site Office, Power &amp; Security:</span> <span class="font-semibold">₱4,500 / day</span></div>
+          <div class="flex justify-between"><span>&bull; Equipment Rentals (Scaffolding/Welfare):</span> <span class="font-semibold">₱3,500 / day</span></div>
+          <div class="flex justify-between"><span>&bull; Safety Perimeter &amp; Guards:</span> <span class="font-semibold">₱3,500 / day</span></div>
+          <div class="pt-2 border-t border-slate-300 flex justify-between font-bold text-slate-900">
+            <span>TOTAL DAILY OVERHEAD:</span> <span>₱20,000 / day</span>
+          </div>
+          <div class="pt-1 text-emerald-700 font-black">
+            Total 5-Day Overhead Savings = 5 days × ₱20,000/day = ₱100,000 Saved!
+          </div>
+        </div>
+
+        <!-- Table 3: Total Project Cost Comparison -->
+        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-800 mb-2">Table 3: Total Project Cost Comparison (The Big Picture)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1.5">
+            <div class="font-bold text-slate-900 mb-1">Scenario A: Easy Flat Site (No Road Needed)</div>
+            <div>&bull; Conventional Direct Cost: ₱150,000</div>
+            <div>&bull; SkyCrane Direct Cost: ₱419,000</div>
+            <div class="text-emerald-700 font-semibold">&bull; Less Overhead Saved: -₱100,000</div>
+            <div class="pt-2 border-t border-slate-300 font-bold text-slate-900">
+              NET COST: SkyCrane is ₱169,000 higher.<br>
+              <span class="text-[11px] font-normal text-slate-500">(Best for tight grid connection deadlines or strict panel warranty protection)</span>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-emerald-50 rounded-xl border border-emerald-300 text-xs text-slate-700 space-y-1.5">
+            <div class="font-black text-emerald-900 mb-1">Scenario B: Steep Ridge / Rooftop / Rough Terrain</div>
+            <div>&bull; Conventional Direct Cost: ₱150,000</div>
+            <div>&bull; SkyCrane Direct Cost: ₱419,000</div>
+            <div class="text-emerald-700 font-semibold">&bull; Less Overhead Saved: -₱100,000</div>
+            <div class="text-emerald-700 font-semibold">&bull; Less Road Construction Saved: -₱300,000</div>
+            <div class="text-emerald-700 font-semibold">&bull; Less Panel Damage Risk Saved: -₱78,000</div>
+            <div class="pt-2 border-t border-emerald-300 font-black text-emerald-800 text-sm">
+              🎉 NET SAVINGS: SkyCrane SAVES ₱209,000 net!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Break-Even Calculator Formula -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 05</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">🧮 Project Manager Break-Even Calculator</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3">
+          Use this quick formula to see if SkyCrane will save your project money:
+        </p>
+
+        <div class="bg-slate-900 text-white p-4 rounded-xl border border-slate-800 font-mono text-xs sm:text-sm text-center mb-3">
+          <div class="text-slate-400 mb-1">Break-Even Daily Overhead Rate = Direct Drone Premium / Days Saved</div>
+          <div class="text-emerald-400 font-black text-base">₱269,000 / 5 days = ₱53,800 / day</div>
+        </div>
+
+        <div class="p-3 bg-amber-50 rounded-lg text-xs text-amber-900 border-l-4 border-amber-500">
+          📌 <strong>Rule of Thumb:</strong> If your daily site delay costs plus site overhead exceed <strong>₱53,800/day</strong>, using SkyCrane is cheaper than standard manual labor, even before counting road construction savings!
+        </div>
+      </div>
+
+      <!-- 6. Phone-Friendly On-Site Field Instructions -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 06</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">📲 Phone-Friendly On-Site Field Instructions</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3">
+          On-site checklist for field supervisors, ground rigging crews, and roof receiving teams:
+        </p>
+
+        <div class="space-y-3">
+          <!-- Ground Team -->
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-900 mb-2">1. Ground Staging Team Checklist</h4>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Maintain a clean, flat landing zone of at least <strong>5 m × 5 m</strong>.</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Keep non-essential personnel outside the safety perimeter cone (<strong>15 m radius</strong>).</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Load max 2 modules (60 kg) into the rigid frame. Total weight must stay under <strong>70 kg</strong>.</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Inspect latch pins before giving the visual "Thumbs Up" signal to the pilot.</li>
+            </ul>
+          </div>
+
+          <!-- Roof Team -->
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-900 mb-2">2. Roof / Receiving Team Checklist</h4>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Wear hard hats, high-vis vests, safety harnesses, and cut-resistant gloves.</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Stand clear until the payload is stabilized at chest height (<strong>1 m off surface</strong>).</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Unhook payload using quick-release carabiners.</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-black">✓</span> Give clear hand signal to pilot once the hook clear distance is over <strong>2 m</strong>.</li>
+            </ul>
+          </div>
+
+          <!-- Limits -->
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-900 mb-2">3. Operational Limits (Safety Rules)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-700">
+              <div class="p-2 bg-white rounded border border-slate-200">
+                <strong>💨 Max Wind Speed:</strong> 12 m/s (approx. 43 km/h)
+              </div>
+              <div class="p-2 bg-white rounded border border-slate-200">
+                <strong>🌧️ Rain Policy:</strong> Immediate pause if heavy rainfall begins
+              </div>
+              <div class="p-2 bg-white rounded border border-slate-200">
+                <strong>⚡ Battery Rotation:</strong> Min 4 sets on active fast-chargers (9-min cycle)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Unquantified Operational Risk Advantages -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 07</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">🛡️ Unquantified Operational Risk Advantages</h3>
+        </div>
         <ul class="space-y-2 list-disc list-inside text-xs sm:text-sm text-slate-700">
           <li><strong>Zero Micro-Cracking Risk:</strong> Manual transport over boulder ridges flexes silicon wafers, causing hidden cell fracture and voiding 25-year performance warranties. SkyCrane's vibration-isolated cargo cradle preserves panel integrity.</li>
           <li><strong>DOLE OSHS Zero-Harm Compliance:</strong> Eliminates catastrophic slip-and-fall hazards for manual porter crews carrying 30kg awkward panels on 45-degree inclines.</li>
@@ -1221,18 +1494,28 @@ s0.parentNode.insertBefore(s1,s0);
         </ul>
       </div>
 
-      <div class="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
-        <button onclick="window.print()" class="btn btn-glass text-xs py-2 px-4 rounded-lg flex items-center gap-1.5 text-slate-800 border-slate-300">
-          <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-          Print / Save PDF Briefing
-        </button>
-        <a href="contact.html?subject=TIPC+White+Paper+Consultation" class="btn btn-orange text-xs py-2 px-5 rounded-lg">
-          Request Project Feasibility Audit →
-        </a>
+      <!-- Footer Support Contact & Actions -->
+      <div class="pt-5 border-t border-slate-200 space-y-4">
+        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div>
+            <strong class="text-slate-900">Need Field Support or Custom TIPC Calculation?</strong><br>
+            <span>SkyCrane Mobility OPC &bull; 08 BDEE Bldg., Perez Blvd., Dagupan City &bull; 📞 0993 705 2927</span>
+          </div>
+          <a href="mailto:info@skycranemobility.com" class="text-sky-600 font-bold hover:underline">info@skycranemobility.com</a>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <button onclick="window.print()" class="btn btn-glass text-xs py-2 px-4 rounded-lg flex items-center gap-1.5 text-slate-800 border-slate-300">
+            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            Print / Save PDF Briefing
+          </button>
+          <a href="contact.html?subject=TIPC+White+Paper+Consultation" class="btn btn-orange text-xs py-2 px-5 rounded-lg">
+            Request Project Feasibility Audit →
+          </a>
+        </div>
       </div>
 
     </div>
-
   </div>
 </div>
 
