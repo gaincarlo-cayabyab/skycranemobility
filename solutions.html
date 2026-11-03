@@ -58,7 +58,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=24261102_v20" />
+  <link rel="stylesheet" href="css/styles.css?v=25261102_v20" />
   <!-- Hide Tawk.to branding footer -->
   <style>
     #tawk-tooltip-container, 
@@ -933,7 +933,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=24261102_v20"></script>
+  <script src="js/main.js?v=25261102_v20"></script>
 
 <!-- ========================================= -->
 <!-- UPGRADED DEVELOPER PORTFOLIO MODAL        -->
@@ -1160,7 +1160,15 @@ s0.parentNode.insertBefore(s1,s0);
       </div>
     </div>
 
-    <!-- Modal Body -->
+        <!-- WP TAB BAR -->
+    <div class="flex border-b border-white/15 overflow-x-auto flex-shrink-0">
+      <button onclick="switchWpTab('mfg')" id="wp-tab-mfg" class="px-5 py-3 text-xs font-bold border-b-2 border-sky-400 text-white transition-all whitespace-nowrap" aria-selected="true">&#128203; Mobile Field Guide</button>
+      <button onclick="switchWpTab('cg')"  id="wp-tab-cg"  class="px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-white hover:border-sky-400 transition-all whitespace-nowrap" aria-selected="false">&#128208; Engineering Customer Guide</button>
+    </div>
+    <!-- WP PANEL mfg -->
+    <div id="wp-panel-mfg">
+
+<!-- Modal Body -->
     <div class="whitepaper-body text-slate-700 text-sm space-y-8">
       
       <!-- 1. Executive Summary: The 60-Second Overview -->
@@ -1516,6 +1524,210 @@ s0.parentNode.insertBefore(s1,s0);
       </div>
 
     </div>
+    </div><!-- /wp-panel-mfg -->
+
+    <!-- ===== SKC-WP-2026-03: Engineering Customer Guide ===== -->
+    <div id="wp-panel-cg" class="hidden whitepaper-body text-slate-700 text-sm space-y-8">
+
+      <!-- CG Doc Badge -->
+      <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-5 border border-slate-600">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-sky-600 text-white text-xs font-bold px-3 py-1 rounded-full">SKC-WP-2026-03</span>
+          <span class="bg-emerald-700 text-emerald-100 text-xs px-3 py-1 rounded-full">Engineering &amp; Procurement</span>
+          <span class="bg-amber-700 text-amber-100 text-xs px-3 py-1 rounded-full">Customer Guide</span>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">SkyCrane TIPC Economic Savings Model</h3>
+        <p class="text-slate-300 text-sm">Step-by-Step Customer Guide &amp; Case Study &mdash; for Project Engineers, Procurement Managers &amp; Operations Directors</p>
+      </div>
+
+      <!-- CG Section 01: Executive Summary -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 01</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Executive Summary &amp; Core Concept</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3 leading-relaxed">Traditional procurement focuses exclusively on <strong>Freight Cost Per Kilometer</strong> &mdash; creating a major oversight by ignoring hidden site-preparation and operational delay costs. SkyCrane uses the <strong>TIPC Paradigm</strong> to reveal the true total expenditure required.</p>
+        <div class="bg-slate-900 rounded-xl p-4 border border-sky-800 text-center mb-3">
+          <p class="text-sky-300 text-xs font-bold uppercase tracking-widest mb-2">Total Installed Project Cost Formula</p>
+          <p class="text-white text-sm font-semibold leading-loose">TIPC = Direct Transport Fee + Civil Works &amp; Site Access<br>+ Labor &amp; Rigging + Delay Penalties + Environmental Restoration</p>
+        </div>
+        <div class="p-3 bg-sky-50 rounded-lg text-xs text-sky-900 border-l-4 border-sky-500">
+          &#128161; <strong>Key Insight:</strong> By flying above terrain obstacles, SkyCrane eliminates ground infrastructure costs entirely &mdash; delivering cargo directly to the drop zone in hours rather than weeks.
+        </div>
+      </div>
+
+      <!-- CG Section 02: Mathematical Framework -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 02</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Mathematical Framework &amp; Formulas</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+            <p class="text-red-700 text-xs font-bold uppercase tracking-widest mb-2">Path A &mdash; Ground Freight TIPC</p>
+            <div class="bg-white rounded-lg p-3 font-mono text-xs text-slate-700 leading-relaxed border border-red-100">
+              TIPC<sub>Ground</sub> =<br>&nbsp;C<sub>haulage</sub> + C<sub>prep</sub><br>+ C<sub>labor</sub> + C<sub>delay</sub><br>+ C<sub>restoration</sub>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">Vehicle &amp; fuel + Road clearing + Porter teams + Idle penalty &times; days + ROW &amp; DENR fees</p>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+            <p class="text-emerald-700 text-xs font-bold uppercase tracking-widest mb-2">Path B &mdash; SkyCrane Aerial TIPC</p>
+            <div class="bg-white rounded-lg p-3 font-mono text-xs text-slate-700 leading-relaxed border border-emerald-100">
+              TIPC<sub>SkyCrane</sub> =<br>&nbsp;C<sub>flight</sub> + C<sub>staging</sub><br>+ C<sub>rigging</sub>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">Sorties &times; rate + Staging pad setup + Certified crew</p>
+          </div>
+        </div>
+        <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 text-center">
+          <p class="text-amber-800 text-sm font-mono font-bold">&Delta;TIPC = TIPC<sub>Ground</sub> &minus; TIPC<sub>SkyCrane</sub></p>
+          <p class="text-amber-800 text-sm font-mono font-bold mt-1">ROI (%) = (&Delta;TIPC &divide; TIPC<sub>Ground</sub>) &times; 100</p>
+        </div>
+      </div>
+
+      <!-- CG Section 03: 5-Step Calculator -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 03</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">5-Step Calculator Instructions</h3>
+        </div>
+        <div class="space-y-2">
+          <div class="flex gap-3 items-start bg-slate-50 rounded-lg p-3 border border-slate-200">
+            <span class="bg-sky-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+            <div><p class="text-slate-900 text-sm font-semibold">Enter Baseline Payload Parameters</p><p class="text-slate-500 text-xs mt-0.5">Total Freight Weight (Metric Tons) &bull; Total Distance from Staging Hub to Drop Zone (km)</p></div>
+          </div>
+          <div class="flex gap-3 items-start bg-slate-50 rounded-lg p-3 border border-slate-200">
+            <span class="bg-sky-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+            <div><p class="text-slate-900 text-sm font-semibold">Select Terrain Corridor &amp; Incline Profile</p><p class="text-slate-500 text-xs mt-0.5">Flat/Paved 0&ndash;5% &bull; Rolling Hills 5&ndash;15% &bull; Steep Incline 15&ndash;30% &bull; Off-Grid / Canyon / Island</p></div>
+          </div>
+          <div class="flex gap-3 items-start bg-slate-50 rounded-lg p-3 border border-slate-200">
+            <span class="bg-sky-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+            <div><p class="text-slate-900 text-sm font-semibold">Input Ground Construction &amp; Prep Factors</p><p class="text-slate-500 text-xs mt-0.5">Temporary Road Requirements (km needed) &bull; Environmental Clearance / Right-of-Way Access Level</p></div>
+          </div>
+          <div class="flex gap-3 items-start bg-slate-50 rounded-lg p-3 border border-slate-200">
+            <span class="bg-sky-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+            <div><p class="text-slate-900 text-sm font-semibold">Define Schedule &amp; Labor Crew Parameters</p><p class="text-slate-500 text-xs mt-0.5">Estimated Manual Porter Crew Size &bull; Projected Ground Transit Delays (Days)</p></div>
+          </div>
+          <div class="flex gap-3 items-start bg-sky-50 rounded-lg p-3 border border-sky-200">
+            <span class="bg-sky-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">5</span>
+            <div><p class="text-slate-900 text-sm font-semibold">Review Dynamic Financial Summary &amp; Project Schedule</p><p class="text-slate-600 text-xs mt-0.5">Instant Cost Comparison Table &bull; Time-to-Completion Reduction Chart &bull; PDF Report Export for Stakeholder Approval</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CG Section 04: Case Study -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 04</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Worked Example: Remote Telecom / Solar Site Case Study</h3>
+        </div>
+        <!-- Scenario -->
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 mb-4">
+          <p class="text-sky-700 text-xs font-bold uppercase tracking-widest mb-2">Project Scenario</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-600">
+            <div><span class="font-semibold text-slate-800">Project Type:</span> Off-grid Telecom / Microgrid Solar Installation</div>
+            <div><span class="font-semibold text-slate-800">Total Cargo Mass:</span> 12.5 Metric Tons</div>
+            <div><span class="font-semibold text-slate-800">Radial Distance:</span> 6.5 km from nearest paved highway</div>
+            <div><span class="font-semibold text-slate-800">Terrain Profile:</span> Steep Mountain Ridge &bull; 22% Grade &bull; Zero Existing Roads</div>
+          </div>
+        </div>
+        <!-- Cost Breakdown -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+            <p class="text-red-700 text-xs font-bold uppercase tracking-widest mb-3">Conventional Ground Path</p>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between border-b border-red-100 pb-1.5"><span class="text-slate-600">Temp Access Road (3.2 km)</span><span class="text-red-600 font-bold">&#8369;750,000</span></div>
+              <div class="flex justify-between border-b border-red-100 pb-1.5"><span class="text-slate-600">Manual Labor &amp; Portering</span><span class="text-red-600 font-bold">&#8369;273,600</span></div>
+              <div class="flex justify-between border-b border-red-100 pb-1.5"><span class="text-slate-600">Vehicles &amp; Idle Delay Penalty</span><span class="text-red-600 font-bold">&#8369;455,000</span></div>
+              <div class="flex justify-between border-b border-red-100 pb-1.5"><span class="text-slate-600">Environmental Rehab &amp; ROW</span><span class="text-red-600 font-bold">&#8369;280,000</span></div>
+              <div class="flex justify-between pt-1"><span class="text-slate-900 font-extrabold">TIPC<sub>Ground</sub> Total</span><span class="text-red-700 font-extrabold text-sm">&#8369;1,758,600</span></div>
+            </div>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+            <p class="text-emerald-700 text-xs font-bold uppercase tracking-widest mb-3">SkyCrane Aerial Path</p>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between border-b border-emerald-100 pb-1.5"><span class="text-slate-600">25 Sorties &times; &#8369;28,000</span><span class="text-emerald-700 font-bold">&#8369;700,000</span></div>
+              <div class="flex justify-between border-b border-emerald-100 pb-1.5"><span class="text-slate-600">Staging Pad &amp; Safety Team</span><span class="text-emerald-700 font-bold">&#8369;110,000</span></div>
+              <div class="flex justify-between border-b border-emerald-100 pb-1.5"><span class="text-slate-600">CAAP Permits &amp; Airspace</span><span class="text-emerald-700 font-bold">&#8369;75,000</span></div>
+              <div class="flex justify-between border-b border-emerald-100 pb-1.5 invisible"><span>&mdash;</span><span>&mdash;</span></div>
+              <div class="flex justify-between pt-1"><span class="text-slate-900 font-extrabold">TIPC<sub>SkyCrane</sub> Total</span><span class="text-emerald-700 font-extrabold text-sm">&#8369;885,000</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- Savings Banner -->
+        <div class="bg-emerald-50 border border-emerald-300 rounded-xl p-4 text-center mb-4">
+          <p class="text-2xl font-black text-emerald-700">&#8369;873,600 Saved &bull; 49.7% ROI</p>
+          <p class="text-emerald-600 text-sm mt-1">85.7% Schedule Compression (14 Days &#8594; 2 Days) &bull; 75% Labor Reduction (16 &#8594; 4 Specialists)</p>
+        </div>
+        <!-- Comparison Table -->
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-800 text-white">
+                <th class="text-left p-2.5 rounded-tl-lg">Metric</th>
+                <th class="text-center p-2.5">Ground</th>
+                <th class="text-center p-2.5">SkyCrane</th>
+                <th class="text-center p-2.5 rounded-tr-lg">Advantage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b border-slate-100"><td class="p-2.5 font-semibold text-slate-700">Total TIPC</td><td class="text-center p-2.5 text-red-600 font-bold">&#8369;1,758,600</td><td class="text-center p-2.5 text-emerald-600 font-bold">&#8369;885,000</td><td class="text-center p-2.5 text-amber-700 font-bold">&#8369;873,600 Saved</td></tr>
+              <tr class="bg-slate-50 border-b border-slate-100"><td class="p-2.5 font-semibold text-slate-700">Project Duration</td><td class="text-center p-2.5 text-red-500">14 Days</td><td class="text-center p-2.5 text-emerald-600">2 Days</td><td class="text-center p-2.5 text-amber-700 font-bold">85.7% Faster</td></tr>
+              <tr class="bg-white border-b border-slate-100"><td class="p-2.5 font-semibold text-slate-700">Access Road</td><td class="text-center p-2.5 text-red-500">3.2 km Built</td><td class="text-center p-2.5 text-emerald-600">0 km</td><td class="text-center p-2.5 text-amber-700 font-bold">100% Eliminated</td></tr>
+              <tr class="bg-slate-50 border-b border-slate-100"><td class="p-2.5 font-semibold text-slate-700">Labor Required</td><td class="text-center p-2.5 text-red-500">16 Personnel</td><td class="text-center p-2.5 text-emerald-600">4 Specialists</td><td class="text-center p-2.5 text-amber-700 font-bold">75% Reduction</td></tr>
+              <tr class="bg-white border-b border-slate-100"><td class="p-2.5 font-semibold text-slate-700">Environmental Impact</td><td class="text-center p-2.5 text-red-500">High Disturbance</td><td class="text-center p-2.5 text-emerald-600">Zero Ground Contact</td><td class="text-center p-2.5 text-amber-700 font-bold">100% Eco-Compliant</td></tr>
+              <tr class="bg-slate-50"><td class="p-2.5 font-semibold text-slate-700">Net ROI</td><td class="text-center p-2.5 text-red-500">0% Baseline</td><td class="text-center p-2.5 text-emerald-600 font-bold">49.7% Savings</td><td class="text-center p-2.5 text-amber-700 font-bold">&approx;50% Capital Saved</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CG Section 05: Parameter Definitions -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 05</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Parameter Definitions &amp; Cost Variable Matrix</h3>
+        </div>
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-xs">
+            <thead><tr class="bg-slate-800 text-white"><th class="text-left p-3 rounded-tl-lg">Variable</th><th class="text-left p-3 rounded-tr-lg">Definition</th></tr></thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600">
+              <tr class="bg-white"><td class="p-3 font-mono text-sky-700 font-bold whitespace-nowrap">Cargo Unit Weight (kg)</td><td class="p-3">Individual weight of non-divisible assets (generator, inverter, battery rack). Determines drone lift class required.</td></tr>
+              <tr class="bg-slate-50"><td class="p-3 font-mono text-sky-700 font-bold whitespace-nowrap">Corridor Elevation (%)</td><td class="p-3">Measured incline from staging point to drop site. Incline &gt;15% triggers steep ground transport cost multipliers.</td></tr>
+              <tr class="bg-white"><td class="p-3 font-mono text-sky-700 font-bold whitespace-nowrap">ROW Risk Factor</td><td class="p-3">Flag indicating if ground trucks must cross private property or protected forests, incurring legal or permitting delays.</td></tr>
+              <tr class="bg-slate-50"><td class="p-3 font-mono text-sky-700 font-bold whitespace-nowrap">Daily Idle Burn Rate</td><td class="p-3">Cost per day incurred when heavy ground machinery or crews are stranded due to weather or landslides.</td></tr>
+              <tr class="bg-white"><td class="p-3 font-mono text-sky-700 font-bold whitespace-nowrap">Sortie Turnaround Time</td><td class="p-3">Elapsed time for a drone to load, ascend, fly, drop, and return to staging (typically 8&ndash;15 min per round trip).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CG Section 06: Pre-Flight Checklist -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded">Section 06</span>
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Pre-Flight Planning Checklist for Engineering Teams</h3>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 space-y-3">
+          <div class="flex gap-3 items-start"><span class="text-emerald-600 text-lg flex-shrink-0">&#9745;</span><div><p class="text-slate-900 text-sm font-semibold">Staging Area Coordinates</p><p class="text-slate-500 text-xs">Flat 10m &times; 10m area accessible by standard transport trucks.</p></div></div>
+          <div class="flex gap-3 items-start"><span class="text-emerald-600 text-lg flex-shrink-0">&#9745;</span><div><p class="text-slate-900 text-sm font-semibold">Drop Zone Clearance</p><p class="text-slate-500 text-xs">Minimum 5m &times; 5m clear area for precision vertical positioning or winched drop.</p></div></div>
+          <div class="flex gap-3 items-start"><span class="text-emerald-600 text-lg flex-shrink-0">&#9745;</span><div><p class="text-slate-900 text-sm font-semibold">Obstacle Mapping</p><p class="text-slate-500 text-xs">High-voltage power lines, dense canopy, or cliff faces logged for automated flight path routing.</p></div></div>
+          <div class="flex gap-3 items-start"><span class="text-emerald-600 text-lg flex-shrink-0">&#9745;</span><div><p class="text-slate-900 text-sm font-semibold">Payload Packaging</p><p class="text-slate-500 text-xs">Cargo placed in standardized lifting slings or modular flight crates with certified pick-points.</p></div></div>
+          <div class="flex gap-3 items-start"><span class="text-emerald-600 text-lg flex-shrink-0">&#9745;</span><div><p class="text-slate-900 text-sm font-semibold">Local Airspace Approval</p><p class="text-slate-500 text-xs">NOTAM issued and local authority flight clearances completed.</p></div></div>
+        </div>
+      </div>
+
+      <!-- CG Footer -->
+      <div class="border-t border-slate-200 pt-5 flex flex-wrap gap-3 justify-between items-center">
+        <div>
+          <p class="text-xs text-slate-400">Document ID: SKC-WP-2026-03 &bull; SkyCrane Aerial Logistics Engineering Team</p>
+          <p class="text-xs text-slate-400">For ERP integrations, contact the SkyCrane Technical Integration Desk.</p>
+        </div>
+        <a href="contact.html?subject=TIPC+Engineering+Customer+Guide+Consultation" class="btn btn-orange text-xs py-2 px-5 rounded-lg">
+          Request TIPC Feasibility Audit &#8594;
+        </a>
+      </div>
+
+    </div><!-- /wp-panel-cg -->
   </div>
 </div>
 
@@ -1528,6 +1740,23 @@ window.closeWhitepaperModal = function() {
   var m = document.getElementById("whitepaperModal");
   if (m) { m.style.display = "none"; document.body.style.overflow = ""; }
 };
+
+
+  /* WP Tab Switcher */
+  window.switchWpTab = function(tab) {
+    ['mfg','cg'].forEach(function(t) {
+      var btn   = document.getElementById('wp-tab-' + t);
+      var panel = document.getElementById('wp-panel-' + t);
+      if (t === tab) {
+        if (btn)   { btn.classList.add('border-sky-400','text-white'); btn.classList.remove('text-slate-400','border-transparent'); btn.setAttribute('aria-selected','true'); }
+        if (panel) panel.classList.remove('hidden');
+      } else {
+        if (btn)   { btn.classList.remove('border-sky-400','text-white'); btn.classList.add('text-slate-400','border-transparent'); btn.setAttribute('aria-selected','false'); }
+        if (panel) panel.classList.add('hidden');
+      }
+    });
+  };
+
 </script>
 
 </body>
