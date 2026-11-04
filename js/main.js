@@ -10,9 +10,9 @@
     var existing = document.getElementById('skycrane-toast');
     if (existing) existing.remove();
     var colors = {
-      error:   { bg: 'rgba(239,68,68,0.97)',  border: '#EF4444', icon: '⚠️' },
+      error: { bg: 'rgba(239,68,68,0.97)', border: '#EF4444', icon: '⚠️' },
       warning: { bg: 'rgba(245,158,11,0.97)', border: '#F59E0B', icon: '⚡' },
-      info:    { bg: 'rgba(14,165,233,0.97)',  border: '#0EA5E9', icon: 'ℹ️' }
+      info: { bg: 'rgba(14,165,233,0.97)', border: '#0EA5E9', icon: 'ℹ️' }
     };
     var c = colors[type] || colors.error;
     var toast = document.createElement('div');
@@ -38,14 +38,14 @@
     var closeBtn = document.createElement('button');
     closeBtn.innerHTML = '✕';
     closeBtn.style.cssText = 'background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1rem;margin-left:0.75rem;flex-shrink:0;line-height:1;';
-    closeBtn.onclick = function() { toast.remove(); };
+    closeBtn.onclick = function () { toast.remove(); };
     toast.appendChild(closeBtn);
     document.body.appendChild(toast);
-    setTimeout(function() { if (toast.parentNode) toast.style.animation = 'scToastIn 0.22s ease reverse forwards'; setTimeout(function() { toast.remove(); }, 220); }, 5000);
+    setTimeout(function () { if (toast.parentNode) toast.style.animation = 'scToastIn 0.22s ease reverse forwards'; setTimeout(function () { toast.remove(); }, 220); }, 5000);
   }
 
   // ═══ SkyCrane Form Notification Email Template Generator ═══
-  window.generateSkyCraneEmailHtml = function(data) {
+  window.generateSkyCraneEmailHtml = function (data) {
     var logoUrl = data.logoUrl || "https://skycranemobility.com/assets/images/logo.png";
     var badge = data.badge || (data.isConsultation ? "New Mission Consultation" : "New Website Subscriber");
     var requestType = data.requestType || (data.isConsultation ? "Mission Consultation Request" : "Operations Briefing Subscription");
@@ -68,36 +68,36 @@
       notesBlock = '<div style="margin-top: 24px;">' +
         '<span style="display: block; margin-bottom: 8px; font-weight: 600; color: #64748b; font-size: 14px;">Consultation Notes / Scope:</span>' +
         '<div style="margin-top: 8px; padding: 16px; background-color: #f8fafc; border-left: 4px solid #2563eb; border-radius: 4px; font-size: 14px; color: #334155; line-height: 1.6;">' +
-          details.join("<br>") +
+        details.join("<br>") +
         '</div>' +
-      '</div>';
+        '</div>';
     }
 
     return '<!DOCTYPE html>' +
-    '<html lang="en">' +
-    '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SkyCrane Mobility Form Submission</title></head>' +
-    '<body style="margin:0;padding:0;background-color:#f4f6f9;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Helvetica,Arial,sans-serif;color:#1e293b;">' +
+      '<html lang="en">' +
+      '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SkyCrane Mobility Form Submission</title></head>' +
+      '<body style="margin:0;padding:0;background-color:#f4f6f9;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Helvetica,Arial,sans-serif;color:#1e293b;">' +
       '<div style="max-width:600px;margin:30px auto;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);border:1px solid #e2e8f0;">' +
-        '<div style="background-color:#0f172a;padding:24px 32px;text-align:center;">' +
-          '<img src="' + logoUrl + '" alt="SkyCrane Mobility Logo" style="max-height:48px;width:auto;vertical-align:middle;">' +
-          '<div style="color:#ffffff;font-size:20px;font-weight:700;letter-spacing:0.5px;margin-top:8px;text-transform:uppercase;">SkyCrane Mobility</div>' +
-          '<div style="display:inline-block;padding:4px 12px;background-color:#2563eb;color:#ffffff;font-size:12px;font-weight:600;border-radius:9999px;text-transform:uppercase;letter-spacing:0.5px;margin-top:12px;">' + badge + '</div>' +
-        '</div>' +
-        '<div style="padding:32px;">' +
-          '<h2 style="font-size:18px;font-weight:600;color:#0f172a;margin-top:0;margin-bottom:20px;border-bottom:2px solid #f1f5f9;padding-bottom:8px;">Submission Details</h2>' +
-          '<table style="width:100%;border-collapse:collapse;">' +
-            '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Request Type</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;"><strong>' + requestType + '</strong></td></tr>' +
-            '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Corporate Email</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;"><a href="mailto:' + email + '" style="color:#2563eb;text-decoration:none;">' + email + '</a></td></tr>' +
-            '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Submission Date</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;">' + date + '</td></tr>' +
-          '</table>' +
-          notesBlock +
-        '</div>' +
-        '<div style="background-color:#f8fafc;padding:20px 32px;text-align:center;font-size:12px;color:#94a3b8;border-top:1px solid #e2e8f0;">' +
-          'This is an automated operational notification from <strong>SkyCrane Mobility Website Form Engine</strong>.<br>© 2026 SkyCrane Mobility Corporation. All rights reserved.' +
-        '</div>' +
+      '<div style="background-color:#0f172a;padding:24px 32px;text-align:center;">' +
+      '<img src="' + logoUrl + '" alt="SkyCrane Mobility Logo" style="max-height:48px;width:auto;vertical-align:middle;">' +
+      '<div style="color:#ffffff;font-size:20px;font-weight:700;letter-spacing:0.5px;margin-top:8px;text-transform:uppercase;">SkyCrane Mobility</div>' +
+      '<div style="display:inline-block;padding:4px 12px;background-color:#2563eb;color:#ffffff;font-size:12px;font-weight:600;border-radius:9999px;text-transform:uppercase;letter-spacing:0.5px;margin-top:12px;">' + badge + '</div>' +
       '</div>' +
-    '</body>' +
-    '</html>';
+      '<div style="padding:32px;">' +
+      '<h2 style="font-size:18px;font-weight:600;color:#0f172a;margin-top:0;margin-bottom:20px;border-bottom:2px solid #f1f5f9;padding-bottom:8px;">Submission Details</h2>' +
+      '<table style="width:100%;border-collapse:collapse;">' +
+      '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Request Type</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;"><strong>' + requestType + '</strong></td></tr>' +
+      '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Corporate Email</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;"><a href="mailto:' + email + '" style="color:#2563eb;text-decoration:none;">' + email + '</a></td></tr>' +
+      '<tr><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;font-weight:600;color:#64748b;width:35%;">Submission Date</td><td style="padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#0f172a;width:65%;">' + date + '</td></tr>' +
+      '</table>' +
+      notesBlock +
+      '</div>' +
+      '<div style="background-color:#f8fafc;padding:20px 32px;text-align:center;font-size:12px;color:#94a3b8;border-top:1px solid #e2e8f0;">' +
+      'This is an automated operational notification from <strong>SkyCrane Mobility Website Form Engine</strong>.<br>© 2026 SkyCrane Mobility Corporation. All rights reserved.' +
+      '</div>' +
+      '</div>' +
+      '</body>' +
+      '</html>';
   };
 
 
@@ -448,14 +448,14 @@
           }).catch(function (err) {
             console.log("Subscriber dispatch note:", err);
           });
-        } catch (e) {}
+        } catch (e) { }
 
         // Persist subscriber locally
         try {
           var subs = JSON.parse(localStorage.getItem("skycrane_newsletter_subscribers") || "[]");
           subs.push({ email: submittedEmail, date: new Date().toISOString() });
           localStorage.setItem("skycrane_newsletter_subscribers", JSON.stringify(subs));
-        } catch (e) {}
+        } catch (e) { }
 
         // Render Task 3.1 Briefing Success UI
         renderBriefingSuccess(submittedEmail);
@@ -501,11 +501,11 @@
   });
 
 
-    // ── Global Modal Controllers (Accessible from anywhere) ─────
-  
+  // ── Global Modal Controllers (Accessible from anywhere) ─────
+
   // Auto-open whitepaper modal on hash
   if (window.location.hash === "#whitepaper" || window.location.hash === "#whitepaperModal") {
-    setTimeout(function() {
+    setTimeout(function () {
       if (typeof window.openWhitepaperModal === "function") {
         window.openWhitepaperModal();
       }
@@ -545,7 +545,7 @@
       ta.value = phone;
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); } catch (e) {}
+      try { document.execCommand("copy"); } catch (e) { }
       document.body.removeChild(ta);
     }
     if (btn) {
@@ -553,12 +553,14 @@
       if (lbl) {
         var orig = lbl.textContent;
         lbl.textContent = "Copied ✓";
-        btn.style.color = "#34d399";
-        btn.style.borderColor = "#34d399";
+        btn.style.color = "#16a34a";
+        btn.style.borderColor = "#16a34a";
+        btn.style.backgroundColor = "#F0FDF4";
         setTimeout(function () {
           lbl.textContent = orig;
           btn.style.color = "";
           btn.style.borderColor = "";
+          btn.style.backgroundColor = "";
         }, 2000);
       }
     }
@@ -611,7 +613,7 @@
     });
   };
 
-  
+
   // ═══ Global Consultation Form Submission Handler ═══
   window.handleConsultationSubmission = function (formEl, event) {
     if (event) {
@@ -623,26 +625,26 @@
 
     // Validate fields with clear, friendly Toast alerts
     var companyInput = formEl.querySelector("#company") || document.getElementById("company");
-    var nameInput    = formEl.querySelector("#full-name") || formEl.querySelector("#name") || document.getElementById("full-name");
-    var phoneInput   = formEl.querySelector("#phone") || document.getElementById("phone");
-    var emailInput   = formEl.querySelector("#email") || document.getElementById("email");
-    var locInput     = formEl.querySelector("#location") || document.getElementById("location");
+    var nameInput = formEl.querySelector("#full-name") || formEl.querySelector("#name") || document.getElementById("full-name");
+    var phoneInput = formEl.querySelector("#phone") || document.getElementById("phone");
+    var emailInput = formEl.querySelector("#email") || document.getElementById("email");
+    var locInput = formEl.querySelector("#location") || document.getElementById("location");
     var payloadInput = formEl.querySelector("#payload") || document.getElementById("payload");
-    var systemInput  = formEl.querySelector("#payload-system") || document.getElementById("payload-system");
-    var dateInput    = formEl.querySelector("#target-date") || document.getElementById("target-date");
-    var msgInput     = formEl.querySelector("#message") || document.getElementById("message");
+    var systemInput = formEl.querySelector("#payload-system") || document.getElementById("payload-system");
+    var dateInput = formEl.querySelector("#target-date") || document.getElementById("target-date");
+    var msgInput = formEl.querySelector("#message") || document.getElementById("message");
     var privacyConsent = formEl.querySelector("#privacy-consent") || document.getElementById("privacy-consent");
-    var submitBtn    = formEl.querySelector("#btn-submit-consultation") || document.getElementById("btn-submit-consultation");
+    var submitBtn = formEl.querySelector("#btn-submit-consultation") || document.getElementById("btn-submit-consultation");
 
     var company = companyInput ? companyInput.value.trim() : "";
-    var name    = nameInput ? nameInput.value.trim() : "";
-    var phone   = phoneInput ? phoneInput.value.trim() : "";
-    var email   = emailInput ? emailInput.value.trim() : "";
-    var loc     = locInput ? locInput.value.trim() : "";
+    var name = nameInput ? nameInput.value.trim() : "";
+    var phone = phoneInput ? phoneInput.value.trim() : "";
+    var email = emailInput ? emailInput.value.trim() : "";
+    var loc = locInput ? locInput.value.trim() : "";
     var payload = payloadInput ? payloadInput.value : "";
-    var system  = systemInput ? systemInput.value : "";
+    var system = systemInput ? systemInput.value : "";
     var targetDate = dateInput ? dateInput.value : "";
-    var msg     = msgInput ? msgInput.value.trim() : "";
+    var msg = msgInput ? msgInput.value.trim() : "";
 
     function warn(text, el) {
       if (typeof showToast === "function") {
@@ -654,7 +656,7 @@
         try {
           el.scrollIntoView({ behavior: "smooth", block: "center" });
           el.focus();
-        } catch (e) {}
+        } catch (e) { }
       }
     }
 
@@ -745,7 +747,7 @@
       }).catch(function (netErr) {
         console.log("Form forwarding note:", netErr);
       });
-    } catch (e) {}
+    } catch (e) { }
 
     // 3. Complete UI transition: show custom modal, reset button & form
     setTimeout(function () {
@@ -807,101 +809,101 @@
 })();
 
 
-  // ── Global Newsletter Subscription Handler (Static & GitHub Pages Compatible) ──
-  window.handleNewsletterSubscription = function (formEl) {
-    if (!formEl) return false;
-    var emailInput = formEl.querySelector('input[type="email"]');
-    var submitBtn  = formEl.querySelector('button[type="submit"]');
-    var emailVal   = emailInput ? emailInput.value.trim() : "";
+// ── Global Newsletter Subscription Handler (Static & GitHub Pages Compatible) ──
+window.handleNewsletterSubscription = function (formEl) {
+  if (!formEl) return false;
+  var emailInput = formEl.querySelector('input[type="email"]');
+  var submitBtn = formEl.querySelector('button[type="submit"]');
+  var emailVal = emailInput ? emailInput.value.trim() : "";
 
-    if (!emailVal || !emailVal.includes("@") || !emailVal.includes(".")) {
-      showToast("Please enter a valid corporate email address (e.g., name@company.com).", "error");
-      if (emailInput) emailInput.focus();
-      return false;
-    }
-
-    var origBtnText = submitBtn ? submitBtn.innerHTML : "Subscribe";
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = "0.75";
-      submitBtn.innerHTML = "Subscribing...";
-    }
-
-    // Persist subscriber locally (zero data loss on GitHub Pages)
-    try {
-      var key = "skycrane_newsletter_subscribers";
-      var current = JSON.parse(localStorage.getItem(key) || "[]");
-      current.push({
-        email: emailVal,
-        date: new Date().toISOString(),
-        page: window.location.pathname
-      });
-      localStorage.setItem(key, JSON.stringify(current));
-    } catch (e) {
-      console.warn("Subscriber storage note:", e);
-    }
-
-    // Attempt FormSubmit forwarding in background (sends email alert to admin)
-    try {
-      fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          _subject: "New SkyCrane Air Mobility Briefing Subscriber!",
-          subscriber_email: emailVal,
-          source_page: window.location.href,
-          timestamp: new Date().toLocaleString()
-        })
-      }).catch(function(err) {
-        console.log("FormSubmit network note:", err);
-      });
-    } catch (e) {}
-
-    // Show premium confirmation card & hide the form inputs
-    setTimeout(function () {
-      formEl.style.display = "none";
-
-      var existingBox = formEl.parentNode.querySelector(".newsletter-success-box");
-      if (existingBox) existingBox.remove();
-      var oldMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
-      if (oldMsg) oldMsg.remove();
-
-      var successCard = document.createElement("div");
-      successCard.className = "newsletter-success-box";
-      successCard.innerHTML = [
-        '<div class="success-icon">',
-        '  <svg style="width:18px;height:18px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>',
-        '</div>',
-        '<div class="success-title">Briefing Access Confirmed</div>',
-        '<div class="success-email">' + emailVal + '</div>',
-        '<div class="success-desc">You are registered to receive our monthly flight logs, regional corridor routes, and UAV technical briefings.</div>',
-        '<button type="button" class="success-reset-btn">Subscribe another email</button>'
-      ].join('');
-
-      formEl.insertAdjacentElement("afterend", successCard);
-
-      // Reset button state on form
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = "1";
-        submitBtn.innerHTML = origBtnText;
-      }
-      formEl.reset();
-
-      // Bind reset button
-      var resetBtn = successCard.querySelector(".success-reset-btn");
-      if (resetBtn) {
-        resetBtn.addEventListener("click", function () {
-          successCard.remove();
-          formEl.style.display = "";
-          var newInp = formEl.querySelector('input[type="email"]');
-          if (newInp) newInp.focus();
-        });
-      }
-    }, 280);
-
+  if (!emailVal || !emailVal.includes("@") || !emailVal.includes(".")) {
+    showToast("Please enter a valid corporate email address (e.g., name@company.com).", "error");
+    if (emailInput) emailInput.focus();
     return false;
-  };
+  }
+
+  var origBtnText = submitBtn ? submitBtn.innerHTML : "Subscribe";
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = "0.75";
+    submitBtn.innerHTML = "Subscribing...";
+  }
+
+  // Persist subscriber locally (zero data loss on GitHub Pages)
+  try {
+    var key = "skycrane_newsletter_subscribers";
+    var current = JSON.parse(localStorage.getItem(key) || "[]");
+    current.push({
+      email: emailVal,
+      date: new Date().toISOString(),
+      page: window.location.pathname
+    });
+    localStorage.setItem(key, JSON.stringify(current));
+  } catch (e) {
+    console.warn("Subscriber storage note:", e);
+  }
+
+  // Attempt FormSubmit forwarding in background (sends email alert to admin)
+  try {
+    fetch("https://formsubmit.co/ajax/info@skycranemobility.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        _subject: "New SkyCrane Air Mobility Briefing Subscriber!",
+        subscriber_email: emailVal,
+        source_page: window.location.href,
+        timestamp: new Date().toLocaleString()
+      })
+    }).catch(function (err) {
+      console.log("FormSubmit network note:", err);
+    });
+  } catch (e) { }
+
+  // Show premium confirmation card & hide the form inputs
+  setTimeout(function () {
+    formEl.style.display = "none";
+
+    var existingBox = formEl.parentNode.querySelector(".newsletter-success-box");
+    if (existingBox) existingBox.remove();
+    var oldMsg = formEl.parentNode.querySelector(".newsletter-feedback-msg");
+    if (oldMsg) oldMsg.remove();
+
+    var successCard = document.createElement("div");
+    successCard.className = "newsletter-success-box";
+    successCard.innerHTML = [
+      '<div class="success-icon">',
+      '  <svg style="width:18px;height:18px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>',
+      '</div>',
+      '<div class="success-title">Briefing Access Confirmed</div>',
+      '<div class="success-email">' + emailVal + '</div>',
+      '<div class="success-desc">You are registered to receive our monthly flight logs, regional corridor routes, and UAV technical briefings.</div>',
+      '<button type="button" class="success-reset-btn">Subscribe another email</button>'
+    ].join('');
+
+    formEl.insertAdjacentElement("afterend", successCard);
+
+    // Reset button state on form
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = "1";
+      submitBtn.innerHTML = origBtnText;
+    }
+    formEl.reset();
+
+    // Bind reset button
+    var resetBtn = successCard.querySelector(".success-reset-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        successCard.remove();
+        formEl.style.display = "";
+        var newInp = formEl.querySelector('input[type="email"]');
+        if (newInp) newInp.focus();
+      });
+    }
+  }, 280);
+
+  return false;
+};
